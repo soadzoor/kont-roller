@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/ts/",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "importHelpers": true,
+    "target": "es6",
+    "jsx": "react",
+    "downlevelIteration": true,
+    "allowJs": false,
+    "sourceMap": true,
+    "outDir": "build/prod/js",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitOverride": true,
+    "strictBindCallApply": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "node",
+      "react",
+      "react-dom"
+    ],
+    "lib": [
+      "dom",
+      "es7",
+      "scripthost",
+      "es2015.collection",
+      "es2015.core",
+      "es2015.iterable",
+      "es2015.promise",
+      "es2015.symbol",
+      "es2015.symbol.wellknown",
+      "ES2019"
+    ]
+  },
+  "include": [
+    "src/ts/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

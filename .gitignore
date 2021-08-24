@@ -1,0 +1,7 @@
+.vscode
+.idea
+build/dev
+build/prod
+build/temp
+node_modules
+package-lock.json

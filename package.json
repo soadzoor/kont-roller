@@ -1,0 +1,31 @@
+{
+  "name": "typescript-react",
+  "version": "0.0.1",
+  "description": "TypeScript - React",
+  "main": "",
+  "scripts": {
+    "build": "node build/build",
+    "build:prod": "node build/build --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soadzoor/Boilerplate_For_TypeScript_React"
+  },
+  "author": "Peter Varga <soadzoor@gmail.com>",
+  "license": "",
+  "dependencies": {
+    "@types/node": "15.0.2",
+    "@types/react": "17.0.9",
+    "@types/react-dom": "17.0.6",
+    "@types/web-bluetooth": "0.0.11",
+    "esbuild": "0.12.7",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "sass": "1.34.1",
+    "sass-loader": "12.0.0",
+    "shx": "0.3.3",
+    "tslib": "2.2.0",
+    "typescript": "4.3.2",
+    "uglifycss": "0.0.29"
+  }
+}
