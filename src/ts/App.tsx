@@ -1,5 +1,7 @@
+import {ConnectionManager} from "ConnectionManager";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {TokenManager} from "TokenManager";
 
 interface IAppProps
 {
@@ -26,21 +28,40 @@ export class App extends React.Component<IAppProps, IAppState>
 			filters: [
 				{namePrefix: "H149"}
 			],
-			optionalServices: [0x2A19, 0x037A]
+			optionalServices: [0xFEE7]
 		});
 
 
 		const gattServer = await device.gatt?.connect();
 
-		const services = await gattServer?.getPrimaryServices() || [];
+		const service = await gattServer?.getPrimaryService(0xFEE7);
+		const read = await service?.getCharacteristic(0x36F6);
 
-		for (const primaryService of services)
-		{
-			console.log(primaryService);
-		}
 		
 
-		console.log(device);
+		const write = await service?.getCharacteristic(0x36F5);
+
+		if (write)
+		{
+			const mac = "9E:9C:55:67:45:B9"
+			const connectionManager = new ConnectionManager(mac, write);
+			await connectionManager.init();
+			const tokenManager = new TokenManager(connectionManager);
+			await tokenManager.postInit();
+
+			read?.addEventListener("characteristicvaluechanged", (ev: Event) =>
+			{
+				console.log(ev);
+				tokenManager.handleMessage(Array.from((ev.currentTarget as BluetoothRemoteGATTCharacteristic).value as any))
+			});
+
+			read?.startNotifications();
+	
+			await tokenManager.writeWithToken([2, 3, 1, 0, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0])
+		}
+		
+		//write?.writeValue(new Uint8ClampedArray([2, 3, 1, 0, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0]));
+
 	};
 
 	public override render()
