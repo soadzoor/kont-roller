@@ -1,0 +1,11 @@
+<view>
+    <view class="scanBtn">
+        <button bindtap="scanMac">扫描MAC</button>
+    </view>
+    <view style="text-align:center;margin-top: 20%;">
+        <text>{{macTxt}}</text>
+    </view>
+    <view class="scanBtn">
+        <button bindtap="addData">入库</button>
+    </view>
+</view>

@@ -1,0 +1,11 @@
+.scanBtn button,.scanMessage {
+    margin-top: 10%;
+}
+
+.scanMessage {
+    font-size: 18px;
+}
+
+.insertBtn {
+    margin-top: 20%;
+}

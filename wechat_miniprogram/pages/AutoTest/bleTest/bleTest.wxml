@@ -1,0 +1,34 @@
+<view>
+    <view class="head">
+        <text>车辆ID:{{vehicleId}}</text>
+        <text>
+
+ {{state}}</text>
+    </view>
+    <view class="mess">
+        <text style="color:{{bscanCol}}">
+ 蓝牙扫描状态：</text>
+        <text style="color:{{bscanCol}}">{{bscanMess}}</text>
+        <text style="color:{{bconnCol}}">
+ 蓝牙连接状态：</text>
+        <text style="color:{{bconnCol}}">{{bconnectMess}}</text>
+        <text style="color:{{lockCol}}">
+ 测试开锁：</text>
+        <text style="color:{{lockCol}}">{{lockMess}}</text>
+        <text style="color:{{battconnCol}}">
+ 电池通信：</text>
+        <text style="color:{{battconnCol}}">{{battconnMess}}</text>
+        <text style="color:{{battsocCol}}">
+ 电池SOC：</text>
+        <text style="color:{{battsocCol}}">{{battsocMess}}</text>
+        <text style="color:{{conCol}}">
+ 控制器：</text>
+        <text style="color:{{conCol}}">{{conMess}}</text>
+        <text style="color:{{faultCol}}">
+ 故障码：</text>
+        <text style="color:{{faultCol}}">{{faultMess}}</text>
+    </view>
+    <view class="btn">
+        <button bindtap="GoTest" plain="false" wx:if="{{SOHtest}}">进入手动部分</button>
+    </view>
+</view>

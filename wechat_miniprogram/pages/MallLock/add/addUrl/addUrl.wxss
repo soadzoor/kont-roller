@@ -1,0 +1,11 @@
+.urlBtn button {
+    width: 80%;
+    background-color: rgba(204,204,36,.575);
+    margin-top: 40%;
+}
+
+.message {
+    text-align: center;
+    font-size: 20px;
+    color: red;
+}

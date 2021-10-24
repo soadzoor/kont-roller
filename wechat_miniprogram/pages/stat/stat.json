@@ -1,0 +1,7 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "车辆状态信息显示",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {}
+}

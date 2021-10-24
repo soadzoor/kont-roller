@@ -1,0 +1,29 @@
+<view>
+    <button bindtap="changeAes" class="btn" style="background-color:rgb(216, 150, 111);">
+    添加客户密钥
+  </button>
+    <button bindtap="oldAes" class="btn" style="background-color:rgb(85, 202, 143);">
+    旧样品开锁
+  </button>
+    <button bindtap="newAes" class="btn" style="background-color:rgb(95, 103, 206);">
+    新样品开锁
+  </button>
+    <button bindtap="testNewAes" class="btn" style="background-color:#3fadb1;">
+    测试客户车辆
+  </button>
+    <view bindtap="hideModal1" catchtouchmove="preventTouchMove1" class="modal-mask" wx:if="{{showModal1}}"></view>
+    <view class="modal-dialog" wx:if="{{showModal1}}">
+        <view class="modal-title">输入客户编号</view>
+        <view class="modal-content">
+            <view class="modal-input">
+                <input bindinput="input1" class="input" maxlength="2" placeholder="输入编号" placeholderClass="input-holder" type="number"></input>
+            </view>
+            <text>{{customer}}</text>
+        </view>
+        <view class="modal-footer">
+            <view bindtap="onCancel1" class="btn-cancel" data-status="cancel">取消</view>
+            <view bindtap="check" class="btn-check">检查</view>
+            <view bindtap="onConfirm1" class="btn-confirm" data-status="confirm">确定</view>
+        </view>
+    </view>
+</view>

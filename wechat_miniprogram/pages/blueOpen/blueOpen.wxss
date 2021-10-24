@@ -1,0 +1,19 @@
+.Abutton {
+    width: 256rpx;
+    margin: 100rpx 30rpx 30rpx;
+    background-color: #deb887;
+}
+
+.Bbutton {
+    background-color: #9acd32;
+}
+
+.Bbutton,.Cbutton {
+    width: 256rpx;
+    margin: 30rpx;
+    color: #aaa;
+}
+
+.Cbutton {
+    background-color: #504ec5;
+}

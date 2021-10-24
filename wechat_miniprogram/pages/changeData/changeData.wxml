@@ -1,0 +1,39 @@
+<view class="body">
+    <view class="val">
+        <text>
+ 当前货柜号 
+      <text style="color:red">{{boxVal}}</text>
+        </text>
+        <text>
+ 当前货柜录入数量
+      <text style="color:red">{{boxCount}}</text>
+        </text>
+        <button bindtap="showDialogBtn1" class="show-btn">更改货柜号</button>
+    </view>
+    <view class="change">
+        <button bindtap="qrUrl" class="btn">扫描车头二维码</button>
+        <button bindtap="qrUrl2" class="btn">扫描模块二维码</button>
+        <text>. 
+ {{urlMess}}</text>
+        <text style="color:red">
+ 请确认把头的数字和该URL相对应</text>
+        <button bindtap="changeData" class="btn">该车出货</button>
+        <button bindtap="changeData2" class="btn">撤销出货</button>
+    </view>
+    <view bindtap="hideModal1" catchtouchmove="preventTouchMove1" class="modal-mask" wx:if="{{showModal1}}"></view>
+    <view class="modal-dialog" wx:if="{{showModal1}}">
+        <view class="modal-title">输入货柜号</view>
+        <view class="modal-content">
+            <view class="modal-input">
+                <input bindinput="input1" class="input" maxlength="15" placeholder="" placeholderClass="input-holder" type="number"></input>
+            </view>
+            <text>
+ 年月日(6位)+货柜(5位) 
+ +客户(2位)+出口国(2位)</text>
+        </view>
+        <view class="modal-footer">
+            <view bindtap="onCancel" class="btn-cancel" data-status="cancel">取消</view>
+            <view bindtap="onConfirm" class="btn-confirm" data-status="confirm">确定</view>
+        </view>
+    </view>
+</view>

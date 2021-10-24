@@ -1,0 +1,41 @@
+.rssi_class {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: 36rpx;
+    font-family: Microsoft YaHei;
+}
+
+.rssi_title {
+    margin-left: 10rpx;
+    margin-top: 10rpx;
+    flex: 1;
+}
+
+.rssi_title,.rssi_value {
+    font-size: 36rpx;
+    font-family: Microsoft YaHei;
+    position: relative;
+}
+
+.rssi_value {
+    flex: 6;
+}
+
+.rssi_confirm,.rssi_confirm::after {
+    border: none;
+    background: none;
+    color: #3415e0;
+}
+
+.devices {
+    margin: 20rpx 5rpx 5rpx 20rpx;
+    font-size: 36rpx;
+    font-family: Microsoft YaHei;
+}
+
+.Rescan {
+    width: 256rpx;
+    margin: 5rpx;
+    background-color: #daa520;
+}

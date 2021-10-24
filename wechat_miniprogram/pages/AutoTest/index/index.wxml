@@ -1,0 +1,20 @@
+<view>
+    <view class="Scan">
+        <button bindtap="QRurl" plain="false">{{language_lib.scan_Url}}</button>
+    </view>
+    <view class="mess">
+        <text>
+ {{message}}</text>
+        <text>
+ {{VehicleId}}</text>
+        <text>
+ {{mac}}</text>
+        <text>
+ {{imei}}</text>
+        <text>
+ {{iccid}}</text>
+    </view>
+    <view class="testBtn">
+        <button bindtap="GoTest" plain="false" wx:if="{{SOHtest}}">{{language_lib.chiko_start_test}}</button>
+    </view>
+</view>

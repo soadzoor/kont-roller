@@ -1,0 +1,14 @@
+.submitClick {
+    width: 70%;
+    color: #fff;
+    background: #13b821;
+    font-size: 15px;
+    margin-top: 40px;
+    border-radius: 20px;
+}
+
+.gateMess {
+    font-size: 18px;
+    margin-top: 10%;
+    margin-left: 20%;
+}

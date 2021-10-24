@@ -1,0 +1,24 @@
+<view>
+    <view class="scanBtn">
+        <button bindtap="scan_mac" plain="false">扫描MAC</button>
+        <button bindtap="scan_qr" plain="false">扫描URL码</button>
+        <view wx:if="{{tem}}">
+            <button bindtap="scan_iccid" plain="false">扫描ICCID</button>
+            <button bindtap="scan_imei" plain="false">扫描IMEI</button>
+        </view>
+    </view>
+    <view class="scanMessage">
+        <text>
+ {{url_message}}</text>
+        <text>
+ {{mac_message}}</text>
+        <view wx:if="{{tem}}">
+            <text>{{iccid_message}}</text>
+            <text>
+ {{imei_message}}</text>
+        </view>
+    </view>
+    <view class="insertBtn">
+        <button bindtap="insert" plain="false">开始录入</button>
+    </view>
+</view>

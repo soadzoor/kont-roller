@@ -1,0 +1,14 @@
+<view>
+    <view class="Btn">
+        <button bindtap="scanUrl" style="background-color:rgb(16, 221, 194);">扫描URL</button>
+    </view>
+    <view class="lockIdTxt">
+        <text>{{lockId}}</text>
+    </view>
+    <view class="Btn">
+        <button bindtap="changeType" style="background-color:rgb(122, 241, 11);">通过</button>
+    </view>
+    <view class="Btn">
+        <button bindtap="fall" style="background-color:rgb(235, 88, 88);">不通过</button>
+    </view>
+</view>

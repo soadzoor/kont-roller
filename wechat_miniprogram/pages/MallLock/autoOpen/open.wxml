@@ -1,0 +1,5 @@
+<view>
+    <view class="scaningTxt">
+        <text>{{scanTxt}}</text>
+    </view>
+</view>

@@ -1,0 +1,22 @@
+<view class="Btn">
+    <view wx:if="{{menu1}}">
+        <button bindtap="Tem" style="background-color:rgb(211, 128, 128);">测温仪</button>
+        <button bindtap="addLock" style="background-color:rgb(148, 235, 61);">锁入库</button>
+        <button bindtap="addGate" style="background-color:rgb(211, 128, 128);">网关入库</button>
+    </view>
+    <view wx:if="{{menu3}}">
+        <button bindtap="goBle" style="background-color:rgb(95, 103, 206);">蓝牙</button>
+    </view>
+    <view wx:if="{{menu1}}">
+        <button bindtap="outSwitch" style="background-color:rgb(211, 128, 128);">出货</button>
+        <button bindtap="cancelOutSwitch" style="background-color:rgb(95, 103, 206);">撤销出货</button>
+    </view>
+    <view wx:if="{{menu4}}">
+        <button bindtap="goTest" style="background-color:rgb(211, 128, 128);">测试</button>
+    </view>
+    <view wx:if="{{menu2}}">
+        <button bindtap="delLock" style="background-color:rgb(95, 103, 206);">锁删库</button>
+        <button bindtap="delGateway" style="background-color:rgb(211, 128, 128);">网关删库</button>
+        <button bindtap="checkDataSwitch" style="background-color:rgb(95, 103, 206);">抽检</button>
+    </view>
+</view>

@@ -1,0 +1,26 @@
+.insert {
+    text-align: center;
+}
+
+.insert text {
+    font-size: 18px;
+}
+
+.insert button {
+    margin-top: 5%;
+}
+
+.message {
+    margin-top: 20%;
+}
+
+.addData {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+}
+
+.addData text {
+    font-size: 20px;
+}

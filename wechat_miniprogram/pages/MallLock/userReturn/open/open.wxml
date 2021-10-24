@@ -1,0 +1,18 @@
+<view class="container">
+    <view class="rotating" wx:if="{{unlocking}}">
+        <image animation="{{animationData}}" bindtap="refreshList1" class="img" src="../../../img/rotating.png"></image>
+        <view class="unlockingTxt">
+            <text>{{lockid}}</text>
+            <text>
+ {{lockS}}</text>
+        </view>
+    </view>
+    <view animation="{{animationData2}}" wx:if="{{pwdDisplay}}">
+        <view class="pwdTxt">
+            <text>{{pwd}}</text>
+        </view>
+        <view class="pwdalert">
+            <text>请在20秒内对购物车输入该密码进行开锁</text>
+        </view>
+    </view>
+</view>

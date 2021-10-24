@@ -1,0 +1,20 @@
+<view>
+    <view class="insert">
+        <text style="color:{{iccColor}}">{{iccMess}}</text>
+        <text style="color:{{qrMessageColor}}">
+ {{qrMessage}}</text>
+        <button bindtap="qrMac">扫描MAC码</button>
+        <button bindtap="qrImei">扫描IMEI码</button>
+        <button bindtap="qrIccid">扫描ICCID码</button>
+        <view class="message">
+            <text>URL为:{{urlMess}} 
+</text>
+            <text>MAC为:{{macMess}} 
+</text>
+            <text>IMEI为:{{imeiMess}} 
+</text>
+            <text>ICCID为:{{iccidMess}} 
+</text>
+        </view>
+    </view>
+</view>

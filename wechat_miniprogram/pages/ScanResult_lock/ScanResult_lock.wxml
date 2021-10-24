@@ -1,0 +1,141 @@
+<view class="ScanResult_lock">
+    <view class="navbar" style=" z-index:50">
+        <view bindtap="navbarTap" class="item {{currentTab==index?'active':''}}" data-idx="{{index}}" wx:for="{{navbar}}" wx:key="unique">
+      {{item}}
+      </view>
+    </view>
+    <view class="state">
+        <text>{{language_lib.ble_name}}:{{name}}
+</text>
+        <text>MAC:{{mac}}
+</text>
+        <text decode="{{true}}">{{language_lib.ble_state}}:{{state}}&emsp;&emsp;&emsp;{{language_lib.sw}}:{{version}}
+</text>
+        <text decode="{{true}}">{{language_lib.batt}}:{{batt}}&emsp;&emsp;&emsp; {{language_lib.lock_state}}:{{lock_state}}&emsp;&emsp;&emsp; {{language_lib.led_band}}:{{ledband_state}}
+</text>
+        <text decode="{{true}}">{{language_lib.speed}}:{{cur_speed}}&emsp;&emsp;&emsp; {{language_lib.cur_mil}}:{{cur_mil}}&emsp;&emsp;&emsp; {{language_lib.charge_state}}:{{charging}}
+</text>
+    </view>
+    <view class="button">
+        <button bindtap="Popup_cur_state" id="popup">{{language_lib.cur_sys_cfg}}</button>
+    </view>
+    <view hidden="{{currentTab!==0}}">
+        <view class="button">
+            <button bindtap="Ledband_ctr" id="led_o">{{language_lib.ledband_on}}</button>
+            <button bindtap="Ledband_ctr" id="led_c">{{language_lib.ledband_off}}</button>
+        </view>
+        <view class="button">
+            <button bindtap="Lock_ctr" id="lock_o">{{language_lib.unlock}}</button>
+            <button bindtap="Lock_ctr" id="lock_c">{{language_lib.lock}}</button>
+        </view>
+        <view class="changeData">
+            <button bindtap="qrUrl" wx:if="{{showOrHidden}}">{{language_lib.qr_error_message}}</button>
+        </view>
+    </view>
+    <view hidden="{{currentTab!==1}}">
+        <view class="button">
+            <button bindtap="Mode_ctr" id="mode_o">{{language_lib.transport_mode}}</button>
+            <button bindtap="Mode_ctr" id="mode_c">{{language_lib.normal_node}}</button>
+        </view>
+        <view class="button">
+            <button bindtap="Rst_factory" id="r_f">{{language_lib.factory_rst}}</button>
+            <button bindtap="Rst_server" id="r_s">{{language_lib.server_rst}}</button>
+        </view>
+        <view class="button">
+            <button bindtap="showDialogBtn1" class="show-btn">{{language_lib.dian}}</button>
+        </view>
+        <view wx:if="{{hiddenOrShow}}">
+            <view class="swtich_class">
+                <view class="switch_single">
+                    <text>{{language_lib.cruise}}:</text>
+                    <switch bindchange="cruise_switch" checked="{{cruise==language_lib.on}}"></switch>
+                </view>
+                <view class="switch_single">
+                    <text>{{language_lib.nz_act}}:</text>
+                    <switch bindchange="nz_act_switch" checked="{{no_zero_act==language_lib.on}}"></switch>
+                </view>
+            </view>
+            <view class="button">
+                <button bindtap="setSensor">sensor alarm</button>
+            </view>
+            <view class="button"></view>
+            <view class="button">
+                <button bindtap="Lmt_speed_set">{{language_lib.lmt_spd_set}}</button>
+            </view>
+        </view>
+        <view bindtap="hideModal" catchtouchmove="preventTouchMove" class="modal-mask" wx:if="{{lmt_speed_modal_show}}"></view>
+        <view class="modal-dialog" wx:if="{{lmt_speed_modal_show}}">
+            <view class="modal-title">{{language_lib.lmt_spd}}(km/h)</view>
+            <view class="modal-content">
+                <view class="modal-input">
+                    <input bindinput="lmt_speed_input" class="input" maxlength="2" placeholder="{{lmt_speed}}" placeholderClass="input-holder" type="number"></input>
+                </view>
+            </view>
+            <view class="modal-footer">
+                <view bindtap="lmt_speed_set_cancel" class="btn-cancel" data-status="cancel">{{language_lib.cancel}}</view>
+                <view bindtap="lmt_speed_set_confirm" class="btn-confirm" data-status="confirm">{{language_lib.confirm}}</view>
+            </view>
+        </view>
+    </view>
+    <view hidden="{{currentTab!==2}}">
+        <view class="button">
+            <button bindtap="fetch_server_addr">获取服务器地址</button>
+            <button bindtap="set_server_addr">设置服务器地址</button>
+        </view>
+        <view class="modal-dialog" wx:if="{{server_addr_set_window_show}}">
+            <view class="modal-title">设置服务器地址</view>
+            <view class="modal-content">
+                <view class="modal-input">
+                    <input bindinput="server_addr_input" class="input" maxlength="60" placeholder="{{server_addr}}" placeholderClass="input-holder"></input>
+                </view>
+            </view>
+            <view class="modal-footer">
+                <view bindtap="server_addr_set_cancel" class="btn-cancel" data-status="cancel">{{language_lib.cancel}}</view>
+                <view bindtap="server_addr_set_confirm" class="btn-confirm" data-status="confirm">{{language_lib.confirm}}</view>
+            </view>
+        </view>
+        <view class="button">
+            <button bindtap="fetch_server_apn">获取APN</button>
+            <button bindtap="set_server_apn">设置APN</button>
+        </view>
+        <view class="modal-dialog" wx:if="{{apn_set_window_show}}">
+            <view class="modal-title">设置APN</view>
+            <view class="modal-content">
+                <view class="modal-input">
+                    <input bindinput="apn_input" class="input" maxlength="60" placeholder="{{server_apn}}" placeholderClass="input-holder"></input>
+                </view>
+            </view>
+            <view class="modal-footer">
+                <view bindtap="apn_set_cancel" class="btn-cancel" data-status="cancel">{{language_lib.cancel}}</view>
+                <view bindtap="apn_set_confirm" class="btn-confirm" data-status="confirm">{{language_lib.confirm}}</view>
+            </view>
+        </view>
+        <view class="button">
+            <button bindtap="fetch_iccid">获取ICCID</button>
+            <button bindtap="fetch_imei">获取IMEI</button>
+        </view>
+        <view class="button">
+            <button bindtap="fetch_server_user">获取用户名</button>
+            <button bindtap="fetch_server_psd">获取密码</button>
+        </view>
+        <view class="button">
+            <button bindtap="fetch_gprs_csq">获取CSQ</button>
+        </view>
+    </view>
+    <view bindtap="hideModal1" catchtouchmove="preventTouchMove1" class="modal-mask" wx:if="{{showModal1}}"></view>
+    <view class="modal-dialog" wx:if="{{showModal1}}">
+        <view class="modal-title">Set value</view>
+        <view class="modal-content">
+            <view class="modal-input">
+                <input bindinput="input1" class="input" maxlength="10" placeholder="{{va1}}" placeholderClass="input-holder" type="number"></input>
+            </view>
+            <view class="modal-input">
+                <input bindinput="input2" class="input" maxlength="10" placeholder="{{va2}}" placeholderClass="input-holder" type="number"></input>
+            </view>
+        </view>
+        <view class="modal-footer">
+            <view bindtap="onCancel1" class="btn-cancel" data-status="cancel">cancel</view>
+            <view bindtap="onConfirm1" class="btn-confirm" data-status="confirm">confrim</view>
+        </view>
+    </view>
+</view>

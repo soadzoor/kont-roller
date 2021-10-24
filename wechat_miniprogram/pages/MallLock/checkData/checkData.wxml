@@ -1,0 +1,39 @@
+<view>
+    <view class="Btn">
+        <button bindtap="scan" style="background-color:rgb(16, 221, 194);">扫描{{LorG}}</button>
+    </view>
+    <view class="messTxt" wx:if="{{lockMessage}}">
+        <text style="font-size:24px;color:red;">信息如下</text>
+        <view class="lockMessage">
+            <text>
+
+ 锁ID：{{lockId}}</text>
+            <text>
+
+ 所属门店：{{store}}</text>
+            <text>
+
+ 所属箱号：{{box}}</text>
+            <text>
+
+ 出货日期：{{outDate}}</text>
+            <text>
+
+ 门店数量：{{outCount}}</text>
+        </view>
+    </view>
+    <view class="messTxt" wx:if="{{gateMessage}}">
+        <text style="font-size:24px;color:red;">信息如下</text>
+        <view class="lockMessage">
+            <text>
+
+ 所属门店：{{store}}</text>
+            <text>
+
+ IMEI：{{imeiTxt}}</text>
+            <text>
+
+ ICCID：{{iccidTxt}}</text>
+        </view>
+    </view>
+</view>

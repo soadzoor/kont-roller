@@ -1,0 +1,73 @@
+<view>
+    <view class="body" wx:if="{{lock}}">
+        <view style="text-align: center;">
+            <text>
+ 设置的门店：</text>
+            <text style="color:red">{{storeName}}</text>
+        </view>
+        <view style="text-align: center;">
+            <text>
+ 设置的入库总数量：</text>
+            <text style="color:red">{{maxCount}}</text>
+        </view>
+        <button bindtap="scanUrl" class="topBtn">扫描URL</button>
+        <view class="message">
+            <text>ID:{{url}}</text>
+        </view>
+        <view class="orderInput">
+      箱号:
+      <input bindinput="boxInput" placeholder="输入箱号"></input>
+        </view>
+        <view style="text-align: center;">
+            <text>
+ 当前门店入库数量：</text>
+            <text style="color:red">{{storeCount}}</text>
+            <text>
+ 箱号数量：</text>
+            <text style="color:red">{{boxCount}}</text>
+        </view>
+        <view class="bottomBtn">
+            <button bindtap="lockOut">出货</button>
+        </view>
+    </view>
+    <view catchtouchmove="preventTouchMove" class="modal-mask" wx:if="{{setMaxCount}}"></view>
+    <view class="modal-dialog" wx:if="{{setMaxCount}}">
+        <view class="modal-title">设置门店信息</view>
+        <view class="modal-content">
+            <view class="modal-input">
+                <input bindinput="storeInput" class="input" maxlength="10" placeholder="输入门店名" placeholderClass="input-holder" type="text"></input>
+            </view>
+            <view class="modal-input">
+                <input bindinput="maxCount_input" class="input" maxlength="4" placeholder="门店出货数量" placeholderClass="input-holder" type="number"></input>
+            </view>
+        </view>
+        <view class="modal-footer">
+            <view bindtap="setMaxCount_cancel" class="btn-cancel" data-status="cancel">取消</view>
+            <view bindtap="setMaxCount_confirm" class="btn-confirm" data-status="confirm">确定</view>
+        </view>
+    </view>
+    <view class="body" wx:if="{{gate}}">
+        <view style="text-align: center;">
+            <text>
+ 设置的门店：</text>
+            <text style="color:red">{{storeName}}</text>
+        </view>
+        <view style="text-align: center;">
+            <text>
+ 设置的入库总数量：</text>
+            <text style="color:red">{{maxCount}}</text>
+        </view>
+        <button bindtap="scanMac" class="topBtn">扫描MAC</button>
+        <view class="message">
+            <text>MAC:{{mac}}</text>
+        </view>
+        <view style="text-align: center;">
+            <text>
+ 当前门店入库数量：</text>
+            <text style="color:red">{{storeCount}}</text>
+        </view>
+        <view class="bottomBtn">
+            <button bindtap="gateOut">出货</button>
+        </view>
+    </view>
+</view>

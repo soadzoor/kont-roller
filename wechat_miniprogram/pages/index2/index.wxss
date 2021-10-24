@@ -1,0 +1,69 @@
+page {
+    height: 100%;
+    background-size: 100%;
+    background-image: "../img/bk2.jpg";
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-icon {
+    flex: none;
+    margin: 200rpx auto 0;
+}
+
+.login-img {
+    width: 220rpx;
+    height: 220rpx;
+    border-radius: 110rpx;
+    opacity: .6;
+}
+
+.login-from {
+    margin-top: 90px;
+    flex: auto;
+    height: 100%;
+}
+
+.myno {
+    margin: 0 auto;
+}
+
+.myno,.mypwd {
+    width: 90%;
+    height: 80rpx;
+    border: 1px solid #ccc;
+    border-radius: 50rpx;
+}
+
+.mypwd {
+    margin: 20rpx auto 0;
+}
+
+.loginBtnView {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.loginBtn {
+    width: 90%;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin-top: 35px;
+    color: #fff;
+    background-color: #7e8ef0;
+    border: 0.1rpx solid #ccc;
+    border-radius: 40rpx;
+}
+
+.keyImage,.nameImage {
+    margin-right: 10px;
+    width: 14px;
+    height: 14px;
+}

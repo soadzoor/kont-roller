@@ -1,0 +1,39 @@
+<view>
+    <view>
+        <button bindtap="scanMac" class="submitClick">扫描MAC</button>
+    </view>
+    <view class="gateMess">
+        <view wx:if="{{gateRes}}">
+            <text style="color:red;">{{mess}}</text>
+        </view>
+        <view wx:if="{{gateMess}}">
+            <text>mac:{{mac}}</text>
+            <text>
+ n:{{n}}</text>
+            <text>
+ d1:{{d1}}</text>
+            <text>
+ d2:{{d2}}</text>
+            <text>
+ d3:{{d3}}</text>
+            <text>
+ d4:{{d4}}</text>
+            <text>
+
+ r:{{r}}</text>
+            <text>
+ h:{{h}}</text>
+            <text>
+ j:{{j}}</text>
+            <text>
+
+ l1:{{l1}}</text>
+            <text>
+ l2:{{l2}}</text>
+            <text>
+ l3:{{l3}}</text>
+            <text>
+ l4:{{l4}}</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,18 @@
+<view class="body">
+    <view class="qr">
+        <button bindtap="qr" plain="false">{{la_lib.scan_qr}}</button>
+        <view class="message">
+            <text>{{message}}</text>
+        </view>
+    </view>
+    <view class="mode">
+        <button bindtap="open" plain="false">{{la_lib.unlock}}</button>
+        <button bindtap="lock" plain="false">{{la_lib.lock}}</button>
+        <button bindtap="alert" plain="false">{{la_lib.alert}}</button>
+        <button bindtap="stat" plain="false">{{la_lib.state}}</button>
+        <button bindtap="gps" plain="false">{{la_lib.location}}</button>
+        <button plain="false">.</button>
+        <text>
+.</text>
+    </view>
+</view>

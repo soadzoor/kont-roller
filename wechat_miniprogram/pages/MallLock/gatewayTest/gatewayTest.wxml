@@ -1,0 +1,11 @@
+<view>
+    <view class="listTxt">
+        <text wx:for="{{scanList}}" wx:key="item">
+      {{item.id}}
+    </text>
+    </view>
+    <view class="btn">
+        <button bindtap="scanUrl">扫描</button>
+        <button bindtap="goUnlock">开锁</button>
+    </view>
+</view>

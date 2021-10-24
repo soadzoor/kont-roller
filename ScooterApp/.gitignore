@@ -1,0 +1,6 @@
+node_modules
+.vscode
+__tests__
+ios
+android
+.DS_Store

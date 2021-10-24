@@ -1,0 +1,8 @@
+.btn button {
+    width: 70%;
+    margin-top: 10%;
+}
+
+.mess {
+    font-size: 20px;
+}

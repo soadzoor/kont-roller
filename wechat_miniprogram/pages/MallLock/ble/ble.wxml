@@ -1,0 +1,99 @@
+<view class="ScanResult_lock">
+    <view class="navbar" style=" z-index:50">
+        <view bindtap="navbarTap" class="item {{currentTab==index?'active':''}}" data-idx="{{index}}" wx:for="{{navbar}}" wx:key="unique">
+      {{item}}
+      </view>
+    </view>
+    <view class="state">
+        <text>{{language_lib.ble_name}}:{{name}}
+</text>
+        <text>锁ID:{{lockId}}
+</text>
+        <text decode="{{true}}">MAC:{{mac}}&emsp;&emsp;&emsp;RSSI:{{rssi}}
+</text>
+        <text decode="{{true}}">{{language_lib.ble_state}}:{{state}}&emsp;&emsp;&emsp;{{language_lib.sw}}:{{version}}
+</text>
+        <text>通讯状态:{{com}}
+</text>
+        <text decode="{{true}}">{{language_lib.batt}}:{{batt}}&emsp;&emsp;&emsp; {{language_lib.lock_state}}:{{lock_state}}&emsp;&emsp;&emsp; 
+</text>
+        <text>时间:{{time}}
+</text>
+        <text decode="{{true}}">密码:{{pwd}}&emsp;</text>
+        <text bindtap="changePwd" style="color:red;font-size:12px;">[密码不对]
+</text>
+        <view wx:if="{{master}}">
+            <text>时间戳:{{timestamp}}
+</text>
+            <text>点名和广播时间:{{name_time}}
+</text>
+        </view>
+        <text>设定MAC:{{set_mac}}
+</text>
+        <text>用户ID:{{user_id}}
+</text>
+    </view>
+    <view hidden="{{currentTab!==0}}">
+        <view class="button">
+            <button bindtap="Lock_ctr" id="lock_o">{{language_lib.unlock}}</button>
+            <button bindtap="Get_hall">寻车</button>
+        </view>
+        <view class="button" wx:if="{{add}}">
+            <button bindtap="Set_MAC">重写MAC</button>
+        </view>
+        <view class="button" wx:if="{{del}}">
+            <button bindtap="Lock_sys" id="lock_fac">恢复MAC</button>
+        </view>
+        <view class="bottomBtn" wx:if="{{staff}}">
+            <text style="color:red;font-size:20px;">开锁：{{ulCount}}/关锁：{{lCount}}</text>
+            <button bindtap="addBleData">确认入库</button>
+        </view>
+        <view wx:if="{{master}}">
+            <view class="button">
+                <button bindtap="Set_userid">{{language_lib.set_userid}}</button>
+                <button bindtap="Get_userid">{{language_lib.get_userid}}</button>
+            </view>
+            <view class="button">
+                <button bindtap="Get_timestamp">读取时间戳</button>
+                <button bindtap="Set_timestamp">同步时间戳</button>
+            </view>
+            <view class="button">
+                <button bindtap="Set_name_time">设置点名</button>
+                <button bindtap="Get_name_time">获取点名</button>
+            </view>
+            <view class="button">
+                <button bindtap="setTime_Btn">{{setTime_txt}}</button>
+            </view>
+            <view class="SetTime">
+                <text>开始时间</text>
+                <input bindinput="goHour" placeholder="时" type="text"></input>
+                <input bindinput="goMin" placeholder="分" type="text"></input>
+                <text>
+ 结束时间</text>
+                <input bindinput="endHour" placeholder="时" type="text"></input>
+                <input bindinput="endMin" placeholder="分" type="text"></input>
+            </view>
+            <view class="button">
+                <button bindtap="setTime_Btn">设置时间</button>
+            </view>
+            <view class="button">
+                <button bindtap="Lock_sys" id="lock_fac">恢复出厂设置</button>
+                <button bindtap="Lock_sys" id="lock_re">重启</button>
+                <button bindtap="Lock_sys" id="lock_dfu">升级</button>
+            </view>
+            <view class="button">
+                <button bindtap="Set_dfu">设置DFU标志</button>
+            </view>
+            <view class="button">
+                <button bindtap="timestamp_in">低警</button>
+                <button bindtap="timestamp_in2">盘点</button>
+                <button bindtap="timestamp_in3">同步</button>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{timerTxt}}">
+        <view class="timerTxt">
+            <text>{{timer_s}}:{{timer_ss}}</text>
+        </view>
+    </view>
+</view>

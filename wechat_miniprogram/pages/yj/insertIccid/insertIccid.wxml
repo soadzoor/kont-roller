@@ -1,0 +1,15 @@
+<view>
+    <view class="scanBtn">
+        <button bindtap="scan_qr" plain="false">扫描URL码</button>
+        <button bindtap="scan_iccid" plain="false">扫描ICCID</button>
+    </view>
+    <view class="scanMessage">
+        <text>
+ {{url_message}}</text>
+        <text>
+ {{iccid_message}}</text>
+    </view>
+    <view class="insertBtn">
+        <button bindtap="insert" plain="false">开始录入</button>
+    </view>
+</view>

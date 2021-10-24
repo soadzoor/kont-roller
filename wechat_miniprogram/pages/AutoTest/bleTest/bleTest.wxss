@@ -1,0 +1,16 @@
+.head {
+    text-align: center;
+    font-size: 18px;
+}
+
+.mess {
+    font-size: 22px;
+}
+
+.btn {
+    bottom: 20%;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    background-color: #2d9733;
+}

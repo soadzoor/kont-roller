@@ -1,0 +1,15 @@
+<view class="body">
+    <view class="scanBtn">
+        <button bindtap="scanMac">扫MAC</button>
+    </view>
+    <view class="Val">
+        <text>MAC:{{mac}}</text>
+        <text bindtap="goTest" style="color:green">
+ 开始检测</text>
+        <text>
+ 温度:36.5°C</text>
+    </view>
+    <view class="addData">
+        <button bindtap="addData">入库</button>
+    </view>
+</view>

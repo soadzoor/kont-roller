@@ -1,0 +1,19 @@
+<view>
+    <view class="body">
+        <view class="btn">
+            <button bindtap="scanUrl" plain="false">扫描URL</button>
+            <button bindtap="scanMac" plain="false">扫描MAC</button>
+            <button bindtap="reset" plain="false">清空数据</button>
+        </view>
+        <view class="mess">
+            <text>
+ ID:{{idMess}}</text>
+            <text>
+ MAC:{{macMess}}</text>
+            <text>
+ IMEI:{{imeiMess}}</text>
+            <text>
+ ICCID:{{iccidMess}}</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,8 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "ICCID 录入",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff",
+    "usingComponents": {}
+}

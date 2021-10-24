@@ -1,0 +1,112 @@
+<view class="ScanResult_lock">
+    <view class="navbar" style=" z-index:50">
+        <view bindtap="navbarTap" class="item {{currentTab==index?'active':''}}" data-idx="{{index}}" wx:for="{{navbar}}" wx:key="unique">
+      {{item}}
+      </view>
+    </view>
+    <view class="state">
+        <text>{{language_lib.ble_name}}:{{name}}
+</text>
+        <text decode="{{true}}">MAC:{{mac}}&emsp;&emsp;RSSI:{{rssi}}
+</text>
+        <text decode="{{true}}">{{language_lib.ble_state}}:{{state}} 
+ {{language_lib.sw}}:{{version}}
+</text>
+        <text decode="{{true}}">{{language_lib.batt}}:{{batt}} 
+ {{language_lib.lock_state}}:{{lock_state}}
+</text>
+        <text decode="{{true}}">{{language_lib.work_mode}}:</text>
+        <text decode="{{true}}" style="color:red" wx:if="{{language_lib.transport==mode}}">{{mode}}&emsp;&emsp;&emsp;</text>
+        <text decode="{{true}}" wx:else>{{mode}}&emsp;&emsp;&emsp;</text>
+        <text decode="{{true}}">
+{{language_lib.err_info}}:</text>
+        <text decode="{{true}}" wx:if="{{language_lib.nulls==err_info}}">{{err_info}}</text>
+        <text decode="{{true}}" style="color:red" wx:else>{{err_info}}</text>
+        <text decode="{{true}}">
+ {{language_lib.chiko_sensor_level}}：{{sensor}}</text>
+    </view>
+    <view hidden="{{currentTab!==0}}">
+        <view class="button">
+            <button bindtap="Lock_ctr" id="lock_o">{{language_lib.unlock}}</button>
+            <button bindtap="Lock_ctr" id="lock_c">{{language_lib.lock}}</button>
+        </view>
+        <view wx:if="{{otherMenu}}">
+            <view class="button">
+                <button bindtap="Ledband_ctr" id="flight_o">{{language_lib.ledfront_on}}</button>
+                <button bindtap="Ledband_ctr" id="flight_c">{{language_lib.ledfront_off}}</button>
+            </view>
+            <view class="button">
+                <button bindtap="Ledband_ctr" id="tlight_o">{{language_lib.ledtail_on}}</button>
+                <button bindtap="Ledband_ctr" id="tlight_c">{{language_lib.ledtail_off}}</button>
+            </view>
+            <view class="button">
+                <button bindtap="Lock_battery" id="battery_o">{{language_lib.unlock_lock_battery}}</button>
+                <button bindtap="Lock_battery" id="battery_c">{{language_lib.lock_lock_battery}}</button>
+            </view>
+            <view class="button">
+                <button bindtap="Lock_wheel" id="wheel_o">{{language_lib.ulock_wheel}}</button>
+                <button bindtap="Lock_wheel" id="wheel_c">{{language_lib.lock_wheel}}</button>
+            </view>
+        </view>
+        <view wx:if="{{aesBtn}}">
+            <view class="button">
+                <button bindtap="fetch_iccid">上传ICCID</button>
+            </view>
+        </view>
+    </view>
+    <view hidden="{{currentTab!==1}}">
+        <view class="button">
+            <button bindtap="Mode_ctr" id="mode_o">{{language_lib.transport_mode}}</button>
+            <button bindtap="Mode_ctr" id="mode_c">{{language_lib.normal_node}}</button>
+        </view>
+        <view class="button">
+            <button bindtap="showDialogBtn1" class="show-btn">{{language_lib.dian}}</button>
+        </view>
+        <view bindtap="hideModal1" catchtouchmove="preventTouchMove1" class="modal-mask" wx:if="{{showModal1}}"></view>
+        <view class="modal-dialog" wx:if="{{showModal1}}">
+            <view class="modal-title">Set value</view>
+            <view class="modal-content">
+                <view class="modal-input">
+                    <input bindinput="input1" class="input" maxlength="10" placeholder="{{va1}}" placeholderClass="input-holder" type="number"></input>
+                </view>
+                <view class="modal-input">
+                    <input bindinput="input2" class="input" maxlength="10" placeholder="{{va2}}" placeholderClass="input-holder" type="number"></input>
+                </view>
+            </view>
+            <view class="modal-footer">
+                <view bindtap="onCancel1" class="btn-cancel" data-status="cancel">cancel</view>
+                <view bindtap="onConfirm1" class="btn-confirm" data-status="confirm">confrim</view>
+            </view>
+        </view>
+        <view class="swtich_class">
+            <view class="switch_single">
+                <text>{{language_lib.cruise}}:</text>
+                <switch bindchange="cruise_switch" checked="{{cruise==language_lib.on}}"></switch>
+            </view>
+            <view class="switch_single">
+                <text>{{language_lib.nz_act}}:</text>
+                <switch bindchange="nz_act_switch" checked="{{no_zero_act==language_lib.on}}"></switch>
+            </view>
+        </view>
+        <view class="button">
+            <button bindtap="setSensor">{{language_lib.sensor_alarm}}</button>
+            <button bindtap="Lmt_speed_set">{{language_lib.lmt_spd_set}}</button>
+        </view>
+        <view wx:if="{{aesBtn}}">
+            <view class="button"></view>
+        </view>
+        <view bindtap="hideModal" catchtouchmove="preventTouchMove" class="modal-mask" wx:if="{{lmt_speed_modal_show}}"></view>
+        <view class="modal-dialog" wx:if="{{lmt_speed_modal_show}}">
+            <view class="modal-title">{{language_lib.lmt_spd}}(km/h)</view>
+            <view class="modal-content">
+                <view class="modal-input">
+                    <input bindinput="lmt_speed_input" class="input" maxlength="2" placeholder="{{lmt_speed}}" placeholderClass="input-holder" type="number"></input>
+                </view>
+            </view>
+            <view class="modal-footer">
+                <view bindtap="lmt_speed_set_cancel" class="btn-cancel" data-status="cancel">{{language_lib.cancel}}</view>
+                <view bindtap="lmt_speed_set_confirm" class="btn-confirm" data-status="confirm">{{language_lib.confirm}}</view>
+            </view>
+        </view>
+    </view>
+</view>

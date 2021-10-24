@@ -1,0 +1,27 @@
+<view class="body">
+    <view class="qr">
+        <button bindtap="qr" plain="false">扫描二维码</button>
+        <view class="message">
+            <text>{{message}}</text>
+        </view>
+    </view>
+    <view class="mode">
+        <view class="btn1">
+            <button bindtap="refState">刷新状态</button>
+            <text style="color:{{stateCol}}">
+ {{state}}</text>
+            <text style="color:{{locaCol}}">
+ {{locaMess}}</text>
+        </view>
+        <view class="btn2">
+            <button bindtap="open" plain="false">开锁</button>
+            <button bindtap="lock" plain="false">关锁</button>
+            <button bindtap="ofd" plain="false">开前灯</button>
+            <button bindtap="cfd" plain="false">关前灯</button>
+            <button bindtap="otd" plain="false">开尾灯</button>
+            <button bindtap="ctd" plain="false">关尾灯</button>
+            <button bindtap="oad" plain="false">开全灯</button>
+            <button bindtap="cad" plain="false">关全灯</button>
+        </view>
+    </view>
+</view>

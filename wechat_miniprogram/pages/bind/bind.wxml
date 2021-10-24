@@ -1,0 +1,15 @@
+<view>
+    <view class="body">
+        <button bindtap="vehQr" class="btn">Scanning vehicle code</button>
+        <button bindtap="iotQr" class="btn">Scanning MAC code</button>
+        <button bindtap="imeiQr" class="btn">Scanning IMEI code</button>
+        <view class="te">
+            <text>{{vehCode}}</text>
+            <text>{{iotCode}}</text>
+            <text>{{imeiCode}}</text>
+        </view>
+        <button bindtap="bind" class="addbtn">bind to database</button>
+        <text class="res">{{res}}</text>
+        <button bindtap="reset" class="clear">{{reset}}</button>
+    </view>
+</view>

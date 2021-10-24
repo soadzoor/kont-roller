@@ -1,0 +1,14 @@
+<view>
+    <button bindtap="blue" class="btn" style="background-color:rgb(95, 103, 206);">
+    蓝牙开锁
+  </button>
+    <button bindtap="addUrl" class="btn" style="background-color:rgb(85, 202, 143);">
+    入库
+  </button>
+    <button bindtap="out" class="btn" style="background-color:rgb(211, 128, 128);">
+    扫码出货
+  </button>
+    <button bindtap="netUnlock" class="btn" style="background-color:rgb(252, 232, 119);">
+    云端开锁
+  </button>
+</view>

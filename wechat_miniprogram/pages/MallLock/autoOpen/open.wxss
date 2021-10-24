@@ -1,0 +1,5 @@
+.scaningTxt {
+    text-align: center;
+    margin-top: 50%;
+    color: green;
+}

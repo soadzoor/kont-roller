@@ -1,0 +1,39 @@
+<view>
+    <view class="body" wx:if="{{lock}}">
+        <view>
+            <button bindtap="scanMac">扫描MAC</button>
+            <button bindtap="scanUrl">扫描URL</button>
+        </view>
+        <view class="mess">
+            <text>MAC：{{mac}}</text>
+            <text>
+
+ ID：{{lockId}}</text>
+            <text style="color:red">
+ 请注意查看MAC和ID是否正确</text>
+        </view>
+        <view class="bottomBtn">
+            <button bindtap="goBle" style="background-color:green">下一步</button>
+        </view>
+    </view>
+    <view class="body" wx:if="{{gate}}">
+        <view>
+            <button bindtap="scanGateWayMac">扫描MAC</button>
+            <button bindtap="scanImei">扫描IMEI</button>
+            <button bindtap="scanIccid">扫描ICCID</button>
+            <button bindtap="scanAssets">扫描资产码</button>
+        </view>
+        <view class="mess">
+            <text>MAC：{{mac}}</text>
+            <text>
+ IMEI：{{imei}}</text>
+            <text>
+ ICCID：{{iccid}}</text>
+            <text>
+ 资产码：{{assets}}</text>
+        </view>
+        <view class="bottomBtn">
+            <button bindtap="addGate" style="background-color:green">入库</button>
+        </view>
+    </view>
+</view>

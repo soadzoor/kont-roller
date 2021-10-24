@@ -1,0 +1,23 @@
+<view class="section">
+    <view class="vcr">
+        <image src="../img/logo.jpg"></image>
+    </view>
+    <form bindreset="formReset" bindsubmit="bindFormSubmit">
+        <text class="text">{{la_lib.title}}</text>
+        <view class="ver">
+            <text style="color:red">{{la_lib.notChinese}}</text>
+        </view>
+        <view class="textareaT2" name="uu">
+            <view class="itemView">
+                <text decode="{{true}}">{{la_lib.username}}：</text>
+                <input bindinput="uuInput" name="uuu" placeholder="{{la_lib.usernameholder}}"></input>
+            </view>
+            <view class="lineV"></view>
+            <view class="itemView">
+                <text decode="{{true}}">{{la_lib.pass}}：</text>
+                <input password bindinput="pasWInput" name="userPwd" placeholder="{{la_lib.passholder}}"></input>
+            </view>
+        </view>
+        <button class="submitClick" formType="submit">{{la_lib.logon}}</button>
+    </form>
+</view>

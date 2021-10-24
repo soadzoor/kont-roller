@@ -1,0 +1,43 @@
+<view class="body">
+    <view class="count">
+        <text style="color:red">
+ {{countMess}}</text>
+        <text style="color:red">
+ {{outCountMess}}</text>
+        <button bindtap="changeBox" wx:if="{{changeBox}}">更换箱号</button>
+    </view>
+    <view class="check">
+        <view>
+            <button bindtap="qrMac">扫描MAC</button>
+        </view>
+        <view class="mess">
+            <text>{{oneMessage}} 
+</text>
+            <text>{{twoMessage}} 
+</text>
+            <text>{{macMess}} 
+</text>
+        </view>
+        <view class="compare" style="color:{{color}}">
+      {{compareMessage}}
+    </view>
+        <view>
+            <button bindtap="goOut">确认出货</button>
+        </view>
+    </view>
+    <view bindtap="hideModal1" catchtouchmove="preventTouchMove1" class="modal-mask" wx:if="{{showModal1}}"></view>
+    <view class="modal-dialog" wx:if="{{showModal1}}">
+        <view class="modal-title">输入箱号</view>
+        <view class="modal-content">
+            <view class="modal-input">
+                <input bindinput="input1" class="input" maxlength="3" placeholder="001" placeholderClass="input-holder" type="number"></input>
+            </view>
+            <text>
+ .</text>
+        </view>
+        <view class="modal-footer">
+            <view bindtap="onCancel" class="btn-cancel" data-status="cancel">取消</view>
+            <view bindtap="onConfirm" class="btn-confirm" data-status="confirm">确定</view>
+        </view>
+    </view>
+</view>

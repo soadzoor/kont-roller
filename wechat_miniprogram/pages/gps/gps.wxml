@@ -1,0 +1,26 @@
+<view class="body">
+    <view class="alert">
+        <text>{{alert}}</text>
+    </view>
+    <view class="message">
+        <text>车辆编号:{{iotCode}}</text>
+        <text>
+
+UTC:{{utc}}</text>
+        <text>
+
+经度:{{latitude}}</text>
+        <text>
+
+纬度:{{longitude}}</text>
+        <text>
+
+位置:{{location}}</text>
+        <text>
+
+hdop:{{hdop}}</text>
+        <text>
+
+nsat:{{nsat}}</text>
+    </view>
+</view>

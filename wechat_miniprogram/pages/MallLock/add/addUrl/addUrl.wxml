@@ -1,0 +1,10 @@
+<view>
+    <view class="urlBtn">
+        <button bindtap="scanUrl">扫描URL</button>
+    </view>
+    <view class="message">
+        <text>
+      当前已入库：{{count}}
+    </text>
+    </view>
+</view>

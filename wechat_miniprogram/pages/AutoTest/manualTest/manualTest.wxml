@@ -1,0 +1,21 @@
+<view>
+    <view class="testBtn">
+        <text class="Id">当前车辆ID:{{vehicleId}}</text>
+        <view class="Btn">
+            <button bindtap="battBtn" plain="false" style="background-color:{{battColor}}">{{battMess}}</button>
+            <button bindtap="keyBtn" plain="false" style="background-color:{{keyColor}}">{{keyMess}}</button>
+            <button bindtap="qlightBtn" plain="false" style="background-color:{{qlightColor}}">{{qlightMess}}</button>
+            <button bindtap="wlightBtn" plain="false" style="background-color:{{wlightColor}}">{{wlightMess}}</button>
+            <button bindtap="dlightBtn" plain="false" style="background-color:{{dlightColor}}">{{dlightMess}}</button>
+            <button bindtap="brakeBtn" plain="false" style="background-color:{{brakeColor}}">{{brakeMess}}</button>
+            <button bindtap="hornBtn" plain="false" style="background-color:{{hornColor}}">{{hornMess}}</button>
+            <button bindtap="powerBtn" plain="false" style="background-color:{{powerColor}}">{{powerMess}}</button>
+            <button bindtap="usbBtn" plain="false" style="background-color:{{usbColor}}">{{usbMess}}</button>
+            <button plain="false" style="background-color:rgb(66, 173, 88)">.</button>
+        </view>
+        <text style="color:red">请在确认一次上面数据准确无误</text>
+    </view>
+    <view class="upBtn">
+        <button bindtap="updateData" plain="false">确认上传</button>
+    </view>
+</view>

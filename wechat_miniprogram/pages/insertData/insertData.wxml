@@ -1,0 +1,21 @@
+<view class="body">
+    <view class="insert">
+        <text style="color:{{iccColor}}">{{iccMess}}</text>
+        <text style="color:{{qrMessageColor}}">
+ {{qrMessage}}</text>
+        <button bindtap="qrImei">扫描IMEI码</button>
+        <button bindtap="qrMac">扫描MAC码</button>
+        <view class="message">
+            <text>URL为:{{urlMess}} 
+</text>
+            <text>IMEI为:{{imeiMess}} 
+</text>
+            <text>MAC为:{{macMess}} 
+</text>
+        </view>
+    </view>
+    <view class="addData">
+        <text class="dataCount" style="color:red">当天入库数量:{{dataCount}}</text>
+        <button bindtap="add">录入设备</button>
+    </view>
+</view>

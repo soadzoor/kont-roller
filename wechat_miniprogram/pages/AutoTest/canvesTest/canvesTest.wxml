@@ -1,0 +1,4 @@
+<view class="container">
+    <image animation="{{animationData}}" bindtap="refreshList1" class="img" src="../../img/rotating.png"></image>
+</view>
+<button animation="{{animationData2}}" bindtap="stopRefresh">停止</button>

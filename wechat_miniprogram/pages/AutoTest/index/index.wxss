@@ -1,0 +1,20 @@
+.Scan {
+    width: 50%;
+    margin: 100rpx auto 10%;
+    background-color: #c98b3a;
+}
+
+.mess {
+    font-size: 17px;
+}
+
+.mess,.testBtn {
+    width: 100%;
+    text-align: center;
+}
+
+.testBtn {
+    bottom: 20%;
+    position: fixed;
+    background-color: #2d9733;
+}

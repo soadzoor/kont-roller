@@ -1,0 +1,14 @@
+<view>
+    <view class="urlMess">
+        <text>URL:{{urlMess}}</text>
+        <text style="color:red"> 
+ 请确认二维码编号准确无误</text>
+    </view>
+    <view class="qr">
+        <button bindtap="qrIccid">扫描ICCID二维码</button>
+        <text>ICCID:{{iccMess}}</text>
+    </view>
+    <view class="insert">
+        <button bindtap="insert">确认关联</button>
+    </view>
+</view>

@@ -1,0 +1,64 @@
+.textareaT2 {
+    width: 80%;
+    height: 190rpx;
+    margin-left: 10%;
+    border: 2px solid #a9a9a9;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.text {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #000;
+}
+
+.submitClick {
+    width: 70%;
+    color: #fff;
+    background: #13b821;
+    font-size: 15px;
+    margin-top: 40px;
+    border-radius: 20px;
+}
+
+.itemView {
+    height: 60rpx;
+    font-size: 15px;
+    margin-top: 20rpx;
+    margin-left: 30rpx;
+}
+
+.itemView,.lineV {
+    display: flex;
+    justify-content: space-around;
+}
+
+.lineV {
+    width: 95%;
+    height: 2rpx;
+    background: #a9a9a9;
+    margin: 18rpx auto;
+}
+
+.vcr,.ver {
+    text-align: center;
+    width: 100%;
+}
+
+.vcr {
+    font-size: 18px;
+    margin-top: 10%;
+}
+
+.vcr image {
+    width: 50px;
+    height: 50px;
+}
+
+.regit {
+    text-align: center;
+}

@@ -1,0 +1,4 @@
+<view class="container"> {{timecount}}</view>
+<button bindtap="start">开始</button>
+<button bindtap="stop">暂停</button>
+<button bindtap="Reset">停止</button>

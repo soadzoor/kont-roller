@@ -1,0 +1,14 @@
+.Btn {
+    margin-top: 10%;
+}
+
+.Btn button {
+    width: 80%;
+}
+
+.lockIdTxt {
+    height: 160px;
+    padding-top: 80px;
+    text-align: center;
+    font-size: 24px;
+}

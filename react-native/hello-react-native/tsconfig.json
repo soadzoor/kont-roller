@@ -1,0 +1,9 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "noImplicitOverride": true,
+    "strict": true,
+    "allowJs": true,
+    "module": "CommonJS"
+  }
+}

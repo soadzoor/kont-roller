@@ -1,0 +1,11 @@
+<view>
+    <view>
+        <button bindtap="scan">扫描MAC</button>
+    </view>
+    <view class="scanTxt">
+        <text>扫描结果:{{mac}}</text>
+    </view>
+    <view>
+        <button bindtap="drop">删库</button>
+    </view>
+</view>

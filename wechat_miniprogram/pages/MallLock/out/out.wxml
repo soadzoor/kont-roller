@@ -1,0 +1,9 @@
+<view>
+    <view class="body">
+        <button bindtap="scanUrl">扫描URL</button>
+        <view class="message">
+            <text>ID:{{url}}</text>
+        </view>
+        <button bindtap="goScan">开锁</button>
+    </view>
+</view>

@@ -1,0 +1,8 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFF",
+    "backgroundColor": "#4B515A",
+    "navigationBarTitleText": "购物车锁",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {}
+}

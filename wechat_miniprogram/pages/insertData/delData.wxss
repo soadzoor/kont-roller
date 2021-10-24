@@ -1,0 +1,7 @@
+.delBtn {
+    margin: 30% auto 50%;
+}
+
+.delBtn button {
+    margin: 10% auto;
+}

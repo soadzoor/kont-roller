@@ -1,0 +1,18 @@
+.scanView {
+    width: 100%;
+    position: absolute;
+    bottom: 20%;
+}
+
+.scanBtn {
+    width: 80%;
+    border-radius: 20px;
+    background-color: #e96928;
+    color: #fff;
+}
+
+.logoImg {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}

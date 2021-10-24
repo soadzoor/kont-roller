@@ -1,0 +1,22 @@
+.testBtn {
+    text-align: center;
+    font-size: 20px;
+}
+
+.testBtn button {
+    margin: 2% auto 10%;
+    background-color: #42ad58;
+    width: 80%;
+}
+
+.Btn button {
+    float: left;
+    margin: 5%;
+    width: 40%;
+}
+
+.upBtn button {
+    margin: 10% auto 20%;
+    background-color: #6e7a71;
+    width: 90%;
+}

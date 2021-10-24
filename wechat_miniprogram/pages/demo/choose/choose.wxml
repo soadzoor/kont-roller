@@ -1,0 +1,8 @@
+<view>
+    <button bindtap="net" class="btn" style="background-color:rgb(97, 219, 127);">
+  {{la_lib.netUnlock}}
+  </button>
+    <button bindtap="blue" class="btn" style="background-color:rgb(58, 167, 194);">
+  {{la_lib.bleUnlock}}
+  </button>
+</view>

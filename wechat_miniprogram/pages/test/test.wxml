@@ -1,0 +1,27 @@
+<view class="body">
+    <view class="qr">
+        <button bindtap="qr" plain="false">扫描二维码</button>
+        <view class="message">
+            <text>{{message}}</text>
+        </view>
+    </view>
+    <view class="mode">
+        <button bindtap="open" plain="false">开锁</button>
+        <button bindtap="lock" plain="false">关锁</button>
+        <button bindtap="alert" plain="false">寻车</button>
+        <button bindtap="restart" plain="false">重启</button>
+        <button bindtap="stat" plain="false">状态</button>
+        <button bindtap="gps" plain="false">GNSS</button>
+        <button bindtap="openLED" plain="false">开灯</button>
+        <button bindtap="closeLED" plain="false">关灯</button>
+        <button bindtap="openHold" plain="false">开巡航</button>
+        <button bindtap="closeHold" plain="false">关巡航</button>
+        <button bindtap="setSpeed" plain="false">调速</button>
+        <button bindtap="" plain="false">.</button>
+        <button bindtap="notPush" plain="false">原地开</button>
+        <button bindtap="needPush" plain="false">推动开</button>
+        <text>
+.
+.</text>
+    </view>
+</view>

@@ -1,0 +1,5 @@
+<view class="body">
+    <button bindtap="add">入库</button>
+    <button bindtap="out">出货</button>
+    <button bindtap="drop">删库</button>
+</view>

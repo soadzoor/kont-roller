@@ -1,0 +1,8 @@
+<view class="body">
+    <view class="delBtn">
+        <button bindtap="qrUrl">通过把头码删除</button>
+        <button bindtap="qrMac">通过MAC删除</button>
+        <button bindtap="qrIccid">通过ICCID删除</button>
+        <button bindtap="cancelOut">撤销出货</button>
+    </view>
+</view>

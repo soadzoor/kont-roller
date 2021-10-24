@@ -1,0 +1,8 @@
+<view>
+    <button bindtap="share" class="btn" id="1" openType="share" style="background-color:rgb(85, 202, 143);">
+  {{la_lib.authBtn}}
+  </button>
+    <button bindtap="blue" class="btn" style="background-color:rgb(95, 103, 206);">
+  {{la_lib.bleBtn}}
+  </button>
+</view>

@@ -1,0 +1,10 @@
+<view>
+    <view class="container">
+        <view class="logo">
+            <image class="logoImg" src="../../../img/Mall_logo.png"></image>
+        </view>
+        <view class="scanView">
+            <button bindtap="scanUrl" class="scanBtn">扫码开锁</button>
+        </view>
+    </view>
+</view>

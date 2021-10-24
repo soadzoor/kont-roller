@@ -1,0 +1,11 @@
+<view class="container">
+    <view class="Abutton" wx:if="{{sOrh}}">
+        <button bindtap="QRconnect" hoverClass="button-stye" plain="false">{{language_lib.scan_QR}}</button>
+    </view>
+    <view class="Bbutton" wx:if="{{sOrh}}">
+        <button bindtap="BLEscan" hoverClass="button-stye" plain="false">{{language_lib.search_and_connect}}</button>
+    </view>
+    <view class="Cbutton">
+        <button bindtap="UrlScan" hoverClass="button-stye" plain="false">{{language_lib.scan_Url}}</button>
+    </view>
+</view>

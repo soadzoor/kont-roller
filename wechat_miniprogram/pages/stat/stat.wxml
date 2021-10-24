@@ -1,0 +1,38 @@
+<view class="body">
+    <view class="alert">
+        <text>{{alert}}</text>
+    </view>
+    <view class="message">
+        <text>车辆编号:{{iotCode}}</text>
+        <text>
+
+电量值:{{battery}}</text>
+        <text>
+
+电压值:{{lockVol}}</text>
+        <text>
+
+速度档位:{{speedMode}}</text>
+        <text>
+
+该车速度:{{speed}}</text>
+        <text>
+
+里程数:{{odmeter}}</text>
+        <text>
+
+剩余里程:{{inderRange}}</text>
+        <text>
+
+电池温度:{{RidingSecs}}</text>
+        <text>
+
+当前锁状态:{{lockStat}}</text>
+        <text>
+
+{{charge}}</text>
+        <text>
+
+灯带状态:{{ledStat}}</text>
+    </view>
+</view>

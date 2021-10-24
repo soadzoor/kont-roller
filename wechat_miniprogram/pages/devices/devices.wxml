@@ -1,0 +1,21 @@
+<view class="rssi_class">
+    <view class="rssi_title">
+        <text>RSSI</text>
+    </view>
+    <view class="rssi_value">
+        <slider showValue bindchange="RssifilterValue_change" max="-30" min="-100" value="-100"></slider>
+    </view>
+    <button bindtap="RSSI_Filer" class="rssi_confirm">{{language_lib.confirm}}</button>
+</view>
+<view class="container">
+    <view class="devices">
+        <view wx:for="{{addrs}}">
+            <view wx:if="{{list[index].RSSI>rssi_threshod}}">
+                <rich-text bindtap="BLEconnect" id="{{addrs[index]}}" nodes="{{addrs[index]}} {{list[index].name}} {{list[index].RSSI}}"></rich-text>
+            </view>
+        </view>
+    </view>
+    <view class="Rescan">
+        <button bindtap="BLEscan" plain="false">{{language_lib.refresh}}</button>
+    </view>
+</view>

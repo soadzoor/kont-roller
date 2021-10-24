@@ -1,0 +1,27 @@
+<view class="section">
+    <view class="vcr">
+        <image bindtap="connWifi" src="../img/logo.jpg"></image>
+    </view>
+    <form bindreset="formReset" bindsubmit="bindFormSubmit">
+        <text class="text">Picasau tool</text>
+        <view class="ver">
+            <text style="color:green">{{la_lib.version}} : {{ver}}</text>
+        </view>
+        <view class="textareaT2" name="uu">
+            <view class="itemView">
+                <text decode="{{true}}"> {{la_lib.username}}：</text>
+                <input bindinput="uuInput" name="uuu" placeholder="{{la_lib.usernameholder}}"></input>
+            </view>
+            <view class="lineV"></view>
+            <view class="itemView">
+                <text decode="{{true}}"> {{la_lib.pass}}：</text>
+                <input password bindinput="pasWInput" name="userPwd" placeholder="{{la_lib.passholder}}"></input>
+            </view>
+        </view>
+        <view class="regit">
+            <text style="color:#aaaaaa">本小程序登录系统 
+ 只为区分不同工厂不同测试及其他功能</text>
+        </view>
+        <button class="submitClick" formType="submit">{{la_lib.login}}</button>
+    </form>
+</view>

@@ -1,0 +1,19 @@
+.qr {
+    margin: 30% auto 50%;
+}
+
+.qr,.urlMess {
+    font-size: 17px;
+    text-align: center;
+}
+
+.urlMess {
+    margin-top: 20%;
+}
+
+.insert {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+}

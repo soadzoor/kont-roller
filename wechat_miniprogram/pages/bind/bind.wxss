@@ -1,0 +1,22 @@
+.btn {
+    margin: 15% 0 0;
+}
+
+.addbtn {
+    margin-bottom: 20rpx;
+    background: #13b821;
+}
+
+.addbtn,.te {
+    margin-top: 10%;
+}
+
+text {
+    display: block;
+    text-align: center;
+}
+
+.res {
+    color: #00f;
+    margin-bottom: 20rpx;
+}

@@ -1,0 +1,28 @@
+<view class="container">
+    <view class="login-icon">
+        <image class="login-img" src="../img/logo.jpg"></image>
+    </view>
+    <view class="login-from">
+        <form bindsubmit="formSubmit" class="form">
+            <view class="myno">
+                <view class="weui-cell weui-cell_input">
+                    <image class="nameImage" src="../img/name.png"></image>
+                    <view class="weui-cell__bd">
+                        <input bindinput="noinput" class="weui-input" name="no" placeholder="请输入学号" value="{{no}}"></input>
+                    </view>
+                </view>
+            </view>
+            <view class="mypwd">
+                <view class="weui-cell weui-cell_input">
+                    <image class="nameImage" src="../img/key.png"></image>
+                    <view class="weui-cell__bd">
+                        <input bindinput="pwdinput" class="weui-input" name="pwd" placeholder="请输入密码" type="password" value="{{pwd}}"></input>
+                    </view>
+                </view>
+            </view>
+            <view class="loginBtnView">
+                <button class="loginBtn" disabled="{{disabled}}" formType="submit" size="{{primarySize}}">登录</button>
+            </view>
+        </form>
+    </view>
+</view>

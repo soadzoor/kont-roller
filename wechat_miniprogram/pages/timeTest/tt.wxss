@@ -1,0 +1,12 @@
+.container {
+    height: 200rpx;
+    line-height: 200rpx;
+    font-size: 50rpx;
+}
+
+button {
+    width: 150rpx;
+    background: #07c160;
+    color: #fff;
+    margin-bottom: 8px;
+}

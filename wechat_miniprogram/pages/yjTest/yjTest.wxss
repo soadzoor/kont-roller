@@ -1,0 +1,27 @@
+.qr {
+    margin-top: 100rpx;
+}
+
+.message {
+    margin-top: 30rpx;
+}
+
+.message,.mode {
+    text-align: center;
+}
+
+.mode {
+    font-size: 19px;
+}
+
+.btn1 button {
+    float: left;
+    width: 60%;
+    margin: 5% 20% 0;
+}
+
+.btn2 button {
+    float: left;
+    width: 30%;
+    margin: 10% 10% 0;
+}
