@@ -4,3 +4,5 @@ __tests__
 ios
 android
 .DS_Store
+.expo
+package-lock.json

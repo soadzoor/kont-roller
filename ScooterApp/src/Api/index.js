@@ -1,3 +1,5 @@
+import { AsyncStorage } from "react-native";
+
 const extensions = [
     require("./connection"),
     require("./led"),
@@ -44,6 +46,4 @@ const createApi = async (ble, onChange) => {
     return api.exports;
 }
 
-export default createApi;
-
-// module.exports = createApi;
+module.exports = createApi;
