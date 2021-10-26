@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React, { Fragment } from "react";
+import { Text, StyleSheet } from "react-native";
 
 import Title from "./components/Title";
 import TitleBar from "./components/TitleBar";
@@ -7,7 +7,6 @@ import Icon from "./components/Icon";
 import List from "./components/List";
 import SwitchSetting from "./components/SwitchSetting";
 import ValueSetting from "./components/ValueSetting";
-import {StringUtils} from "./utils/StringUtils";
 
 const style = StyleSheet.create({
     topSpace: {
@@ -16,10 +15,10 @@ const style = StyleSheet.create({
 })
 
 const ScooterSettings = ({ onBack, mac, api }) => (
-    <>
+    <Fragment>
         <TitleBar>
             <Icon icon="left-arrow" onClick={onBack}/>
-            <Title>{StringUtils.reverseMac(mac)}</Title>
+            <Title>{mac}</Title>
         </TitleBar>
         <List>
             <ValueSetting 
@@ -70,7 +69,7 @@ const ScooterSettings = ({ onBack, mac, api }) => (
                 Álló helyzetből indulás
             </SwitchSetting>
         </List>
-    </>
+    </Fragment>
 )
 
 export default ScooterSettings

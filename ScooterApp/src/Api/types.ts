@@ -1,6 +1,6 @@
 export type Peri = string | {id: string};
 
-interface IDevice
+export interface IDevice
 {
 	advertising: {
 		isConnectable: boolean;

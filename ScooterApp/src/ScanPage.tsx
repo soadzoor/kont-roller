@@ -10,25 +10,13 @@ import List from "./components/List"
 import ListItem from "./components/ListItem"
 import TitleBar from "./components/TitleBar";
 import {IBle, IDevice, Peri} from "./Api/types";
+import {StringUtils} from "./utils/StringUtils";
 
 const style = StyleSheet.create({
     topSpace: {
         marginTop: 12
     }
 })
-
-const sortIgnoreCase = (a: string, b: string): 0 | 1 | -1 =>
-{
-    a = a || "";
-    b = b || "";
-    if (!a.toLowerCase) return 0;
-    if (!b.toLowerCase) return 0;
-
-    a = a.toLowerCase();
-    b = b.toLowerCase();
-
-    return a < b ? -1 : 1;
-}
 
 interface IProps
 {
@@ -99,15 +87,14 @@ class ScanPage extends React.Component<IProps, IState>
                 <List style={style.topSpace} onRefresh={this.props.ble.scan}>
                     {
                         this.props.ble.devices
-                            .map((device: IDevice) => ({...device, id: device.id.split(":").reverse().join(":")}))
-                            .sort((a, b) => sortIgnoreCase(a.id, b.id))
+                            .sort((a, b) => StringUtils.sortIgnoreCase(b.id, a.id))
                             .map((device: IDevice) => (
                                 <ListItem
                                     key={device.id}
                                     style={style.topSpace}
                                     onPress={() => this.selectItem(device)}
                                 >
-                                    {device.id}
+                                    {StringUtils.reverseMac(device.id)}
                                 </ListItem>
                             ))
                     }
@@ -116,7 +103,7 @@ class ScanPage extends React.Component<IProps, IState>
                     )}
                 </List>
                 {
-                    !this.props.ble.scanning && 
+                    !this.props.ble.scanning &&
                     <Button onClick={this.props.ble.scan}>Keresés</Button>
                 }
                 <Text>{(this.state.error as string)?.toString?.()}</Text>

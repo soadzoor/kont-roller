@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Text, StyleSheet } from "react-native";
 
 import Title from "./components/Title";
@@ -8,7 +8,6 @@ import Locker from "./components/Locker";
 import BatteryBar from "./components/BatteryBar";
 import WidgetsContainer from "./components/WidgetsContainer";
 import Widget from "./components/Widget";
-import {StringUtils} from "./utils/StringUtils";
 
 const style = StyleSheet.create({
     topSpace: {
@@ -24,10 +23,10 @@ const style = StyleSheet.create({
 })
 
 const ScooterMain = ({ onBack, onSettings, mac, api }) => (
-    <>
+    <Fragment>
         <TitleBar>
             <Icon icon="left-arrow" onClick={onBack}/>
-            <Title>{StringUtils.reverseMac(mac)}</Title>
+            <Title>{mac}</Title>
             <Icon icon="settings" onClick={onSettings}/>
         </TitleBar>
         {(api.currentSpeed > 0 && !api.locked) ? (
@@ -54,7 +53,7 @@ const ScooterMain = ({ onBack, onSettings, mac, api }) => (
                 onClick={api.led ? api.ledOff : api.ledOn}
             />
         </WidgetsContainer>
-    </>
+    </Fragment>
 )
 
 export default ScooterMain
