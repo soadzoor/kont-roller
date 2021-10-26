@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, StyleProp } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
@@ -10,7 +10,13 @@ const styles = StyleSheet.create({
     }
 })
 
-const MainView = ({ style, children }) => (
+interface IProps
+{
+    style?: StyleProp<any>;
+    children: React.ReactNode;
+}
+
+const MainView = ({ style, children }: IProps) => (
     <View style={StyleSheet.compose(styles.container, style)}>
         {children}
     </View>
