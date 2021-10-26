@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import Title from "./components/Title";
 import TitleBar from "./components/TitleBar";
