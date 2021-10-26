@@ -1,6 +1,6 @@
 import aesJs from "aes-js";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-community/async-storage";
 
 const getKey = async (mac) => {
     const cached = AsyncStorage.getItem(mac);
