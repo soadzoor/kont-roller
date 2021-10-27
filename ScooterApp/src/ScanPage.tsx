@@ -9,7 +9,7 @@ import Title from "./components/Title"
 import List from "./components/List"
 import ListItem from "./components/ListItem"
 import TitleBar from "./components/TitleBar";
-import {IBle, IDevice, Peri} from "./Api/types";
+import {IBle, IDevice} from "./Api/types";
 import {StringUtils} from "./utils/StringUtils";
 
 const style = StyleSheet.create({
@@ -42,7 +42,7 @@ class ScanPage extends React.Component<IProps, IState>
         };
     }
 
-    private selectItem = async (item: Peri) =>
+    private selectItem = async (item: IDevice) =>
     {
         this.setState({
             connecting: true

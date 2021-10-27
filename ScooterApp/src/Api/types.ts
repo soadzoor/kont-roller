@@ -1,5 +1,3 @@
-export type Peri = string | {id: string};
-
 export interface IDevice
 {
 	advertising: {
@@ -21,7 +19,7 @@ export interface IDevice
 
 export interface IBle
 {
-	connect: (peri: Peri) => Promise<void>;
+	connect: (peri: IDevice | string) => Promise<void>;
 	connected: boolean;
 	devices: IDevice[];
 	disconnect: () => void;

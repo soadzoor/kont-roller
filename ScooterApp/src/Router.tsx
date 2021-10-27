@@ -13,10 +13,10 @@ interface IProps
 
 const Router = ({ble}: IProps) => {
     if(ble.connected) {
-        return <ScooterPage/>;
+        return <ScooterPage />;
     }
     else {
-        return <ScanPage/>;
+        return <ScanPage />;
     }
 }
 

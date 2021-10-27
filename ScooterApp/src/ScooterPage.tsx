@@ -4,8 +4,7 @@ import {withBle} from "./Ble";
 import createApi from "./Api";
 
 import Scooter from "./Scooter";
-import {ImagePropTypes} from "react-native";
-import {IApi, IBle, IExports} from "./Api/types";
+import {IBle, IExports} from "./Api/types";
 
 interface IProps
 {
@@ -31,9 +30,7 @@ class ScooterPage extends React.Component<IProps, IState>
         };
     }
 
-
-
-    load = async () =>
+    private load = async () =>
     {
         this.setState({error: null})
         try
@@ -44,12 +41,12 @@ class ScooterPage extends React.Component<IProps, IState>
         {
             this.setState({error: e})
         }
-    }
+    };
 
-    back = async () =>
+    private back = async () =>
     {
         this.state.api?.destroy?.();
-    }
+    };
 
     public override async componentDidMount()
     {
