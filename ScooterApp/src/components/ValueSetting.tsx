@@ -43,10 +43,18 @@ class ValueSetting extends Component<IProps>
 
     private onStartEdit = () =>
     {
-        prompt(this.props.children as string, undefined, [
-            {text: "Cancel", onPress: this.onEndEdit},
-            {text: "Submit", onPress: this.onSubmit}
-        ], {type: this._keyboardType, defaultValue: `${this.props.value}`});
+        prompt(
+            this.props.children,
+            undefined,
+            [
+                {text: "Cancel", onPress: this.onEndEdit},
+                {text: "Submit", onPress: this.onSubmit}
+            ],
+            {
+                type: this._keyboardType,
+                defaultValue: `${this.props.value}`
+            }
+        );
     };
 
     private onSubmit = (textInputValue: string) =>
