@@ -25,6 +25,7 @@ export class NonZeroStart implements IExtension
                 nonZeroStart: !(data[4] & (1 << 2))
             });
         }
+
         if (data[0] == 2 && data[1] == 5)
         {
             api.setState({

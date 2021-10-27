@@ -39,6 +39,7 @@ const createApi = async (ble: IBle, onChange: () => void): Promise<IExports | nu
         onChange: onChange,
         handleMessage: (data: Uint8Array) =>
         {
+            console.log(data)
             for (const extension of extensions)
             {
                 extension.handleMessage?.(api as IApi, data)
@@ -60,8 +61,6 @@ const createApi = async (ble: IBle, onChange: () => void): Promise<IExports | nu
     {
         extension.postInit?.(api as IApi);
     }
-
-    console.log(api);
 
     return api.exports as IExports;
 }

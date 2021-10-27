@@ -61,6 +61,8 @@ export interface IExports
 	nonZeroStart: boolean;
 	nonZeroStartOff: () => Promise<void>;
 	nonZeroStartOn: () => Promise<void>;
+	speedLimit: number;
+	setSpeedLimit: (newSpeedLimit: number) => Promise<number>;
 	token: Uint8Array | null;
 	transport: boolean;
 	transportOff: () => Promise<void>;

@@ -78,7 +78,6 @@ class ScanPage extends React.Component<IProps, IState>
 
     public override render()
     {
-        console.log(this.props.ble.devices);
         return (
             <MainView>
                 <TitleBar>

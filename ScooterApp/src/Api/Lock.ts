@@ -20,6 +20,7 @@ export class Lock implements IExtension
             await api.writeWithToken([2, 12, 1, 1, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0]);
             api.exports.batteryLocked = true;
         };
+
         api.exports.batteryUnlock = async () =>
         {
             await api.writeWithToken([2, 12, 1, 0, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0]);
@@ -33,6 +34,7 @@ export class Lock implements IExtension
             await api.writeWithToken([2, 11, 1, 1, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0]);
             api.exports.wheelLocked = true;
         };
+
         api.exports.wheelUnlock = async () =>
         {
             await api.writeWithToken([2, 11, 1, 0, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0]);
@@ -42,8 +44,6 @@ export class Lock implements IExtension
 
     public handleMessage(api: IApi, data: Uint8Array)
     {
-        console.log(data)
-
         if (data[0] == 1 && data[1] == 1)
         {
             api.setState({locked: data[9] != 0});

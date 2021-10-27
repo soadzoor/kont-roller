@@ -50,7 +50,7 @@ export class Communication implements IExtension
 
     public async componentDidMount(bleProvider: BleProvider)
     {
-        bleProvider.subscribe("BleManagerDidUpdateValueForCharacteristic", (event) =>
+        bleProvider.subscribe("BleManagerDidUpdateValueForCharacteristic", (event: Event) =>
         {
             this.state.handler?.(event);
         });

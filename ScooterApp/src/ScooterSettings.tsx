@@ -32,15 +32,16 @@ const ScooterSettings = ({onBack, mac, api}: IProps) => (
         <List>
             <ValueSetting
                 style={style.topSpace}
-                value={"Roller"}
+                value="Roller"
             >
                 Név
             </ValueSetting>
             <ValueSetting
                 style={style.topSpace}
-                value={"25 km/h"}
+                value={25}
+                onChange={(value: number | string) => api.setSpeedLimit(value as number)}
             >
-                Sebességkorlát
+                Sebességkorlát (km / h)
             </ValueSetting>
             <SwitchSetting
                 style={style.topSpace}
