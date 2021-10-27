@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Switch, StyleSheet, View, TouchableWithoutFeedback } from "react-native";
+import { Text, StyleSheet, View, TouchableWithoutFeedback, StyleProp } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
@@ -20,7 +20,15 @@ const styles = StyleSheet.create({
     }
 })
 
-const ValueSetting = ({onChange, value, children, style}) => (
+interface IProps
+{
+    onChange?: () => void;
+    value: string;
+    children: React.ReactNode;
+    style?: StyleProp<any>;
+}
+
+const ValueSetting = ({onChange, value, children, style}: IProps) => (
     <TouchableWithoutFeedback onPress={onChange}>
         <View style={StyleSheet.compose(styles.container, style)}>
             <Text style={styles.label}>

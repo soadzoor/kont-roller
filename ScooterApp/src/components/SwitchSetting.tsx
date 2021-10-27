@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Switch, StyleSheet, View } from "react-native";
+import { Text, Switch, StyleSheet, View, StyleProp } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
@@ -14,9 +14,17 @@ const styles = StyleSheet.create({
         fontSize: 22,
         flexGrow: 1
     }
-})
+});
 
-const SwitchSetting = ({onChange, value, children, style}) => (
+interface IProps
+{
+    onChange: (value: boolean) => void;
+    value: boolean;
+    children: React.ReactNode;
+    style?: StyleProp<any>;
+}
+
+const SwitchSetting = ({onChange, value, children, style}: IProps) => (
     <View style={StyleSheet.compose(styles.container, style)}>
         <Text style={styles.label} >
             {children}

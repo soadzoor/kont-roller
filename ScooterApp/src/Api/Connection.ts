@@ -1,40 +1,39 @@
 import aesJs from "aes-js";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {IApi, IExtension} from "./types";
 
-const getKey = async (mac: string) =>
-{
-    return "20572F52364B3F473050415811632D2B";
-    // const savedItemAsString = await AsyncStorage.getItem(mac) || "{}"; // empty string causes runtime error in JSON.parse! null doesn't
-    // const cached: {time?: number, key?: string} = JSON.parse(savedItemAsString as string);
-    // if (cached?.time && cached?.key)
-    // {
-    //     if (new Date().getTime() < cached.time + 1000 * 60 * 10)
-    //     {
-    //         return cached.key;
-    //     }
-    // }
+const bleKey = "20572F52364B3F473050415811632D2B"; // seems to be the same for every flash/circ scooter!
 
-    // const urlMac = mac.split(":").reverse().join(":");
-    // await axios.get(`https://dev.picasau.com/VehicleSystem/vehicle/addScanData?user=flash&mac=${urlMac}`);
-    // const resp = await axios.get(`https://dev.picasau.com/VehicleSystem/vehicle/checkDataForMac?mac=${urlMac}`, {
-    //     headers: {'Content-Type': 'application/json'}
-    // });
+// const getKey = async (mac: string) =>
+// {
+//     const savedItemAsString = await AsyncStorage.getItem(mac) || "{}"; // empty string causes runtime error in JSON.parse! null doesn't
+//     const cached: {time?: number, key?: string} = JSON.parse(savedItemAsString as string);
+//     if (cached?.time && cached?.key)
+//     {
+//         if (new Date().getTime() < cached.time + 1000 * 60 * 10)
+//         {
+//             return cached.key;
+//         }
+//     }
 
-    // AsyncStorage.setItem(mac, JSON.stringify({
-    //     time: new Date().getTime(),
-    //     key: resp.data.bleKey
-    // }));
+//     const urlMac = mac.split(":").reverse().join(":");
+//     await axios.get(`https://dev.picasau.com/VehicleSystem/vehicle/addScanData?user=flash&mac=${urlMac}`);
+//     const resp = await axios.get(`https://dev.picasau.com/VehicleSystem/vehicle/checkDataForMac?mac=${urlMac}`, {
+//         headers: {'Content-Type': 'application/json'}
+//     });
 
-    // return resp.data.bleKey;
-}
+//     AsyncStorage.setItem(mac, JSON.stringify({
+//         time: new Date().getTime(),
+//         key: resp.data.bleKey
+//     }));
+
+//     return resp.data.bleKey;
+// }
 
 export class Connection implements IExtension
 {
     public async init(api: IApi)
     {
-        const key = await getKey(api.mac);
+        const key = bleKey;
         const aes = new aesJs.ModeOfOperation.ecb(aesJs.utils.hex.toBytes(key));
 
         api.write = (data) => api.ble.write(aes.encrypt(data));

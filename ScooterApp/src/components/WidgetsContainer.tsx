@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, StyleProp } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
@@ -9,11 +9,17 @@ const styles = StyleSheet.create({
         paddingRight: 12,
         paddingBottom: 12
     }
-})
+});
 
-const WidgetsContainer = ({ style, children }) => (
-    <ScrollView style={StyleSheet.compose(style)}>
-        <View style={StyleSheet.compose(styles.container)}>
+interface IProps
+{
+    children: React.ReactNode;
+    style?: StyleProp<any>;
+}
+
+const WidgetsContainer = ({style, children}: IProps) => (
+    <ScrollView style={style}>
+        <View style={styles.container}>
             {children}
         </View>
     </ScrollView>

@@ -4,8 +4,14 @@ import ScooterPage from "./ScooterPage"
 import ScanPage from "./ScanPage"
 
 import { withBle } from "./Ble";
+import {IBle} from "./Api/types";
 
-const Router = ({ ble }) => {
+interface IProps
+{
+    ble: IBle;
+}
+
+const Router = ({ble}: IProps) => {
     if(ble.connected) {
         return <ScooterPage/>;
     }

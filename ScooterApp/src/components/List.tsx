@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, RefreshControl, StyleSheet } from "react-native";
+import {ScrollView, RefreshControl, StyleSheet, StyleProp} from "react-native";
 
 const styles = StyleSheet.create({
     view: {
@@ -7,11 +7,18 @@ const styles = StyleSheet.create({
     }
 });
 
-const List = ({ children, onRefresh, style }) => (
+interface IProps
+{
+    children: React.ReactNode;
+    onRefresh?: () => void;
+    style?: StyleProp<any>;
+}
+
+const List = ({children, onRefresh, style}: IProps) => (
     <ScrollView
         style={StyleSheet.compose(styles.view, style)}
         refreshControl={onRefresh ? (
-            <RefreshControl 
+            <RefreshControl
                 onRefresh={onRefresh}
                 refreshing={false}
             />

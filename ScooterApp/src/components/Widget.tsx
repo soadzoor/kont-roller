@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity, StyleProp } from "react-native";
 
-import Icon from "./Icon";
+import Icon, {IconType} from "./Icon";
 
 const styles = StyleSheet.create({
     container: {
@@ -26,11 +26,21 @@ const styles = StyleSheet.create({
     content: {
         fontSize: 24
     }
-})
+});
 
-const Widget = ({ style, icon, label, onClick, active, children }) => (
+interface IProps
+{
+    style?: StyleProp<any>
+    icon: IconType;
+    label: string;
+    onClick: () => void;
+    active: boolean;
+    children?: React.ReactNode;
+}
+
+const Widget = ({style, icon, label, onClick, active, children}: IProps) => (
     <TouchableOpacity onPress={onClick} activeOpacity={0.8}>
-        <View style={StyleSheet.compose(styles.container, active ? styles.activeContainer : {}, style)}>
+        <View style={StyleSheet.compose<any>(StyleSheet.compose<any>(styles.container, active ? styles.activeContainer : {}), style)}>
             {icon && (
                 <Icon
                     icon={icon}

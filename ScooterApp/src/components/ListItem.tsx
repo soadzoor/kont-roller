@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, TouchableHighlight } from "react-native";
+import { Text, StyleSheet, TouchableHighlight, GestureResponderEvent, StyleProp } from "react-native";
 
 const styles = StyleSheet.create({
     item: {
@@ -9,9 +9,16 @@ const styles = StyleSheet.create({
         backgroundColor: "#bdbdbd",
         fontSize: 22
     }
-})
+});
 
-const ListItem = ({onPress, children, style}) => (
+interface IProps
+{
+    onPress: (event: GestureResponderEvent) => void;
+    children: React.ReactNode;
+    style?: StyleProp<any>;
+}
+
+const ListItem = ({onPress, children, style}: IProps) => (
     <TouchableHighlight onPress={onPress} style={style}>
         <Text style={styles.item} >
             {children}

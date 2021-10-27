@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StyleProp } from "react-native";
 
 import Icon from "./Icon";
 
@@ -10,7 +10,15 @@ const styles = StyleSheet.create({
     }
 });
 
-const Locker = ({ charging, large, percent, style }) => {
+interface IProps
+{
+    charging: boolean;
+    large: boolean;
+    percent: number;
+    style?: StyleProp<any>;
+}
+
+const Locker = ({charging, large, percent, style}: IProps) => {
     const scale = large ? 3 : 1;
     return (
         <View style={StyleSheet.compose(styles.container, style)}>

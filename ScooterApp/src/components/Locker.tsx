@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import React, {Component} from "react";
+import {View, TouchableOpacity, StyleSheet, GestureResponderEvent, StyleProp} from "react-native";
 import Icon from "./Icon";
 
 const styles = StyleSheet.create({
@@ -11,14 +11,22 @@ const styles = StyleSheet.create({
     }
 });
 
-const Locker = ({ onClick, locked, style }) => {
+interface IProps
+{
+    onClick: (event: GestureResponderEvent) => void;
+    locked: boolean;
+    style?: StyleProp<any>;
+}
+
+const Locker = ({onClick, locked, style}: IProps) =>
+{
     return (
         <TouchableOpacity
-            style={StyleSheet.compose(style)}
+            style={style}
             onPress={onClick}
             activeOpacity={0.6}
         >
-            <View style={StyleSheet.compose(styles.container)}>
+            <View style={styles.container}>
                 <Icon
                     icon={locked ? "lock" : "unlock"}
                     size={64}

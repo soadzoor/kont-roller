@@ -9,6 +9,7 @@ import BatteryBar from "./components/BatteryBar";
 import WidgetsContainer from "./components/WidgetsContainer";
 import Widget from "./components/Widget";
 import {StringUtils} from "./utils/StringUtils";
+import {IExports} from "./Api/types";
 
 const style = StyleSheet.create({
     topSpace: {
@@ -21,9 +22,17 @@ const style = StyleSheet.create({
         fontSize: 64,
         paddingVertical: 48
     }
-})
+});
 
-const ScooterMain = ({ onBack, onSettings, mac, api }) => (
+interface IProps
+{
+    onBack?: () => void;
+    onSettings: () => void;
+    mac: string;
+    api: IExports;
+}
+
+const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
     <>
         <TitleBar>
             <Icon icon="left-arrow" onClick={onBack}/>
@@ -38,12 +47,13 @@ const ScooterMain = ({ onBack, onSettings, mac, api }) => (
             <Locker 
                 onClick={api.locked ? api.unlock : api.lock }
                 locked={api.locked}
-                style={StyleSheet.compose(style.topSpace, style.centerItem)}
+                style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
             />
         )}
         <BatteryBar 
+            charging={api.charging}
             large={api.currentSpeed > 0 && !api.locked}
-            style={StyleSheet.compose(style.topSpace, style.centerItem)}
+            style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
             percent={api.battery}
         />
         <WidgetsContainer>

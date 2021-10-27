@@ -23,7 +23,7 @@ const extensions: IExtension[] = [
     new Token(),
 ];
 
-const createApi = async (ble: IBle, onChange: () => void) =>
+const createApi = async (ble: IBle, onChange: () => void): Promise<IExports | null> =>
 {
     const mac = await ble.getMac();
     console.log(mac)
@@ -63,7 +63,7 @@ const createApi = async (ble: IBle, onChange: () => void) =>
 
     console.log(api);
 
-    return api.exports;
+    return api.exports as IExports;
 }
 
 export default createApi;

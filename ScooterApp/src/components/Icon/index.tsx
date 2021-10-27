@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, Image, StyleSheet, StyleProp } from "react-native";
 
 const icons = {
     "pen": require("./pen.png"),
@@ -13,7 +13,18 @@ const icons = {
     "settings": require("./settings.png"),
 }
 
-const Icon = ({ onClick, icon, style, size, containerStyle }) => {
+export type IconType = keyof typeof icons;
+
+interface IProps
+{
+    onClick?: () => void;
+    icon: IconType;
+    style?: StyleProp<any>;
+    size?: number;
+    containerStyle?: StyleProp<any>;
+}
+
+const Icon = ({onClick, icon, style, size, containerStyle}: IProps) => {
     const imageComponent = (
         <Image 
             source={icons[icon]}
@@ -25,12 +36,15 @@ const Icon = ({ onClick, icon, style, size, containerStyle }) => {
         />
     );
 
-    if(onClick)
+    if (onClick)
+    {
         return (
             <TouchableOpacity onPress={onClick} style={containerStyle}>
                 {imageComponent}
             </TouchableOpacity>
         )
+    }
+        
     return imageComponent;
 }
 
