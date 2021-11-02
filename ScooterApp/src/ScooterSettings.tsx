@@ -45,17 +45,17 @@ const ScooterSettings = ({onBack, mac, api}: IProps) => (
             </ValueSetting>
             <SwitchSetting
                 style={style.topSpace}
+                value={api.nonZeroStart}
+                onChange={value => value ? api.nonZeroStartOn() : api.nonZeroStartOff()}
+            >
+                Kezdősebesség lábbal
+            </SwitchSetting>
+            <SwitchSetting
+                style={style.topSpace}
                 value={api.alarm}
                 onChange={value => value ? api.alarmOn() : api.alarmOff()}
             >
                 Riasztó
-            </SwitchSetting>
-            <SwitchSetting
-                style={style.topSpace}
-                value={api.transport}
-                onChange={value => value ? api.transportOn() : api.transportOff()}
-            >
-                Szállítás
             </SwitchSetting>
             {/* <SwitchSetting
                 style={style.topSpace}
@@ -80,10 +80,10 @@ const ScooterSettings = ({onBack, mac, api}: IProps) => (
             </SwitchSetting> */}
             <SwitchSetting
                 style={style.topSpace}
-                value={api.nonZeroStart}
-                onChange={value => value ? api.nonZeroStartOn() : api.nonZeroStartOff()}
+                value={api.transport}
+                onChange={value => value ? api.transportOn() : api.transportOff()}
             >
-                Kezdősebesség lábbal
+                Szállítás
             </SwitchSetting>
         </List>
     </>

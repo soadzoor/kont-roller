@@ -1,6 +1,10 @@
 import {MathUtils} from "../utils/MathUtils";
 import {IApi, IExtension} from "./types";
 
+const MAX_SPEED = 25; // km/h
+// The wechat miniapp had the maximum value set at 30, but I tried, and it doesn't matter at all:
+// Providing 25 vs 30 for this value didn't make a difference. 25 seems to be the hardware limitation
+
 export class SpeedLimit implements IExtension
 {
 	public init(api: IApi)
@@ -14,14 +18,14 @@ export class SpeedLimit implements IExtension
 
 			if (MathUtils.isValidNumber(newSpeedLimitInt))
 			{
-				const clampedSpeedLimit = MathUtils.clamp(newSpeedLimitInt, 1, 30);
+				const clampedSpeedLimit = MathUtils.clamp(newSpeedLimitInt, 1, MAX_SPEED);
 				ret = clampedSpeedLimit;
 
 				await api.writeWithToken([2, 10, 1, clampedSpeedLimit, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0]);
 			}
 			else
 			{
-				ret = api.exports.speedLimit ?? 25;
+				ret = api.exports.speedLimit ?? MAX_SPEED;
 			}
 
 			api.setState({
