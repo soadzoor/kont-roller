@@ -1,5 +1,5 @@
 import aesJs from "aes-js";
-import {IApi, IExtension} from "./types";
+import {IApi, IBluetoothMessage, IExtension} from "./types";
 
 const bleKey = "20572F52364B3F473050415811632D2B"; // seems to be the same for every flash/circ scooter!
 
@@ -40,10 +40,11 @@ export class Connection implements IExtension
         api.exports.destroy = () => api.ble.disconnect();
 
         await api.ble.connect(api.mac);
-        await api.ble.onNotify((data: any) =>
+        await api.ble.onNotify((data: IBluetoothMessage) =>
         {
             if (data.characteristic !== "000036f6-0000-1000-8000-00805f9b34fb")
             {
+                console.log("HOOO");
                 return;
             }
 

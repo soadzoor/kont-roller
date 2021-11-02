@@ -1,4 +1,5 @@
 import React from "react";
+import {IBluetoothMessage} from "../Api/types";
 import {Communication} from "./Communication";
 import {Connection} from "./Connection";
 import {Events} from "./Events";
@@ -47,7 +48,7 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
         }
     }
 
-    public subscribe(name: string, handler: (event: any) => void)
+    public subscribe(name: string, handler: (event: IBluetoothMessage) => void)
     {
 
     }

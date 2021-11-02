@@ -38,11 +38,18 @@ const ScooterSettings = ({onBack, mac, api}: IProps) => (
             </ValueSetting>
             <ValueSetting
                 style={style.topSpace}
-                value={25}
+                value={api.speedLimit ?? 25}
                 onChange={(value: number | string) => api.setSpeedLimit(value as number)}
             >
                 Sebességkorlát (km / h)
             </ValueSetting>
+            <SwitchSetting
+                style={style.topSpace}
+                value={api.alarm}
+                onChange={value => value ? api.alarmOn() : api.alarmOff()}
+            >
+                Riasztó
+            </SwitchSetting>
             <SwitchSetting
                 style={style.topSpace}
                 value={api.transport}
@@ -50,7 +57,7 @@ const ScooterSettings = ({onBack, mac, api}: IProps) => (
             >
                 Szállítás
             </SwitchSetting>
-            <SwitchSetting
+            {/* <SwitchSetting
                 style={style.topSpace}
                 value={api.wheelLocked}
                 onChange={value => value ? api.wheelLock() : api.wheelUnlock()}
@@ -70,7 +77,7 @@ const ScooterSettings = ({onBack, mac, api}: IProps) => (
                 onChange={value => value ? api.cruiseOn() : api.cruiseOff()}
             >
                 Cruise
-            </SwitchSetting>
+            </SwitchSetting> */}
             <SwitchSetting
                 style={style.topSpace}
                 value={api.nonZeroStart}

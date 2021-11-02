@@ -39,17 +39,14 @@ const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
             <Title>{StringUtils.reverseMac(mac)}</Title>
             <Icon icon="settings" onClick={onSettings}/>
         </TitleBar>
-        {(api.currentSpeed > 0 && !api.locked) ? (
-            <Text style={[style.speed, style.topSpace, style.centerItem]}>
-                {api.currentSpeed} km/h
-            </Text>
-        ) : (
-            <Locker 
-                onClick={api.locked ? api.unlock : api.lock }
-                locked={api.locked}
-                style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
-            />
-        )}
+        {/* <Text style={[style.speed, style.topSpace, style.centerItem]}>
+            {api.currentSpeed} km/h
+        </Text> */}
+        <Locker 
+            onClick={api.locked ? api.unlock : api.lock }
+            locked={api.locked}
+            style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
+        />
         <BatteryBar 
             charging={api.charging}
             large={api.currentSpeed > 0 && !api.locked}

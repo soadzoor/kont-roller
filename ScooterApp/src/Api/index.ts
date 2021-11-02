@@ -1,3 +1,4 @@
+import {Alarm} from "./Alarm";
 import {Battery} from "./Battery";
 import {Connection} from "./Connection";
 import {Cruise} from "./Cruise";
@@ -6,6 +7,7 @@ import {FetchState} from "./FetchState";
 import {Led} from "./Led";
 import {Lock} from "./Lock";
 import {NonZeroStart} from "./NonZeroStart";
+import {SpeedLimit} from "./SpeedLimit";
 import {Token} from "./Token";
 import {Transport} from "./Transport";
 import {IApi, IBle, IExports, IExtension} from "./types";
@@ -16,6 +18,8 @@ const extensions: IExtension[] = [
     new Lock(),
     new Battery(),
     new CurrentSpeed(),
+    new SpeedLimit(),
+    new Alarm(),
     new FetchState(),
     new Transport(),
     new NonZeroStart(),
@@ -39,7 +43,7 @@ const createApi = async (ble: IBle, onChange: () => void): Promise<IExports | nu
         onChange: onChange,
         handleMessage: (data: Uint8Array) =>
         {
-            console.log(data)
+            //console.log(data);
             for (const extension of extensions)
             {
                 extension.handleMessage?.(api as IApi, data)

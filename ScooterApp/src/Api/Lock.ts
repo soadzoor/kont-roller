@@ -1,4 +1,4 @@
-import {IApi, IExports, IExtension} from "./types";
+import {IApi, IExtension} from "./types";
 
 export class Lock implements IExtension
 {

@@ -1,5 +1,6 @@
 import { EmitterSubscription, NativeEventEmitter, NativeModules } from "react-native";
 import {BleProvider} from ".";
+import {IBluetoothMessage} from "../Api/types";
 import {IExtension} from "./types";
 
 export class Events implements IExtension
@@ -10,7 +11,7 @@ export class Events implements IExtension
     {
         const bleManagerEmitter = new NativeEventEmitter(NativeModules.BleManager);
 
-        bleProvider.subscribe = (name: string, handler: (event: any) => void) =>
+        bleProvider.subscribe = (name: string, handler: (event: IBluetoothMessage) => void) =>
         {
             this._subscriptions.push(bleManagerEmitter.addListener(name, handler));
         }

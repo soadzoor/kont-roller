@@ -1,3 +1,11 @@
+export interface IBluetoothMessage
+{
+	characteristic: string; // 000036f6-0000-1000-8000-00805f9b34fb
+	peripheral: string; // FF:2E:72:68:FD:E1
+	service: string; // 0000fee7-0000-1000-8000-00805f9b34fb
+	value: Uint8Array; // [147, 156, 102, 190, 28, 233, 252, 252, 113, 129, 237, 77, 92, 251, 193, 54]
+}
+
 export interface IDevice
 {
 	advertising: {
@@ -27,7 +35,7 @@ export interface IBle
 	init: () => Promise<void>;
 	initialized: boolean;
 	loaded: boolean;
-	onNotify: (handler: any) => Promise<void>;
+	onNotify: (handler: (data: IBluetoothMessage) => void) => Promise<void>;
 	scan: () => Promise<void>;
 	scanning: boolean;
 	write: (data: Uint8Array) => Promise<void>;
@@ -36,12 +44,15 @@ export interface IBle
 export interface IExtension
 {
 	init: (api: IApi) => Promise<void> | void;
-	handleMessage?: (api: IApi, data: Uint8Array) => Promise<void> | void;
+	handleMessage?: (api: IApi, data: Uint8Array) => void;
 	postInit?: (api: IApi) => void;
 }
 
 export interface IExports
 {
+	alarm: boolean;
+	alarmOff: () => Promise<void>;
+	alarmOn: () => Promise<void>;
 	battery: number;
 	batteryLock: () => Promise<void>;
 	batteryLocked: boolean;
