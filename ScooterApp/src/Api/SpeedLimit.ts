@@ -1,9 +1,5 @@
 import {MathUtils} from "../utils/MathUtils";
-import {IApi, IExtension} from "./types";
-
-const MAX_SPEED = 25; // km/h
-// The wechat miniapp had the maximum value set at 30, but I tried, and it doesn't matter at all:
-// Providing 25 vs 30 for this value didn't make a difference. 25 seems to be the hardware limitation
+import {IApi, IExtension, MAX_SPEED} from "./types";
 
 export class SpeedLimit implements IExtension
 {

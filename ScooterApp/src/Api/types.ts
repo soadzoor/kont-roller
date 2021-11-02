@@ -1,3 +1,7 @@
+export const MAX_SPEED = 25; // km/h
+// The wechat miniapp had the maximum value set at 30, but I tried, and it doesn't matter at all:
+// Providing 25 vs 30 for this value didn't make a difference. 25 seems to be the hardware limitation
+
 export interface IBluetoothMessage
 {
 	characteristic: string; // 000036f6-0000-1000-8000-00805f9b34fb
