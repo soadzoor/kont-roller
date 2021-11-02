@@ -24,10 +24,10 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 		read: string;
 		write: string;
 	} = {
-			service: "FEE7",
-			read: "36F6",
-			write: "36F5",
-		};
+		service: "FEE7",
+		read: "36F6",
+		write: "36F5",
+	};
 
 	constructor(props: IBleProviderProps)
 	{

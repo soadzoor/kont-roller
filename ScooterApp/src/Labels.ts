@@ -1,4 +1,20 @@
 export const Labels = {
+	english: {
+		en: "English",
+		hu: "Angol"
+	},
+	hungarian: {
+		en: "Hungarian",
+		hu: "Magyar"
+	},
+	chooseADevice: {
+		en: "Choose a device",
+		hu: "Válasszon egy eszközt"
+	},
+	search: {
+		en: "Search",
+		hu: "Keresés"
+	},
 	name: {
 		en: "Name",
 		hu: "Név"
