@@ -31,24 +31,24 @@ const bleKey = "20572F52364B3F473050415811632D2B"; // seems to be the same for e
 
 export class Connection implements IExtension
 {
-    public async init(api: IApi)
-    {
-        const key = bleKey;
-        const aes = new aesJs.ModeOfOperation.ecb(aesJs.utils.hex.toBytes(key));
+	public async init(api: IApi)
+	{
+		const key = bleKey;
+		const aes = new aesJs.ModeOfOperation.ecb(aesJs.utils.hex.toBytes(key));
 
-        api.write = (data) => api.ble.write(aes.encrypt(data));
-        api.exports.destroy = () => api.ble.disconnect();
+		api.write = (data) => api.ble.write(aes.encrypt(data));
+		api.exports.destroy = () => api.ble.disconnect();
 
-        await api.ble.connect(api.mac);
-        await api.ble.onNotify((data: IBluetoothMessage) =>
-        {
-            if (data.characteristic !== "000036f6-0000-1000-8000-00805f9b34fb")
-            {
-                console.log("HOOO");
-                return;
-            }
+		await api.ble.connect(api.mac);
+		await api.ble.onNotify((data: IBluetoothMessage) =>
+		{
+			if (data.characteristic !== "000036f6-0000-1000-8000-00805f9b34fb")
+			{
+				console.log("HOOO");
+				return;
+			}
 
-            api.handleMessage(aes.decrypt([...data.value]));
-        });
-    }
+			api.handleMessage(aes.decrypt([...data.value]));
+		});
+	}
 }

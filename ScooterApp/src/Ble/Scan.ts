@@ -5,53 +5,53 @@ import {IExtension} from "./types";
 
 export class Scan implements IExtension
 {
-    public init(bleProvider: BleProvider)
-    {
-        Object.assign(bleProvider.state, {
-            scanning: false,
-            devices: [],
+	public init(bleProvider: BleProvider)
+	{
+		Object.assign(bleProvider.state, {
+			scanning: false,
+			devices: [],
 
-            scan: async () =>
-            {
-                await bleProvider.checkInit();
-                if (bleProvider.state.scanning)
-                {
-                    return;
-                }
-                if (await bleProvider.state.getMac())
-                {
-                    return;
-                }
+			scan: async () =>
+			{
+				await bleProvider.checkInit();
+				if (bleProvider.state.scanning)
+				{
+					return;
+				}
+				if (bleProvider.state.getMac())
+				{
+					return;
+				}
 
-                for (const peri of bleProvider.state.devices)
-                {
-                    await BleManager.removePeripheral(peri.id);
-                }
+				for (const peri of bleProvider.state.devices)
+				{
+					await BleManager.removePeripheral(peri.id);
+				}
 
-                bleProvider.setState({devices: []});
+				bleProvider.setState({devices: []});
 
-                BleManager.scan([bleProvider.uuids.service], 5);
+				BleManager.scan([bleProvider.uuids.service], 5);
 
-                bleProvider.setState({scanning: true});
-            }
-        })
-    }
+				bleProvider.setState({scanning: true});
+			}
+		})
+	}
 
-    public componentDidMount(bleProvider: BleProvider)
-    {
-        bleProvider.subscribe("BleManagerStopScan", () =>
-        {
-            bleProvider.setState({scanning: false});
-        });
+	public componentDidMount(bleProvider: BleProvider)
+	{
+		bleProvider.subscribe("BleManagerStopScan", () =>
+		{
+			bleProvider.setState({scanning: false});
+		});
 
-        bleProvider.subscribe("BleManagerDiscoverPeripheral", (peri: IDevice) =>
-        {
-            bleProvider.setState({
-                devices: [
-                    ...bleProvider.state.devices.filter(x => x.id !== peri.id),
-                    peri
-                ]
-            });
-        });
-    }
+		bleProvider.subscribe("BleManagerDiscoverPeripheral", (peri: IDevice) =>
+		{
+			bleProvider.setState({
+				devices: [
+					...bleProvider.state.devices.filter(x => x.id !== peri.id),
+					peri
+				]
+			});
+		});
+	}
 }

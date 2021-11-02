@@ -27,7 +27,7 @@ export class SpeedLimit implements IExtension
 			api.setState({
 				speedLimit: ret
 			});
-			
+
 			return ret;
 		};
 	}
