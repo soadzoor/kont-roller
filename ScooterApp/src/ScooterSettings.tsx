@@ -10,6 +10,7 @@ import ValueSetting from "./components/ValueSetting";
 import {StringUtils} from "./utils/StringUtils";
 import {IExports, MAX_SPEED} from "./Api/types";
 import {Labels} from "./Labels";
+import {LanguageSettings} from "./utils/LanguageSettings";
 
 const style = StyleSheet.create({
 	topSpace: {
@@ -49,6 +50,7 @@ class ScooterSettings extends React.Component<IProps>
 	public override render()
 	{
 		const {api, mac, onBack} = this.props;
+		const {lang} = LanguageSettings;
 
 		return (
 			<>
@@ -61,35 +63,35 @@ class ScooterSettings extends React.Component<IProps>
 						style={style.topSpace}
 						value="Roller"
 					>
-						Név
+						{Labels.name[lang]}
 					</ValueSetting>
 					<ValueSetting
 						style={style.topSpace}
 						value={api.speedLimit ?? MAX_SPEED}
 						onChange={this.setSpeedLimit}
 					>
-						Sebességkorlát (km / h)
+						{Labels.speedLimit[lang]}
 					</ValueSetting>
 					<SwitchSetting
 						style={style.topSpace}
 						value={api.nonZeroStart}
 						onChange={this.setNonZeroStart}
 					>
-						Kezdősebesség lábbal
+						{Labels.kickToStart[lang]}
 					</SwitchSetting>
 					<SwitchSetting
 						style={style.topSpace}
 						value={api.alarm}
 						onChange={this.setAlarm}
 					>
-						Riasztó
+						{Labels.alarm[lang]}
 					</SwitchSetting>
 					<SwitchSetting
 						style={style.topSpace}
 						value={api.transport}
 						onChange={this.setTransport}
 					>
-						Szállítás
+						{Labels.transport[lang]}
 					</SwitchSetting>
 					{/* <SwitchSetting
 						style={style.topSpace}

@@ -9,12 +9,20 @@ import Title from "./components/Title"
 import List from "./components/List"
 import ListItem from "./components/ListItem"
 import TitleBar from "./components/TitleBar";
-import {IBle, IDevice} from "./Api/types";
+import {IBle, IDevice, Language} from "./Api/types";
 import {StringUtils} from "./utils/StringUtils";
+import {Picker} from "@react-native-picker/picker";
+import {LanguageSettings} from "./utils/LanguageSettings";
+import {Labels} from "./Labels";
 
 const style = StyleSheet.create({
 	topSpace: {
 		marginTop: 12
+	},
+	languageSelector: {
+		marginLeft: "auto",
+		marginRight: "auto",
+		width: 140
 	}
 })
 
@@ -65,10 +73,19 @@ class ScanPage extends React.Component<IProps, IState>
 		}
 	}
 
-	public override componentDidMount()
+	private onLanguageChange = async (lang: Language) =>
 	{
+		await LanguageSettings.setLanguage(lang);
+		this.forceUpdate();
+	};
+
+	public override async componentDidMount()
+	{
+		await LanguageSettings.loadSavedLanguage();
 		this.props.ble.scan();
 		this._isMounted = true;
+
+		this.forceUpdate();
 	}
 
 	public override componentWillUnmount()
@@ -78,15 +95,25 @@ class ScanPage extends React.Component<IProps, IState>
 
 	public override render()
 	{
+		const {lang} = LanguageSettings;
+
 		return (
 			<MainView>
+				<Picker
+					style={style.languageSelector}
+					selectedValue={LanguageSettings.lang}
+					onValueChange={this.onLanguageChange}
+				>
+					<Picker.Item label={Labels.english[lang]} value="en" />
+					<Picker.Item label={Labels.hungarian[lang]} value="hu" />
+				</Picker>
 				<TitleBar>
-					<Title>Válasszon egy eszközt</Title>
+					<Title>{Labels.chooseADevice[lang]}</Title>
 				</TitleBar>
 				<List style={style.topSpace} onRefresh={this.props.ble.scan}>
 					{
 						this.props.ble.devices
-							.sort((a, b) => StringUtils.sortIgnoreCase(b.id, a.id))
+							.sort((a, b) => StringUtils.sortIgnoreCase(StringUtils.reverseMac(a.id), StringUtils.reverseMac(b.id)))
 							.map((device: IDevice) => (
 								<ListItem
 									key={device.id}
@@ -103,7 +130,7 @@ class ScanPage extends React.Component<IProps, IState>
 				</List>
 				{
 					!this.props.ble.scanning &&
-					<Button onClick={this.props.ble.scan}>Keresés</Button>
+					<Button onClick={this.props.ble.scan}>{Labels.search[lang]}</Button>
 				}
 				<Text>{(this.state.error as string)?.toString?.()}</Text>
 			</MainView>
