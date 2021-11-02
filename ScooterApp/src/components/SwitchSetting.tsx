@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, Switch, StyleSheet, View, StyleProp} from "react-native";
+import { Text, Switch, StyleSheet, View, StyleProp } from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -29,10 +29,10 @@ const SwitchSetting = ({onChange, value, children, style}: IProps) => (
 		<Text style={styles.label} >
 			{children}
 		</Text>
-		<Switch
-			onValueChange={onChange}
-			value={value}
-			thumbColor="#212121"
+		<Switch 
+			onValueChange={onChange} 
+			value={value} 
+			thumbColor="#212121" 
 			trackColor={{false: "#929292", true: "#929292"}}
 		/>
 	</View>

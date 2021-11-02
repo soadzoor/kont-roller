@@ -18,7 +18,7 @@ export class Scan implements IExtension
 				{
 					return;
 				}
-				if (bleProvider.state.getMac())
+				if (await bleProvider.state.getMac())
 				{
 					return;
 				}

@@ -1,5 +1,5 @@
 import React from "react";
-import {IExports} from "./Api/types";
+import {IApi, IExports} from "./Api/types";
 
 import Scooter from "./Scooter";
 

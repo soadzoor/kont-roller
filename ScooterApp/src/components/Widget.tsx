@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
 
 interface IProps
 {
-    style?: StyleProp<any>
-    icon: IconType;
-    label: string;
-    onClick: () => void;
-    active: boolean;
-    children?: React.ReactNode;
+	style?: StyleProp<any>
+	icon: IconType;
+	label: string;
+	onClick: () => void;
+	active: boolean;
+	children?: React.ReactNode;
 }
 
 const Widget = ({style, icon, label, onClick, active, children}: IProps) => (

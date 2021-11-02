@@ -8,8 +8,8 @@ export class Connection implements IExtension
 	public state: {
 		handler: ((event: Event) => void) | null;
 	} = {
-			handler: null
-		};
+		handler: null
+	};
 
 	public init(bleProvider: BleProvider)
 	{

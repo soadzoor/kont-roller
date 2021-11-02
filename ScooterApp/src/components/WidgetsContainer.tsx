@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
 
 interface IProps
 {
-    children: React.ReactNode;
-    style?: StyleProp<any>;
+	children: React.ReactNode;
+	style?: StyleProp<any>;
 }
 
 const WidgetsContainer = ({style, children}: IProps) => (

@@ -1,4 +1,4 @@
-import {EmitterSubscription, NativeEventEmitter, NativeModules} from "react-native";
+import { EmitterSubscription, NativeEventEmitter, NativeModules } from "react-native";
 import {BleProvider} from ".";
 import {IDevice} from "../Api/types";
 import {IExtension} from "./types";

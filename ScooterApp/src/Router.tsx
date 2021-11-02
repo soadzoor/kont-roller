@@ -3,7 +3,7 @@ import React from "react";
 import ScooterPage from "./ScooterPage"
 import ScanPage from "./ScanPage"
 
-import {withBle} from "./Ble";
+import { withBle } from "./Ble";
 import {IBle} from "./Api/types";
 
 interface IProps
@@ -11,13 +11,13 @@ interface IProps
 	ble: IBle;
 }
 
-const Router = ({ble}: IProps) =>
+const Router = ({ble}: IProps) => 
 {
-	if (ble.connected)
+	if(ble.connected) 
 	{
 		return <ScooterPage />;
 	}
-	else
+	else 
 	{
 		return <ScanPage />;
 	}

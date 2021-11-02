@@ -5,28 +5,28 @@ const bleKey = "20572F52364B3F473050415811632D2B"; // seems to be the same for e
 
 // const getKey = async (mac: string) =>
 // {
-//     const savedItemAsString = await AsyncStorage.getItem(mac) || "{}"; // empty string causes runtime error in JSON.parse! null doesn't
-//     const cached: {time?: number, key?: string} = JSON.parse(savedItemAsString as string);
-//     if (cached?.time && cached?.key)
-//     {
-//         if (new Date().getTime() < cached.time + 1000 * 60 * 10)
-//         {
-//             return cached.key;
-//         }
-//     }
+//	 const savedItemAsString = await AsyncStorage.getItem(mac) || "{}"; // empty string causes runtime error in JSON.parse! null doesn't
+//	 const cached: {time?: number, key?: string} = JSON.parse(savedItemAsString as string);
+//	 if (cached?.time && cached?.key)
+//	 {
+//		 if (new Date().getTime() < cached.time + 1000 * 60 * 10)
+//		 {
+//			 return cached.key;
+//		 }
+//	 }
 
-//     const urlMac = mac.split(":").reverse().join(":");
-//     await axios.get(`https://dev.picasau.com/VehicleSystem/vehicle/addScanData?user=flash&mac=${urlMac}`);
-//     const resp = await axios.get(`https://dev.picasau.com/VehicleSystem/vehicle/checkDataForMac?mac=${urlMac}`, {
-//         headers: {'Content-Type': 'application/json'}
-//     });
+//	 const urlMac = mac.split(":").reverse().join(":");
+//	 await axios.get(`https://dev.picasau.com/VehicleSystem/vehicle/addScanData?user=flash&mac=${urlMac}`);
+//	 const resp = await axios.get(`https://dev.picasau.com/VehicleSystem/vehicle/checkDataForMac?mac=${urlMac}`, {
+//		 headers: {'Content-Type': 'application/json'}
+//	 });
 
-//     AsyncStorage.setItem(mac, JSON.stringify({
-//         time: new Date().getTime(),
-//         key: resp.data.bleKey
-//     }));
+//	 AsyncStorage.setItem(mac, JSON.stringify({
+//		 time: new Date().getTime(),
+//		 key: resp.data.bleKey
+//	 }));
 
-//     return resp.data.bleKey;
+//	 return resp.data.bleKey;
 // }
 
 export class Connection implements IExtension

@@ -92,26 +92,26 @@ class ScooterSettings extends React.Component<IProps>
 						Szállítás
 					</SwitchSetting>
 					{/* <SwitchSetting
-                        style={style.topSpace}
-                        value={api.wheelLocked}
-                        onChange={value => value ? api.wheelLock() : api.wheelUnlock()}
-                    >
-                        Kerékzár
-                    </SwitchSetting>
-                    <SwitchSetting
-                        style={style.topSpace}
-                        value={api.batteryLocked}
-                        onChange={value => value ? api.batteryLock() : api.batteryUnlock()}
-                    >
-                        Akkumulátor zár
-                    </SwitchSetting>
-                    <SwitchSetting
-                        style={style.topSpace}
-                        value={api.cruise}
-                        onChange={value => value ? api.cruiseOn() : api.cruiseOff()}
-                    >
-                        Cruise
-                    </SwitchSetting> */}
+						style={style.topSpace}
+						value={api.wheelLocked}
+						onChange={value => value ? api.wheelLock() : api.wheelUnlock()}
+					>
+						Kerékzár
+					</SwitchSetting>
+					<SwitchSetting
+						style={style.topSpace}
+						value={api.batteryLocked}
+						onChange={value => value ? api.batteryLock() : api.batteryUnlock()}
+					>
+						Akkumulátor zár
+					</SwitchSetting>
+					<SwitchSetting
+						style={style.topSpace}
+						value={api.cruise}
+						onChange={value => value ? api.cruiseOn() : api.cruiseOff()}
+					>
+						Cruise
+					</SwitchSetting> */}
 				</List>
 			</>
 		);

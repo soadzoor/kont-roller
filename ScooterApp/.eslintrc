@@ -1,0 +1,18 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2020
+	},
+	"rules": {
+		"brace-style": ["warn", "allman", {"allowSingleLine": true}],
+		"indent": ["error", "tab", {"SwitchCase": 2}]
+		// "no-alert": [
+		// 	"error"
+		// ],
+		// "dot-location": [
+		// 	"warn",
+		// 	"property"
+		// ],
+		//"capitalized-comments": ["warn", "always"],
+	}
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import {TouchableOpacity, Text, StyleSheet, StyleProp, GestureResponderEvent} from "react-native";
+import { TouchableOpacity, Text, StyleSheet, StyleProp, GestureResponderEvent } from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -24,7 +24,7 @@ interface IProps
 	onClick?: (event: GestureResponderEvent) => void;
 }
 
-const Button = ({onClick, children, style}: IProps) => (
+const Button = ({ onClick, children, style }: IProps) => (
 	<TouchableOpacity
 		style={StyleSheet.compose(style, styles.container)}
 		onPress={onClick}

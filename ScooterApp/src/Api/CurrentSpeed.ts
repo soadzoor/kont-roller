@@ -23,7 +23,7 @@ export class CurrentSpeed implements IExtension
 
 			//console.log(data);
 			// api.setState({
-			//     currentSpeed: data[4]
+			//	 currentSpeed: data[4]
 			// });
 
 			let c = 96 & data[1];

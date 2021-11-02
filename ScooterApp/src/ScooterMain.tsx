@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, StyleSheet} from "react-native";
+import { Text, StyleSheet } from "react-native";
 
 import Title from "./components/Title";
 import TitleBar from "./components/TitleBar";
@@ -35,7 +35,7 @@ interface IProps
 const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
 	<>
 		<TitleBar>
-			<Icon icon="left-arrow" onClick={onBack} />
+			<Icon icon="left-arrow" onClick={onBack}/>
 			<Title>{StringUtils.reverseMac(mac)}</Title>
 			{
 				!api.locked &&
@@ -43,14 +43,14 @@ const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
 			}
 		</TitleBar>
 		{/* <Text style={[style.speed, style.topSpace, style.centerItem]}>
-            {api.currentSpeed} km/h
-        </Text> */}
-		<Locker
-			onClick={api.locked ? api.unlock : api.lock}
+			{api.currentSpeed} km/h
+		</Text> */}
+		<Locker 
+			onClick={api.locked ? api.unlock : api.lock }
 			locked={api.locked}
 			style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
 		/>
-		<BatteryBar
+		<BatteryBar 
 			charging={api.charging}
 			large={api.currentSpeed > 0 && !api.locked}
 			style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}

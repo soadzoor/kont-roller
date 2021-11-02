@@ -8,9 +8,9 @@ export class Communication implements IExtension
 		handler: ((event: Event) => void) | null;
 		started: boolean;
 	} = {
-			handler: null,
-			started: false
-		};
+		handler: null,
+		started: false
+	};
 
 	public init(bleProvider: BleProvider)
 	{

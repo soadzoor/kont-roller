@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, StyleSheet, StyleProp, GestureResponderEvent} from "react-native";
+import { Text, StyleSheet, StyleProp, GestureResponderEvent } from "react-native";
 
 const styles = StyleSheet.create({
 	title: {
@@ -16,7 +16,7 @@ interface IProps
 	onClick?: (event: GestureResponderEvent) => void;
 }
 
-const Title = ({onClick, children, style}: IProps) => (
+const Title = ({ onClick, children, style }: IProps) => (
 	<Text
 		style={StyleSheet.compose(styles.title, style)}
 		onPress={onClick}

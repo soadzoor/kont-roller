@@ -19,10 +19,6 @@ export const Labels = {
 		en: "Name",
 		hu: "Név"
 	},
-	lights: {
-		en: "Lights",
-		hu: "Lámpa"
-	},
 	speedLimit: {
 		en: "Speed limit (km / h)",
 		hu: "Sebességkorlát (km / h)"
@@ -39,5 +35,5 @@ export const Labels = {
 		en: "Transport",
 		hu: "Szállítás"
 	},
-
+	
 }

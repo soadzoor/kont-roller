@@ -1,5 +1,5 @@
 import BleManager from "react-native-ble-manager";
-import {Platform, PermissionsAndroid} from "react-native";
+import { Platform, PermissionsAndroid } from "react-native";
 import {IExtension} from "./types";
 import {BleProvider} from ".";
 
