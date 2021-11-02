@@ -8,12 +8,16 @@ export class NonZeroStart implements IExtension
         api.exports.nonZeroStartOn = async () =>
         {
             await api.writeWithToken([2, 5, 1, 1, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0]);
-            api.exports.nonZeroStart = true;
+            api.setState({
+                nonZeroStart: true
+            });
         };
         api.exports.nonZeroStartOff = async () =>
         {
             await api.writeWithToken([2, 5, 1, 0, 48, 48, 48, 48, 48, 0, 0, 0, 0, 0, 0, 0]);
-            api.exports.nonZeroStart = false;
+            api.setState({
+                nonZeroStart: false
+            });
         };
     }
 

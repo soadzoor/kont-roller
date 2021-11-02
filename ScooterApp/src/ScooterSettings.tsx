@@ -83,7 +83,7 @@ const ScooterSettings = ({onBack, mac, api}: IProps) => (
                 value={api.nonZeroStart}
                 onChange={value => value ? api.nonZeroStartOn() : api.nonZeroStartOff()}
             >
-                Álló helyzetből indulás
+                Kezdősebesség lábbal
             </SwitchSetting>
         </List>
     </>
