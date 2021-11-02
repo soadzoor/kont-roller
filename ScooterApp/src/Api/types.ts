@@ -6,6 +6,8 @@ export type Language = "en" | "hu";
 export const SupportedLanguages: Language[] = ["en", "hu"];
 export const LangStorageName = "lang";
 
+export const ScooterNameStorageNamePrefix = "ScooterName-";
+
 export interface IBluetoothMessage
 {
 	characteristic: string; // 000036f6-0000-1000-8000-00805f9b34fb

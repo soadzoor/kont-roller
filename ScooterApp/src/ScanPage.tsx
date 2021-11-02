@@ -14,6 +14,8 @@ import {StringUtils} from "./utils/StringUtils";
 import {Picker} from "@react-native-picker/picker";
 import {LanguageSettings} from "./utils/LanguageSettings";
 import {Labels} from "./Labels";
+import {ScooterName} from "./ScooterName";
+import {ScooterNameSettings} from "./utils/ScooterNameSettings";
 
 const style = StyleSheet.create({
 	topSpace: {
@@ -82,6 +84,7 @@ class ScanPage extends React.Component<IProps, IState>
 	public override async componentDidMount()
 	{
 		await LanguageSettings.loadSavedLanguage();
+		await ScooterNameSettings.loadSavedEntries();
 		this.props.ble.scan();
 		this._isMounted = true;
 
@@ -120,7 +123,7 @@ class ScanPage extends React.Component<IProps, IState>
 									style={style.topSpace}
 									onPress={() => this.selectItem(device)}
 								>
-									{StringUtils.reverseMac(device.id)}
+									<ScooterName mac={device.id} />
 								</ListItem>
 							))
 					}

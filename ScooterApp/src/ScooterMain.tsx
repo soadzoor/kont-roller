@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import Title from "./components/Title";
 import TitleBar from "./components/TitleBar";
@@ -8,8 +8,8 @@ import Locker from "./components/Locker";
 import BatteryBar from "./components/BatteryBar";
 import WidgetsContainer from "./components/WidgetsContainer";
 import Widget from "./components/Widget";
-import {StringUtils} from "./utils/StringUtils";
 import {IExports} from "./Api/types";
+import {ScooterName} from "./ScooterName";
 
 const style = StyleSheet.create({
 	topSpace: {
@@ -36,7 +36,9 @@ const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
 	<>
 		<TitleBar>
 			<Icon icon="left-arrow" onClick={onBack}/>
-			<Title>{StringUtils.reverseMac(mac)}</Title>
+			<Title>
+				<ScooterName mac={mac} />
+			</Title>
 			{
 				!api.locked &&
 				<Icon icon="settings" onClick={onSettings} />

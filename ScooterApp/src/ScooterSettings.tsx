@@ -11,6 +11,7 @@ import {StringUtils} from "./utils/StringUtils";
 import {IExports, MAX_SPEED} from "./Api/types";
 import {Labels} from "./Labels";
 import {LanguageSettings} from "./utils/LanguageSettings";
+import {ScooterNameSettings} from "./utils/ScooterNameSettings";
 
 const style = StyleSheet.create({
 	topSpace: {
@@ -27,6 +28,11 @@ interface IProps
 
 class ScooterSettings extends React.Component<IProps>
 {
+	private setName = async (newName: string | number) =>
+	{
+		await ScooterNameSettings.setNameForMac(this.props.mac, newName as string);
+	};
+
 	private setSpeedLimit = (value: number | string) =>
 	{
 		this.props.api.setSpeedLimit(value as number);
@@ -61,7 +67,8 @@ class ScooterSettings extends React.Component<IProps>
 				<List>
 					<ValueSetting
 						style={style.topSpace}
-						value="Roller"
+						value={ScooterNameSettings.getScooterNameByMac(mac)}
+						onChange={this.setName}
 					>
 						{Labels.name[lang]}
 					</ValueSetting>
