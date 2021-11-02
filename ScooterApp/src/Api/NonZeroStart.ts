@@ -25,15 +25,9 @@ export class NonZeroStart implements IExtension
     {
         if (data[0] == 2 && data[1] == 2 && data[3])
         {
+            const newValue: boolean = data[4] === 68; // Based on my tests, this value is either 64 or 68
             api.setState({
-                nonZeroStart: !(data[4] & (1 << 2))
-            });
-        }
-
-        if (data[0] == 2 && data[1] == 5)
-        {
-            api.setState({
-                nonZeroStart: api.exports.nonZeroStart
+                nonZeroStart: newValue
             });
         }
     }

@@ -37,7 +37,10 @@ const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
         <TitleBar>
             <Icon icon="left-arrow" onClick={onBack}/>
             <Title>{StringUtils.reverseMac(mac)}</Title>
-            <Icon icon="settings" onClick={onSettings}/>
+            {
+                !api.locked &&
+                <Icon icon="settings" onClick={onSettings} />
+            }
         </TitleBar>
         {/* <Text style={[style.speed, style.topSpace, style.centerItem]}>
             {api.currentSpeed} km/h
@@ -53,14 +56,17 @@ const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
             style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
             percent={api.battery}
         />
-        <WidgetsContainer>
-            <Widget
-                icon={api.led ? "bulb-on" : "bulb-off"}
-                active={api.led}
-                label="Lámpa"
-                onClick={api.led ? api.ledOff : api.ledOn}
-            />
-        </WidgetsContainer>
+        {
+            !api.locked &&
+            <WidgetsContainer>
+                <Widget
+                    icon={api.led ? "bulb-on" : "bulb-off"}
+                    active={api.led}
+                    label="Lámpa"
+                    onClick={api.led ? api.ledOff : api.ledOn}
+                />
+            </WidgetsContainer>
+        }
     </>
 )
 
