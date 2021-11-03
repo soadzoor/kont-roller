@@ -54,7 +54,7 @@ const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
 		/>
 		<BatteryBar 
 			charging={api.charging}
-			large={api.currentSpeed > 0 && !api.locked}
+			large={true}
 			style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
 			percent={api.battery}
 		/>

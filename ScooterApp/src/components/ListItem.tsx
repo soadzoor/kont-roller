@@ -15,11 +15,12 @@ interface IProps
 {
 	onPress: (event: GestureResponderEvent) => void;
 	children: React.ReactNode;
+	disabled?: boolean;
 	style?: StyleProp<any>;
 }
 
-const ListItem = ({onPress, children, style}: IProps) => (
-	<TouchableHighlight onPress={onPress} style={style}>
+const ListItem = ({onPress, children, disabled, style}: IProps) => (
+	<TouchableHighlight onPress={onPress} disabled={disabled} style={style}>
 		<Text style={styles.item} >
 			{children}
 		</Text>

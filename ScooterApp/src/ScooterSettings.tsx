@@ -12,6 +12,7 @@ import {IExports, MAX_SPEED} from "./Api/types";
 import {Labels} from "./Labels";
 import {LanguageSettings} from "./utils/LanguageSettings";
 import {ScooterNameSettings} from "./utils/ScooterNameSettings";
+import {ScooterName} from "./ScooterName";
 
 const style = StyleSheet.create({
 	topSpace: {
@@ -31,6 +32,7 @@ class ScooterSettings extends React.Component<IProps>
 	private setName = async (newName: string | number) =>
 	{
 		await ScooterNameSettings.setNameForMac(this.props.mac, newName as string);
+		this.forceUpdate();
 	};
 
 	private setSpeedLimit = (value: number | string) =>
@@ -58,11 +60,13 @@ class ScooterSettings extends React.Component<IProps>
 		const {api, mac, onBack} = this.props;
 		const {lang} = LanguageSettings;
 
+		console.log(ScooterNameSettings.getScooterNameByMac(mac));
+
 		return (
 			<>
 				<TitleBar>
 					<Icon icon="left-arrow" onClick={onBack} />
-					<Title>{StringUtils.reverseMac(mac)}</Title>
+					<Title><ScooterName mac={mac} /></Title>
 				</TitleBar>
 				<List>
 					<ValueSetting

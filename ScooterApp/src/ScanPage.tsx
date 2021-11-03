@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, ActivityIndicator, StyleSheet} from "react-native";
+import {Text, ActivityIndicator, StyleSheet, StyleProp} from "react-native";
 
 import {withBle} from "./Ble";
 
@@ -35,7 +35,7 @@ interface IProps
 
 interface IState
 {
-	connecting: boolean;
+	connectingToMac: string;
 	error: unknown;
 }
 
@@ -47,31 +47,36 @@ class ScanPage extends React.Component<IProps, IState>
 	{
 		super(props);
 		this.state = {
-			connecting: false,
+			connectingToMac: "",
 			error: null
 		};
 	}
 
 	private selectItem = async (item: IDevice) =>
 	{
-		this.setState({
-			connecting: true
-		});
-
-		try
-		{
-			await this.props.ble.connect(item);
-		}
-		catch (e)
+		if (!this.state.connectingToMac)
 		{
 			this.setState({
-				error: e
+				connectingToMac: item.id
 			});
-		}
 
-		if (this._isMounted)
-		{
-			this.setState({connecting: false});
+			try
+			{
+				await this.props.ble.connect(item);
+			}
+			catch (e)
+			{
+				this.setState({
+					error: e
+				});
+			}
+
+			if (this._isMounted)
+			{
+				this.setState({
+					connectingToMac: ""
+				});
+			}
 		}
 	}
 
@@ -80,6 +85,11 @@ class ScanPage extends React.Component<IProps, IState>
 		await LanguageSettings.setLanguage(lang);
 		this.forceUpdate();
 	};
+
+	private getLoader(size: "small" | "large", style?: StyleProp<any>, animating?: boolean)
+	{
+		return <ActivityIndicator size={size} animating={animating} color="#202020" style={style} />;
+	}
 
 	public override async componentDidMount()
 	{
@@ -120,16 +130,21 @@ class ScanPage extends React.Component<IProps, IState>
 							.map((device: IDevice) => (
 								<ListItem
 									key={device.id}
-									style={style.topSpace}
+									disabled={!!this.state.connectingToMac}
 									onPress={() => this.selectItem(device)}
 								>
 									<ScooterName mac={device.id} />
+									&nbsp;&nbsp;&nbsp;
+									{
+										this.getLoader("small", undefined, this.state.connectingToMac === device.id)
+									}
 								</ListItem>
 							))
 					}
-					{this.props.ble.scanning && (
-						<ActivityIndicator size="large" color="#202020" style={style.topSpace} />
-					)}
+					{
+						this.props.ble.scanning &&
+						this.getLoader("large", style.topSpace)
+					}
 				</List>
 				{
 					!this.props.ble.scanning &&

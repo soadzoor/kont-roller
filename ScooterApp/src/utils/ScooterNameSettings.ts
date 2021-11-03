@@ -28,5 +28,6 @@ export class ScooterNameSettings
 	public static async setNameForMac(mac: string, name: string)
 	{
 		await AsyncStorage.setItem(`${ScooterNameStorageNamePrefix}${mac}`, name);
+		this._scooterNames.set(mac, name);
 	}
 }
