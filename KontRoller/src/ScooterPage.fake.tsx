@@ -3,8 +3,6 @@ import {IApi, IExports} from "./Api/types";
 
 import Scooter from "./Scooter";
 
-console.warn("Fake scooter page is active");
-
 interface IProps
 {
 
@@ -22,6 +20,7 @@ class ScooterPage extends React.Component<IProps, IState>
 	private api: Partial<IExports>;
 	constructor(props: IProps)
 	{
+		console.warn("Fake scooter page is active");
 		super(props);
 		const _this = this;
 		this.state = {
