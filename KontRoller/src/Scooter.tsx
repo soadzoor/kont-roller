@@ -5,7 +5,9 @@ import MainView from "./components/MainView"
 import Button from "./components/Button"
 import ScooterMain from "./ScooterMain";
 import ScooterSettings from "./ScooterSettings";
-import {IApi, IExports} from "./Api/types";
+import {IExports} from "./Api/types";
+import {Labels} from "./Labels";
+import {LanguageSettings} from "./utils/LanguageSettings";
 
 const style = StyleSheet.create({
 	topSpace: {
@@ -60,9 +62,9 @@ class Scooter extends Component<IProps, IState>
 
 	private renderError = () => (
 		<View style={style.center}>
-			<Text style={style.error}>Hiba történt</Text>
+			<Text style={style.error}>{Labels.somethingWentWrong[LanguageSettings.lang]}</Text>
 			<Text style={style.error}>{(this.props.error as string)?.toString?.()}</Text>
-			<Button style={style.topSpace} onClick={this.props.onLoad}>Újra próbálkozás</Button>
+			<Button style={style.topSpace} onClick={this.props.onLoad}>{Labels.tryAgain[LanguageSettings.lang]}</Button>
 		</View>
 	)
 

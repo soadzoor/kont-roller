@@ -35,5 +35,13 @@ export const Labels = {
 		en: "Transport",
 		hu: "Szállítás"
 	},
+	somethingWentWrong: {
+		en: "Something went wrong",
+		hu: "Hiba történt"
+	},
+	tryAgain: {
+		en: "Try again",
+		hu: "Újra próbálkozás"
+	},
 	
 }
