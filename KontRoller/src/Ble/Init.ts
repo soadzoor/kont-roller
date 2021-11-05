@@ -15,7 +15,9 @@ export class Init implements IExtension
 				{
 					return;
 				}
-				if (Platform.OS === 'android' && Platform.Version >= 23)
+				// As discussed here: https://github.com/innoveit/react-native-ble-manager/issues/544
+				// "Android API >= 23 require the ACCESS_COARSE_LOCATION permission to scan for peripherals"
+				if (Platform.OS === "android" && Platform.Version >= 23)
 				{
 					if (!await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION))
 					{
