@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Text, StyleSheet, View, StyleProp, TouchableOpacity, KeyboardType} from "react-native";
+import {Text, StyleSheet, View, StyleProp, TouchableOpacity} from "react-native";
 import prompt from "react-native-prompt-android";
 
 const styles = StyleSheet.create({
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 	textInput: {
 		fontSize: 20
 	},
-})
+});
 
 interface IProps
 {
