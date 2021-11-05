@@ -11,6 +11,7 @@ export class Init implements IExtension
 			initialized: false,
 			init: async () =>
 			{
+				console.log("init");
 				if (bleProvider.state.initialized)
 				{
 					return;
@@ -25,12 +26,17 @@ export class Init implements IExtension
 					}
 				}
 
-				await BleManager.enableBluetooth();
+				if (Platform.OS === "android")
+				{
+					// Only supported on android
+					await BleManager.enableBluetooth();
+				}
+
 				await BleManager.start({showAlert: true});
 
 				bleProvider.setState({initialized: true});
 			}
-		})
+		});
 	}
 
 	public async componentDidMount(bleProvider: BleProvider)

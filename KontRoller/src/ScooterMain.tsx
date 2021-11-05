@@ -6,7 +6,6 @@ import TitleBar from "./components/TitleBar";
 import Icon from "./components/Icon";
 import Locker from "./components/Locker";
 import BatteryBar from "./components/BatteryBar";
-import WidgetsContainer from "./components/WidgetsContainer";
 import Widget from "./components/Widget";
 import {IExports} from "./Api/types";
 import {ScooterName} from "./ScooterName";
@@ -60,14 +59,12 @@ const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
 		/>
 		{
 			!api.locked &&
-			<WidgetsContainer>
-				<Widget
-					icon={api.led ? "bulb-on" : "bulb-off"}
-					active={api.led}
-					label="Lámpa"
-					onClick={api.led ? api.ledOff : api.ledOn}
-				/>
-			</WidgetsContainer>
+			<Widget
+				icon={api.led ? "bulb-on" : "bulb-off"}
+				active={api.led}
+				label="Lámpa"
+				onClick={api.led ? api.ledOff : api.ledOn}
+			/>
 		}
 	</>
 )

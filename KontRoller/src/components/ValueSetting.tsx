@@ -1,69 +1,77 @@
 import React, {Component} from "react";
-import {Text, StyleSheet, View, StyleProp, TouchableOpacity} from "react-native";
-import prompt from "react-native-prompt-android";
+import {Text, StyleSheet, View, StyleProp, TouchableOpacity, TextInput} from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
 		paddingHorizontal: 16,
-		paddingVertical: 16,
 		borderRadius: 5,
 		backgroundColor: "#bdbdbd",
 		flexDirection: "row",
 		alignItems: "center"
 	},
 	label: {
-		fontSize: 22,
-		flexGrow: 1
-	},
-	value: {
-		fontSize: 20,
-		color: "#424242"
+		paddingVertical: 16,
+		fontSize: 22
 	},
 	textInput: {
-		fontSize: 20
+		flex: 1,
+		color: "#00A000",
+		height: "100%",
+		textAlign: "right",
+		marginLeft: 10,
+		paddingRight: 25,
+		fontSize: 22,
 	},
 });
 
 interface IProps
 {
-	onChange?: (newValue: number | string) => Promise<any> | any;
+	onChange: (newValue: number | string) => Promise<number | string> | (number | string);
 	value: string | number;
 	children: string;
 	style?: StyleProp<any>;
 }
 
-class ValueSetting extends Component<IProps>
+interface IState
+{
+	value: string;
+}
+
+class ValueSetting extends Component<IProps, IState>
 {
 	private _keyboardType: "default" | "numeric" = "default";
 
-	private onEndEdit = () =>
+	constructor(props: IProps)
 	{
+		super(props);
+		this.state = {
+			value: `${this.props.value}`
+		};
+	}
 
+	private onTextChange = (newValue: string) =>
+	{
+		this.setState({
+			value: newValue
+		});
 	};
 
-	private onStartEdit = () =>
+	private onSubmit = async () =>
 	{
-		prompt(
-			this.props.children,
-			undefined,
-			[
-				{text: "Cancel", onPress: this.onEndEdit},
-				{text: "Submit", onPress: this.onSubmit}
-			],
-			{
-				type: this._keyboardType,
-				defaultValue: `${this.props.value}`
-			}
-		);
-	};
-
-	private onSubmit = (textInputValue: string) =>
-	{
+		const textInputValue = this.state.value;
 		const textInputAsNumber = parseFloat(textInputValue);
 		const newValueToPropagate = isNaN(textInputAsNumber) ? textInputValue : textInputAsNumber;
-		this.props.onChange?.(newValueToPropagate);
-		this.onEndEdit();
+		const newValidatedValue = await this.props.onChange(newValueToPropagate);
+
+		this.setState({
+			value: `${newValidatedValue}`
+		});
 	};
+
+	public override async componentWillUnmount()
+	{
+		await this.onSubmit();
+	}
 
 	public override render()
 	{
@@ -71,14 +79,18 @@ class ValueSetting extends Component<IProps>
 		this._keyboardType = typeof value === "number" ? "numeric" : "default";
 
 		return (
-			<TouchableOpacity onPress={this.onStartEdit}>
+			<TouchableOpacity>
 				<View style={StyleSheet.compose(styles.container, style)}>
 					<Text style={styles.label}>
 						{children}
 					</Text>
-					<Text style={styles.value}>
-						{value}
-					</Text>
+					<TextInput
+						value={this.state.value}
+						onChangeText={this.onTextChange}
+						onEndEditing={this.onSubmit}
+						style={styles.textInput}
+						keyboardType={this._keyboardType}
+					/>
 				</View>
 			</TouchableOpacity>
 		);

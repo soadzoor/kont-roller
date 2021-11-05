@@ -1,5 +1,5 @@
 import React from "react";
-import {IBluetoothMessage, IDevice} from "../Api/types";
+import {IDevice} from "../Api/types";
 import {Communication} from "./Communication";
 import {Connection} from "./Connection";
 import {Events} from "./Events";
@@ -38,7 +38,7 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 			init: async () => { },
 			devices: [],
 			scanning: false,
-			getMac: () => "",
+			getMac: async () => "",
 			connected: false,
 		};
 

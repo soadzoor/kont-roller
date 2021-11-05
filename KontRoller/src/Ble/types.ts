@@ -13,7 +13,7 @@ export interface IBleProviderState
 	init: () => Promise<void>;
 	devices: IDevice[];
 	scanning: boolean;
-	getMac: () => string;
+	getMac: () => Promise<string>;
 	connected: boolean;
 }
 

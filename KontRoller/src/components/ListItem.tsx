@@ -2,11 +2,15 @@ import React from "react";
 import { Text, StyleSheet, TouchableHighlight, GestureResponderEvent, StyleProp } from "react-native";
 
 const styles = StyleSheet.create({
-	item: {
+	container: {
+		flexDirection: "row",
 		paddingHorizontal: 16,
-		paddingVertical: 16,
+		minHeight: 48,
+		alignItems: "center",
 		borderRadius: 5,
 		backgroundColor: "#bdbdbd",
+	},
+	item: {
 		fontSize: 22
 	}
 });
@@ -16,11 +20,10 @@ interface IProps
 	onPress: (event: GestureResponderEvent) => void;
 	children: React.ReactNode;
 	disabled?: boolean;
-	style?: StyleProp<any>;
 }
 
-const ListItem = ({onPress, children, disabled, style}: IProps) => (
-	<TouchableHighlight onPress={onPress} disabled={disabled} style={style}>
+const ListItem = ({onPress, children, disabled}: IProps) => (
+	<TouchableHighlight onPress={onPress} disabled={disabled} style={styles.container}>
 		<Text style={styles.item} >
 			{children}
 		</Text>

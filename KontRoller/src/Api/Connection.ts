@@ -29,6 +29,10 @@ const bleKey = "20572F52364B3F473050415811632D2B"; // seems to be the same for e
 //	 return resp.data.bleKey;
 // }
 
+// Yes... I checked and it's different on the 2 platforms...
+const characteristicOnAndroid = "000036f6-0000-1000-8000-00805f9b34fb";
+const characteristicOnIOS = "36F6";
+
 export class Connection implements IExtension
 {
 	public async init(api: IApi)
@@ -42,9 +46,9 @@ export class Connection implements IExtension
 		await api.ble.connect(api.mac);
 		await api.ble.onNotify((data: IBluetoothMessage) =>
 		{
-			if (data.characteristic !== "000036f6-0000-1000-8000-00805f9b34fb")
+			if (data.characteristic !== characteristicOnAndroid && data.characteristic !== characteristicOnIOS)
 			{
-				console.log("HOOO");
+				console.log("Characteristic doesn't match");
 				return;
 			}
 

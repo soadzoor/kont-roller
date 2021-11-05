@@ -7,7 +7,6 @@ import Icon from "./components/Icon";
 import List from "./components/List";
 import SwitchSetting from "./components/SwitchSetting";
 import ValueSetting from "./components/ValueSetting";
-import {StringUtils} from "./utils/StringUtils";
 import {IExports, MAX_SPEED} from "./Api/types";
 import {Labels} from "./Labels";
 import {LanguageSettings} from "./utils/LanguageSettings";
@@ -33,11 +32,13 @@ class ScooterSettings extends React.Component<IProps>
 	{
 		await ScooterNameSettings.setNameForMac(this.props.mac, newName as string);
 		this.forceUpdate();
+
+		return newName;
 	};
 
 	private setSpeedLimit = (value: number | string) =>
 	{
-		this.props.api.setSpeedLimit(value as number);
+		return this.props.api.setSpeedLimit(value as number);
 	};
 
 	private setNonZeroStart = (value: boolean) =>
@@ -59,8 +60,6 @@ class ScooterSettings extends React.Component<IProps>
 	{
 		const {api, mac, onBack} = this.props;
 		const {lang} = LanguageSettings;
-
-		console.log(ScooterNameSettings.getScooterNameByMac(mac));
 
 		return (
 			<>
