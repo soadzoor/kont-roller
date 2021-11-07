@@ -43,5 +43,8 @@ export const Labels = {
 		en: "Try again",
 		hu: "Újra próbálkozás"
 	},
-	
+	lights: {
+		en: "Lights",
+		hu: "Lámpa"
+	},
 }

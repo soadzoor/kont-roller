@@ -9,6 +9,8 @@ import BatteryBar from "./components/BatteryBar";
 import Widget from "./components/Widget";
 import {IExports} from "./Api/types";
 import {ScooterName} from "./ScooterName";
+import {Labels} from "./Labels";
+import {LanguageSettings} from "./utils/LanguageSettings";
 
 const style = StyleSheet.create({
 	topSpace: {
@@ -62,7 +64,7 @@ const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
 			<Widget
 				icon={api.led ? "bulb-on" : "bulb-off"}
 				active={api.led}
-				label="Lámpa"
+				label={Labels.alarm[LanguageSettings.lang]}
 				onClick={api.led ? api.ledOff : api.ledOn}
 			/>
 		}
