@@ -87,7 +87,7 @@ class ScooterMain extends React.Component<IProps>
 					<Widget
 						icon={api.led ? "bulb-on" : "bulb-off"}
 						active={api.led}
-						label={Labels.alarm[LanguageSettings.lang]}
+						label={Labels.lights[LanguageSettings.lang]}
 						onClick={api.led ? api.ledOff : api.ledOn}
 					/>
 				}
