@@ -23,9 +23,9 @@ export class NonZeroStart implements IExtension
 
 	public handleMessage(api: IApi, data: Uint8Array)
 	{
-		if (data[0] == 2 && data[1] == 2 && data[3])
+		if (data[0] === 2 && data[1] === 2 && data[2] === 4)
 		{
-			const newValue: boolean = data[4] === 68; // Based on my tests, this value is either 64 or 68
+			const newValue: boolean = data[4] > 65; // Based on my tests, this value is 64, 65, 68, or 69...
 			api.setState({
 				nonZeroStart: newValue
 			});
