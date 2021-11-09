@@ -30,7 +30,7 @@ interface IProps
 	api: IExports;
 	mac: string;
 	connected: boolean;
-	onBack?: () => void;
+	onBack: () => void;
 	onLoad?: (event: GestureResponderEvent) => void;
 	error?: unknown;
 }

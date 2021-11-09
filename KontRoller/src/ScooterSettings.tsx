@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet} from "react-native";
+import {BackHandler, StyleSheet} from "react-native";
 
 import Title from "./components/Title";
 import TitleBar from "./components/TitleBar";
@@ -55,6 +55,23 @@ class ScooterSettings extends React.Component<IProps>
 	{
 		return value ? this.props.api.transportOn() : this.props.api.transportOff();
 	};
+
+	private onBackPress = () =>
+	{
+		this.props.onBack?.();
+
+		return true;
+	};
+
+	public override componentDidMount()
+	{
+		BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+	}
+
+	public override componentWillUnmount()
+	{
+		BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+	}
 
 	public override render()
 	{

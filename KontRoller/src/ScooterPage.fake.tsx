@@ -18,6 +18,7 @@ interface IState
 class ScooterPage extends React.Component<IProps, IState>
 {
 	private api: Partial<IExports>;
+
 	constructor(props: IProps)
 	{
 		console.warn("Fake scooter page is active");
@@ -54,12 +55,18 @@ class ScooterPage extends React.Component<IProps, IState>
 		}, 1000);
 	}
 
+	private back = async () =>
+	{
+		this.api?.destroy?.();
+	};
+
 	public override render()
 	{
 		return (
 			<Scooter
 				api={this.api as IExports}
 				mac="00:11:22:33:44"
+				onBack={this.back}
 				connected={true}
 			/>
 		);

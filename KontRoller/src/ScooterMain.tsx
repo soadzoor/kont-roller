@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { BackHandler, StyleSheet } from "react-native";
 
 import Title from "./components/Title";
 import TitleBar from "./components/TitleBar";
@@ -27,48 +27,73 @@ const style = StyleSheet.create({
 
 interface IProps
 {
-	onBack?: () => void;
+	onBack: () => void;
 	onSettings: () => void;
 	mac: string;
 	api: IExports;
 }
 
-const ScooterMain = ({onBack, onSettings, mac, api}: IProps) => (
-	<>
-		<TitleBar>
-			<Icon icon="left-arrow" onClick={onBack}/>
-			<Title>
-				<ScooterName mac={mac} />
-			</Title>
-			{
-				!api.locked &&
-				<Icon icon="settings" onClick={onSettings} />
-			}
-		</TitleBar>
-		{/* <Text style={[style.speed, style.topSpace, style.centerItem]}>
-			{api.currentSpeed} km/h
-		</Text> */}
-		<Locker 
-			onClick={api.locked ? api.unlock : api.lock }
-			locked={api.locked}
-			style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
-		/>
-		<BatteryBar 
-			charging={api.charging}
-			large={true}
-			style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
-			percent={api.battery}
-		/>
-		{
-			!api.locked &&
-			<Widget
-				icon={api.led ? "bulb-on" : "bulb-off"}
-				active={api.led}
-				label={Labels.alarm[LanguageSettings.lang]}
-				onClick={api.led ? api.ledOff : api.ledOn}
-			/>
-		}
-	</>
-)
+class ScooterMain extends React.Component<IProps>
+{
+	private onBackPress = () =>
+	{
+		this.props.onBack?.();
+
+		return true;
+	};
+
+	public override componentDidMount()
+	{
+		BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+	}
+
+	public override componentWillUnmount()
+	{
+		BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+	}
+
+	public override render()
+	{
+		const {onBack, onSettings, mac, api} = this.props;
+
+		return (
+			<>
+				<TitleBar>
+					<Icon icon="left-arrow" onClick={onBack} />
+					<Title>
+						<ScooterName mac={mac} />
+					</Title>
+					{
+						!api.locked &&
+						<Icon icon="settings" onClick={onSettings} />
+					}
+				</TitleBar>
+				{/* <Text style={[style.speed, style.topSpace, style.centerItem]}>
+					{api.currentSpeed} km/h
+				</Text> */}
+				<Locker
+					onClick={api.locked ? api.unlock : api.lock}
+					locked={api.locked}
+					style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
+				/>
+				<BatteryBar
+					charging={api.charging}
+					large={true}
+					style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
+					percent={api.battery}
+				/>
+				{
+					!api.locked &&
+					<Widget
+						icon={api.led ? "bulb-on" : "bulb-off"}
+						active={api.led}
+						label={Labels.alarm[LanguageSettings.lang]}
+						onClick={api.led ? api.ledOff : api.ledOn}
+					/>
+				}
+			</>
+		);
+	}
+}
 
 export default ScooterMain
