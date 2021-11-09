@@ -1,6 +1,8 @@
 If you don't have "android" and "ios" folders, run this command
 react-native upgrade
 
+The "ios" and "android" folders contain large, and private files, so it's not part of this public repository.
+
 
 As per: https://stackoverflow.com/questions/43723958/react-native-android-project-not-found-maybe-run-react-native-android-first
 
