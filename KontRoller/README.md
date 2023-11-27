@@ -1,5 +1,15 @@
+npm install -g react-native-cli
+
 If you don't have "android" and "ios" folders, run this command
 react-native upgrade
+
+If it doesn't work, try these:
+npm i react-native-eject
+npm i @react-native-community/cli
+react-native eject
+
+Useful:
+react-native doctor
 
 The "ios" and "android" folders contain large, and private files, so it's not part of this public repository.
 
