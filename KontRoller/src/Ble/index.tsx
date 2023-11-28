@@ -6,7 +6,7 @@ import {Events} from "./Events";
 import {Init} from "./Init";
 import {Scan} from "./Scan";
 import {IBleProviderProps, IBleProviderState, IExtension} from "./types";
-import {request, PERMISSIONS} from 'react-native-permissions';
+import {request, PERMISSIONS} from "react-native-permissions";
 
 const {Provider, Consumer} = React.createContext({loaded: false});
 
