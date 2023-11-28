@@ -6,6 +6,7 @@ import {Events} from "./Events";
 import {Init} from "./Init";
 import {Scan} from "./Scan";
 import {IBleProviderProps, IBleProviderState, IExtension} from "./types";
+import {request, PERMISSIONS} from 'react-native-permissions';
 
 const {Provider, Consumer} = React.createContext({loaded: false});
 
@@ -63,6 +64,11 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 
 	public override async componentDidMount()
 	{
+		await request(PERMISSIONS.ANDROID.BLUETOOTH_SCAN);
+		await request(PERMISSIONS.ANDROID.BLUETOOTH_CONNECT);
+		await request(PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION);
+		await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+
 		for (const extension of extensions)
 		{
 			await extension.componentDidMount?.(this);
