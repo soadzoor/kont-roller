@@ -27,7 +27,9 @@ For portrait mode only, add this to the "activity" in AndroidManifest: android:s
 
 For icon generation, use the following: https://easyappicon.com/
 
-You need to change VERSION_CODE, and VERSION_NAME within BuildConfig.java for every new build
+You need to change versionCode, and versionName within `build.gradle` for every new play store release (careful, there are more than one file with the same name, you need the one in android/app/)
+
+If you need to update/rename your android package, you can use this command: `npx react-native-rename "KontRoller" -b "com.soadzoor.kontroller"`
 
 
 For iOS:
