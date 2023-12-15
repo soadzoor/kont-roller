@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
 	},
 	label: {
 		marginTop: 12,
-		fontSize: 18
+		fontSize: 18,
+		color: "#363636",
 	},
 	content: {
 		fontSize: 24

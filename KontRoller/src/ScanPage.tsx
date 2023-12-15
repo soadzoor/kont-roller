@@ -24,13 +24,15 @@ const style = StyleSheet.create({
 	languageSelector: {
 		marginLeft: "auto",
 		marginRight: "auto",
-		width: 140
+		width: 140,
+		color: "#363636",
 	}
 })
 
 interface IProps
 {
 	ble: IBle;
+	onBlueToothConnect: () => void;
 }
 
 interface IState
@@ -63,6 +65,7 @@ class ScanPage extends React.Component<IProps, IState>
 			try
 			{
 				await this.props.ble.connect(item);
+				this.props.onBlueToothConnect();
 			}
 			catch (e)
 			{

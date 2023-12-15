@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
 	title: {
 		textAlign: "center",
 		flexGrow: 1,
-		fontSize: 24
+		fontSize: 24,
+		color: "#363636",
 	}
 });
 

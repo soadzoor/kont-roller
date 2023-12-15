@@ -30,7 +30,8 @@ const Locker = ({charging, large, percent, style}: IProps) =>
 			<Text
 				style={{
 					marginLeft: 12,
-					fontSize: Math.round(18 * scale)
+					fontSize: Math.round(18 * scale),
+					color: "#363636",
 				}}
 			>
 				{Math.round(percent)} %

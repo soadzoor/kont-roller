@@ -18,8 +18,8 @@ As per: https://stackoverflow.com/questions/43723958/react-native-android-projec
 
 For android:
 If the bluetooth scan doesn't seem to be working: make sure you have all these permissions in AndroidManifest.xml:
-<uses-permission android:name="android.permission.BLUETOOTH"/>
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 

@@ -9,6 +9,7 @@ import {IBle, IExports} from "./Api/types";
 interface IProps
 {
 	ble: IBle;
+	onBackClick: () => void;
 }
 
 interface IState
@@ -46,6 +47,7 @@ class ScooterPage extends React.Component<IProps, IState>
 	private back = async () =>
 	{
 		this.state.api?.destroy?.();
+		this.props.onBackClick();
 	};
 
 	public override async componentDidMount()

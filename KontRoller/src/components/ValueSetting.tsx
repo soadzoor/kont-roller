@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
 	},
 	label: {
 		paddingVertical: 16,
-		fontSize: 22
+		fontSize: 22,
+		color: "#363636",
 	},
 	textInput: {
 		flex: 1,
