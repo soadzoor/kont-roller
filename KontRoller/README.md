@@ -25,6 +25,8 @@ If the bluetooth scan doesn't seem to be working: make sure you have all these p
 
 For portrait mode only, add this to the "activity" in AndroidManifest: android:screenOrientation="portrait"
 
+For icon generation, use the following: https://easyappicon.com/
+
 
 For iOS:
 https://github.com/innoveit/react-native-ble-manager

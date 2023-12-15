@@ -19,7 +19,8 @@ import {ScooterNameSettings} from "./utils/ScooterNameSettings";
 
 const style = StyleSheet.create({
 	topSpace: {
-		marginTop: 12
+		marginTop: 12,
+		color: "#363636",
 	},
 	languageSelector: {
 		marginLeft: "auto",
@@ -119,6 +120,7 @@ class ScanPage extends React.Component<IProps, IState>
 					style={style.languageSelector}
 					selectedValue={LanguageSettings.lang}
 					onValueChange={this.onLanguageChange}
+					dropdownIconColor="#363636"
 				>
 					<Picker.Item label={Labels.english[lang]} value="en" />
 					<Picker.Item label={Labels.hungarian[lang]} value="hu" />
