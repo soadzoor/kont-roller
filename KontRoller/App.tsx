@@ -30,27 +30,11 @@ const requestPermissions = async (): Promise<boolean> =>
 }
 
 const App = () => {
-	const [arePermissionsAllGranted, setArePermissionsAllGranted] = useState<boolean>(false);
-
-
-	if (arePermissionsAllGranted)
-	{
+	return (
 		<BleProvider >
 			<Router />
 		</BleProvider>
-	}
-	else
-	{
-		<Button
-			onClick={async () => {
-				const ret = await requestPermissions();
-
-				setArePermissionsAllGranted(ret);
-			}}
-		>
-			Enable Permissions
-		</Button>
-	}
+	)
 };
 
 export default true ? App : ScooterPageFake;
