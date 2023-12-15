@@ -27,6 +27,8 @@ For portrait mode only, add this to the "activity" in AndroidManifest: android:s
 
 For icon generation, use the following: https://easyappicon.com/
 
+You need to change VERSION_CODE, and VERSION_NAME within BuildConfig.java for every new build
+
 
 For iOS:
 https://github.com/innoveit/react-native-ble-manager
