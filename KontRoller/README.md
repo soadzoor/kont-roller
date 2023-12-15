@@ -31,6 +31,7 @@ You need to change versionCode, and versionName within `build.gradle` for every 
 
 If you need to update/rename your android package, you can use this command: `npx react-native-rename "KontRoller" -b "com.soadzoor.kontroller"`
 
+Building signed apk/bundle from android studio directly might not work. I mean, the building itself works, but the generated apk doesn't always work properly. You need to follow these instructions instead: `https://reactnative.dev/docs/signed-apk-android`
 
 For iOS:
 https://github.com/innoveit/react-native-ble-manager
