@@ -41,7 +41,7 @@ interface IProps
 
 const Widget = ({style, icon, label, onClick, active, children}: IProps) => (
 	<TouchableOpacity onPress={onClick} activeOpacity={0.8}>
-		<View style={StyleSheet.compose<any>(StyleSheet.compose<any>(styles.container, active ? styles.activeContainer : {}), style)}>
+		<View style={StyleSheet.compose(StyleSheet.compose(styles.container, active ? styles.activeContainer : {}), style)}>
 			{icon && (
 				<Icon
 					icon={icon}

@@ -51,7 +51,7 @@ const createApi = async (ble: IBle, onChange: () => void): Promise<IExports | nu
 		},
 		setState: (value: Partial<IExports>) =>
 		{
-			Object.assign(api.exports, value);
+			Object.assign(api.exports ?? {}, value);
 			onChange?.();
 		},
 	}

@@ -6,7 +6,7 @@ import {IBleProviderProps, IBleProviderState, IExtension} from "./types";
 export class Connection implements IExtension
 {
 	public state: {
-		handler: ((event: Event) => void) | null;
+		handler: ((event: IDevice) => void) | null;
 	} = {
 		handler: null
 	};
@@ -71,12 +71,12 @@ export class Connection implements IExtension
 
 	public async componentDidMount(bleProvider: BleProvider)
 	{
-		bleProvider.subscribe("BleManagerDidUpdateValueForCharacteristic", (event) =>
+		bleProvider.subscribe("BleManagerDidUpdateValueForCharacteristic", (device) =>
 		{
-			this.state.handler?.(event);
+			this.state.handler?.(device);
 		});
 
-		bleProvider.subscribe("BleManagerDisconnectPeripheral", (event) =>
+		bleProvider.subscribe("BleManagerDisconnectPeripheral", (device) =>
 		{
 			console.log("disconnected")
 			bleProvider.setState({connected: false});

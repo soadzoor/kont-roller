@@ -74,12 +74,12 @@ class ScooterMain extends React.Component<IProps>
 				<Locker
 					onClick={api.locked ? api.unlock : api.lock}
 					locked={api.locked}
-					style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
+					style={StyleSheet.compose(style.topSpace, style.centerItem)}
 				/>
 				<BatteryBar
 					charging={api.charging}
 					large={true}
-					style={StyleSheet.compose<any>(style.topSpace, style.centerItem)}
+					style={StyleSheet.compose(style.topSpace, style.centerItem)}
 					percent={api.battery}
 				/>
 				{

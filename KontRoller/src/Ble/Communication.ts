@@ -1,11 +1,12 @@
 import BleManager from "react-native-ble-manager";
 import {BleProvider} from ".";
 import {IExtension} from "./types";
+import {IDevice} from "../Api/types";
 
 export class Communication implements IExtension
 {
 	public state: {
-		handler: ((event: Event) => void) | null;
+		handler: ((device: IDevice) => void) | null;
 		started: boolean;
 	} = {
 		handler: null,
@@ -15,7 +16,7 @@ export class Communication implements IExtension
 	public init(bleProvider: BleProvider)
 	{
 		Object.assign(bleProvider.state, {
-			onNotify: async (handler: (event: Event) => void) =>
+			onNotify: async (handler: (device: IDevice) => void) =>
 			{
 				await bleProvider.checkInit();
 				if (this.state.started)
@@ -50,9 +51,9 @@ export class Communication implements IExtension
 
 	public async componentDidMount(bleProvider: BleProvider)
 	{
-		bleProvider.subscribe("BleManagerDidUpdateValueForCharacteristic", (event: Event) =>
+		bleProvider.subscribe("BleManagerDidUpdateValueForCharacteristic", (device: IDevice) =>
 		{
-			this.state.handler?.(event);
+			this.state.handler?.(device);
 		});
 
 		bleProvider.subscribe("BleManagerDisconnectPeripheral", () =>

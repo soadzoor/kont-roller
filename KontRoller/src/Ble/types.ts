@@ -1,9 +1,11 @@
+import {ReactNode} from "react";
 import {BleProvider} from ".";
 import {IBle, IDevice} from "../Api/types";
 
 export interface IBleProviderProps
 {
 	ble?: IBle;
+	children: ReactNode;
 }
 
 export interface IBleProviderState
