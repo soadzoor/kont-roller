@@ -1,8 +1,6 @@
 import React from "react";
 import {Text, ActivityIndicator, StyleSheet, StyleProp} from "react-native";
-
 import {withBle} from "./Ble";
-
 import MainView from "./components/MainView"
 import Button from "./components/Button"
 import Title from "./components/Title"
@@ -20,7 +18,9 @@ import {ScooterNameSettings} from "./utils/ScooterNameSettings";
 const style = StyleSheet.create({
 	topSpace: {
 		marginTop: 12,
+		marginBottom: 12,
 		color: "#363636",
+		flex: 1,
 	},
 	languageSelector: {
 		marginLeft: "auto",
@@ -99,14 +99,39 @@ class ScanPage extends React.Component<IProps, IState>
 		return <ActivityIndicator size={size} animating={animating} color="#202020" style={style} />;
 	}
 
+	private onScanClick = async () =>
+	{
+		this.props.ble.disconnect();
+		this.props.ble.scanning = false;
+		this.props.ble.devices.length = 0;
+		await this.props.ble.scan();
+		this.forceUpdate();
+	}
+
 	public override async componentDidMount()
 	{
 		await LanguageSettings.loadSavedLanguage();
 		await ScooterNameSettings.loadSavedEntries();
-		this.props.ble.scan();
+		this.onScanClick();
 		this._isMounted = true;
 
 		this.forceUpdate();
+	}
+
+	public override UNSAFE_componentWillReceiveProps(nextProps: Readonly<IProps>, nextContext: any): void
+	{
+		if (this.props.isBlueToothOn !== nextProps.isBlueToothOn)
+		{
+			this.props.ble.devices.length = 0;
+			this.props.ble.scanning = false;
+
+			if (nextProps.isBlueToothOn)
+			{
+				this.onScanClick();
+			}
+
+			this.forceUpdate();
+		}
 	}
 
 	public override componentWillUnmount()
@@ -132,14 +157,15 @@ class ScanPage extends React.Component<IProps, IState>
 				<TitleBar>
 					{
 						this.props.isBlueToothOn
-						?
-						<Title>{Labels.chooseADevice[lang]}</Title>
-						:
-						<Title style={style.error}>{Labels.turnOnBlueTooth[lang]}</Title>
+							?
+							<Title>{Labels.chooseADevice[lang]}</Title>
+							:
+							<Title style={style.error}>{Labels.turnOnBlueTooth[lang]}</Title>
 					}
 				</TitleBar>
 				<List style={style.topSpace} onRefresh={this.props.ble.scan}>
 					{
+						this.props.isBlueToothOn &&
 						this.props.ble.devices
 							.sort((a, b) => StringUtils.sortIgnoreCase(StringUtils.reverseMac(a.id), StringUtils.reverseMac(b.id)))
 							.map((device: IDevice) => (
@@ -157,13 +183,13 @@ class ScanPage extends React.Component<IProps, IState>
 							))
 					}
 					{
-						this.props.ble.scanning &&
+						this.props.ble.scanning && this.props.isBlueToothOn &&
 						this.getLoader("large", style.topSpace)
 					}
 				</List>
 				{
-					!this.props.ble.scanning &&
-					<Button onClick={this.props.ble.scan}>{Labels.search[lang]}</Button>
+					!this.props.ble.scanning && this.props.isBlueToothOn &&
+					<Button onClick={this.onScanClick}>{Labels.search[lang]}</Button>
 				}
 				<Text style={style.error}>{(this.state.error as string)?.toString?.()}</Text>
 			</MainView>

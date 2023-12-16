@@ -23,9 +23,15 @@ const Router = ({ble}: IProps) =>
 
 	useEffect(() =>
 	{
+		const setInitialValue = async () =>
+		{
+			const state = await BleManager.checkState();
+			setBLEState(state);
+		};
+		setInitialValue();
+
 		const listener = DeviceEventEmitter.addListener("BleManagerDidUpdateState", (data: {state: BleState}) =>
 		{
-			console.log(data.state);
 			setBLEState(data.state);
 		});
 
