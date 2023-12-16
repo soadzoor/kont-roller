@@ -11,6 +11,10 @@ export const Labels = {
 		en: "Choose a device",
 		hu: "Válasszon egy eszközt"
 	},
+	turnOnBlueTooth: {
+		en: "Please turn on Bluetooth",
+		hu: "Kapcsolja be a Bluetooth-t"
+	},
 	search: {
 		en: "Search",
 		hu: "Keresés"

@@ -34,6 +34,7 @@ interface IProps
 {
 	ble: IBle;
 	onBlueToothConnect: () => void;
+	isBlueToothOn: boolean;
 }
 
 interface IState
@@ -126,7 +127,13 @@ class ScanPage extends React.Component<IProps, IState>
 					<Picker.Item label={Labels.hungarian[lang]} value="hu" />
 				</Picker>
 				<TitleBar>
-					<Title>{Labels.chooseADevice[lang]}</Title>
+					{
+						this.props.isBlueToothOn
+						?
+						<Title>{Labels.chooseADevice[lang]}</Title>
+						:
+						<Title>{Labels.turnOnBlueTooth[lang]}</Title>
+					}
 				</TitleBar>
 				<List style={style.topSpace} onRefresh={this.props.ble.scan}>
 					{

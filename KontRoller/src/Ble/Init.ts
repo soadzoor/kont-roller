@@ -1,5 +1,5 @@
 import BleManager from "react-native-ble-manager";
-import { Platform, PermissionsAndroid } from "react-native";
+import {Platform} from "react-native";
 import {IExtension} from "./types";
 import {BleProvider} from ".";
 import {PERMISSIONS, check, request} from "react-native-permissions";
@@ -42,7 +42,7 @@ export class Init implements IExtension
 				if (Platform.OS === "android")
 				{
 					// Only supported on android
-					await BleManager.enableBluetooth();
+					BleManager.enableBluetooth();
 				}
 
 				await BleManager.start({showAlert: true});
