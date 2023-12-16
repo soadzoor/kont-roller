@@ -30,14 +30,20 @@ const Router = ({ble}: IProps) =>
 		};
 		setInitialValue();
 
-		const listener = DeviceEventEmitter.addListener("BleManagerDidUpdateState", (data: {state: BleState}) =>
+		const listenerForStateUpdate = DeviceEventEmitter.addListener("BleManagerDidUpdateState", (data: {state: BleState}) =>
 		{
 			setBLEState(data.state);
 		});
 
+		const listenerForDisconnect = DeviceEventEmitter.addListener("BleManagerDisconnectPeripheral", (data: {peripheral: unknown, error: unknown}) =>
+		{
+			setPageToRender("scan");
+		});
+
 		return () =>
 		{
-			listener.remove();
+			listenerForStateUpdate.remove();
+			listenerForDisconnect.remove();
 		};
 	}, []);
 

@@ -39,12 +39,15 @@ export class Init implements IExtension
 					}
 				}
 
-				const state = await BleManager.checkState();
-
-				if (Platform.OS === "android" && state !== BleState.On)
+				if (Platform.OS === "android")
 				{
-					// Only supported on android
-					BleManager.enableBluetooth();
+					const state = await BleManager.checkState();
+					if (state !== BleState.On)
+					{
+						// Only supported on android
+						BleManager.enableBluetooth();
+					}
+					
 				}
 
 				await BleManager.start({showAlert: true});
