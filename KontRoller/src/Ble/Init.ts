@@ -1,4 +1,4 @@
-import BleManager from "react-native-ble-manager";
+import BleManager, {BleState} from "react-native-ble-manager";
 import {Platform} from "react-native";
 import {IExtension} from "./types";
 import {BleProvider} from ".";
@@ -39,7 +39,9 @@ export class Init implements IExtension
 					}
 				}
 
-				if (Platform.OS === "android")
+				const state = await BleManager.checkState();
+
+				if (Platform.OS === "android" && state !== BleState.On)
 				{
 					// Only supported on android
 					BleManager.enableBluetooth();

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import ScooterPage from "./ScooterPage"
 import ScanPage from "./ScanPage"
@@ -6,9 +6,7 @@ import ScanPage from "./ScanPage"
 import {withBle} from "./Ble";
 import {IBle} from "./Api/types";
 import BleManager, {BleState} from "react-native-ble-manager";
-
-let timeoutId: NodeJS.Timeout | null = null;
-const timeoutInterval = 1000;
+import {DeviceEventEmitter} from "react-native";
 
 interface IProps
 {
@@ -20,34 +18,31 @@ type RenderPage = "individual" | "scan";
 const Router = ({ble}: IProps) => 
 {
 	const [pageToRender, setPageToRender] = useState<RenderPage>("scan");
-	const [isBlueToothOn, setIsBlueToothOn] = useState<boolean>(false);
+	const [BLEState, setBLEState] = useState<BleState>(BleState.Unknown);
 
-	if (timeoutId)
+
+	useEffect(() =>
 	{
-		clearTimeout(timeoutId);
-	}
-
-	timeoutId = setTimeout(async () =>
-	{
-		const state = await BleManager.checkState();
-		console.log(state);
-		if (!isBlueToothOn && state === BleState.On)
+		const listener = DeviceEventEmitter.addListener("BleManagerDidUpdateState", (data: {state: BleState}) =>
 		{
-			setIsBlueToothOn(true)
-		}
-		else if (isBlueToothOn && state !== BleState.On)
-		{
-			setIsBlueToothOn(false);
-		}
-	}, timeoutInterval);
+			console.log(data.state);
+			setBLEState(data.state);
+		});
 
-	if (ble.connected && pageToRender === "individual" && isBlueToothOn) 
+		return () =>
+		{
+			listener.remove();
+		};
+	}, []);
+
+
+	if (ble.connected && pageToRender === "individual" && BLEState === BleState.On) 
 	{
 		return <ScooterPage onBackClick={() => setPageToRender("scan")} />;
 	}
 	else 
 	{
-		return <ScanPage onBlueToothConnect={() => setPageToRender("individual")} isBlueToothOn={isBlueToothOn} />;
+		return <ScanPage onBlueToothConnect={() => setPageToRender("individual")} isBlueToothOn={BLEState === BleState.On} />;
 	}
 }
 

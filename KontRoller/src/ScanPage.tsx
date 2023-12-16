@@ -27,8 +27,11 @@ const style = StyleSheet.create({
 		marginRight: "auto",
 		width: 140,
 		color: "#363636",
-	}
-})
+	},
+	error: {
+		color: "#B71C1C",
+	},
+});
 
 interface IProps
 {
@@ -132,7 +135,7 @@ class ScanPage extends React.Component<IProps, IState>
 						?
 						<Title>{Labels.chooseADevice[lang]}</Title>
 						:
-						<Title>{Labels.turnOnBlueTooth[lang]}</Title>
+						<Title style={style.error}>{Labels.turnOnBlueTooth[lang]}</Title>
 					}
 				</TitleBar>
 				<List style={style.topSpace} onRefresh={this.props.ble.scan}>
@@ -162,7 +165,7 @@ class ScanPage extends React.Component<IProps, IState>
 					!this.props.ble.scanning &&
 					<Button onClick={this.props.ble.scan}>{Labels.search[lang]}</Button>
 				}
-				<Text>{(this.state.error as string)?.toString?.()}</Text>
+				<Text style={style.error}>{(this.state.error as string)?.toString?.()}</Text>
 			</MainView>
 		)
 	}
