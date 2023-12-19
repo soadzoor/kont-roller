@@ -20,7 +20,6 @@ const Router = ({ble}: IProps) =>
 	const [pageToRender, setPageToRender] = useState<RenderPage>("scan");
 	const [BLEState, setBLEState] = useState<BleState>(BleState.Unknown);
 
-
 	useEffect(() =>
 	{
 		const setInitialValue = async () =>
