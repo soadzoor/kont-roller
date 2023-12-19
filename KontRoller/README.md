@@ -31,7 +31,12 @@ You need to change versionCode, and versionName within `build.gradle` for every 
 
 If you need to update/rename your android package, you can use this command: `npx react-native-rename "KontRoller" -b "com.soadzoor.kontroller"`
 
-Building signed apk/bundle from android studio directly might not work. I mean, the building itself works, but the generated apk doesn't always work properly. You need to follow these instructions instead: `https://reactnative.dev/docs/signed-apk-android`
+Building signed apk/bundle from android studio directly might not work. I mean, the building itself works, but the generated apk doesn't always work properly. You need to follow these instructions, if so: `https://reactnative.dev/docs/signed-apk-android`
+
+If you see only a blank (black) screen in release mode, and the permission prompts are not opening (the code stucks at `await PermissionsAndroid.request(...)`), you need to set hermes to false in `gradle.properties`. It took me about 2 hours to figure it out that this was causing the problem.. Still not sure why.
+# Use this property to enable or disable the Hermes JS engine.
+# If set to false, you will be using JSC instead.
+hermesEnabled=false
 
 For iOS:
 https://github.com/innoveit/react-native-ble-manager

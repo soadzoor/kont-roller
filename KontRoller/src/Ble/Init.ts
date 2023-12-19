@@ -33,6 +33,8 @@ export class Init implements IExtension
 					{
 						const result = await PermissionsAndroid.check(permission);
 
+						console.log(`Is ${permission} granted: ${result}`)
+
 						if (!result)
 						{
 							const response = await PermissionsAndroid.request(permission);
