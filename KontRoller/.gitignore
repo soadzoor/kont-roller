@@ -13,3 +13,4 @@ package-lock.json
 !android/gradle.properties
 !android/build.gradle
 !android/app/src/main/res/*
+!android/app/src/main/java/com/soadzoor/kontroller/*
