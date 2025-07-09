@@ -97,7 +97,7 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 	}
 }
 
-const withBle = (Component: ((props: any) => JSX.Element) | (new (props: any) => React.Component<any>)) =>
+const withBle = (Component: ((props: any) => React.ReactNode) | (new (props: any) => React.Component<any>)) =>
 {
 	const hoc = (props: any) => (
 		<Consumer>

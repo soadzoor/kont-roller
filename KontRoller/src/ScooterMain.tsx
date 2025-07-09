@@ -1,5 +1,5 @@
 import React from "react";
-import { BackHandler, StyleSheet } from "react-native";
+import { BackHandler, NativeEventSubscription, StyleSheet } from "react-native";
 
 import Title from "./components/Title";
 import TitleBar from "./components/TitleBar";
@@ -35,6 +35,8 @@ interface IProps
 
 class ScooterMain extends React.Component<IProps>
 {
+	private _subscription: NativeEventSubscription | null = null;
+
 	private onBackPress = () =>
 	{
 		this.props.onBack?.();
@@ -44,12 +46,13 @@ class ScooterMain extends React.Component<IProps>
 
 	public override componentDidMount()
 	{
-		BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+		this._subscription = BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
 	}
 
 	public override componentWillUnmount()
 	{
-		BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+		this._subscription?.remove();
+		this._subscription = null;
 	}
 
 	public override render()
