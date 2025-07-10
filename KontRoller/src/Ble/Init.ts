@@ -1,9 +1,7 @@
 import BleManager, {BleState} from "react-native-ble-manager";
-import {Platform} from "react-native";
+import {Permission, PermissionsAndroid, Platform} from "react-native";
 import {IExtension} from "./types";
 import {BleProvider} from ".";
-import {PermissionsAndroid} from 'react-native';
-import {Permission} from "react-native";
 
 export class Init implements IExtension
 {
@@ -13,7 +11,8 @@ export class Init implements IExtension
 			initialized: false,
 			init: async () =>
 			{
-				console.log("init");
+				console.log("Init BLE");
+				console.log(`Platform version: ${Platform.Version}`);
 				if (bleProvider.state.initialized)
 				{
 					return;
@@ -22,12 +21,18 @@ export class Init implements IExtension
 				// "Android API >= 23 require the ACCESS_COARSE_LOCATION permission to scan for peripherals"
 				if (Platform.OS === "android" && Platform.Version >= 23)
 				{
-					const androidPermissions: Permission[] = [
-						"android.permission.ACCESS_COARSE_LOCATION",
-						"android.permission.ACCESS_FINE_LOCATION",
-						"android.permission.BLUETOOTH_CONNECT",
-						"android.permission.BLUETOOTH_SCAN",
-					];
+					const androidPermissions: Permission[] = [];
+
+					if (Platform.Version >= 31)
+					{
+						androidPermissions.push("android.permission.BLUETOOTH_CONNECT");
+						androidPermissions.push("android.permission.BLUETOOTH_SCAN");
+					}
+					else
+					{
+						androidPermissions.push("android.permission.ACCESS_COARSE_LOCATION");
+						androidPermissions.push("android.permission.ACCESS_FINE_LOCATION");
+					}
 
 					for (const permission of androidPermissions)
 					{
