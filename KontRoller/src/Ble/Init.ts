@@ -30,7 +30,6 @@ export class Init implements IExtension
 					}
 					else
 					{
-						androidPermissions.push("android.permission.ACCESS_COARSE_LOCATION");
 						androidPermissions.push("android.permission.ACCESS_FINE_LOCATION");
 					}
 

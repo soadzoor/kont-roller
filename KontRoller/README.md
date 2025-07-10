@@ -1,5 +1,18 @@
 npm install -g react-native-cli
 
+After cloning,
+move android and ios folders out,
+run react-native eject, then move them back in
+
+If your code changes are not reflected, run:
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+
+To see the console log:
+npx react-native log-android 
+
+cd android
+./gradlew wrapper
+
 If you don't have "android" and "ios" folders, run this command
 react-native upgrade
 

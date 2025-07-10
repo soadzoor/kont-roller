@@ -71,16 +71,17 @@ export class Connection implements IExtension
 
 	public async componentDidMount(bleProvider: BleProvider)
 	{
-		bleProvider.subscribe("BleManagerDidUpdateValueForCharacteristic", (device) =>
+		BleManager.onDidUpdateValueForCharacteristic((device: IDevice) =>
 		{
 			this.state.handler?.(device);
 		});
-
-		bleProvider.subscribe("BleManagerDisconnectPeripheral", (device) =>
+		
+		BleManager.onDisconnectPeripheral((device: IDevice) =>
 		{
-			console.log("disconnected")
+			console.log(`Disconnected from peripheral: ${device.name} (${device.id})`);
 			bleProvider.setState({connected: false});
 			this.state.handler = null;
+
 		});
 	}
 

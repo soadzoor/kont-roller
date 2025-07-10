@@ -51,13 +51,14 @@ export class Communication implements IExtension
 
 	public async componentDidMount(bleProvider: BleProvider)
 	{
-		bleProvider.subscribe("BleManagerDidUpdateValueForCharacteristic", (device: IDevice) =>
+		BleManager.onDidUpdateValueForCharacteristic((device: IDevice) =>
 		{
 			this.state.handler?.(device);
 		});
 
-		bleProvider.subscribe("BleManagerDisconnectPeripheral", () =>
+		BleManager.onDiscoverPeripheral((device: IDevice) =>
 		{
+			console.log(`Disconnected from peripheral: ${device.name} (${device.id})`);
 			this.state.handler = null;
 			this.state.started = false;
 		});

@@ -11,9 +11,9 @@ export class Events implements IExtension
 	{
 		const bleManagerEmitter = new NativeEventEmitter(NativeModules.BleManager);
 
-		bleProvider.subscribe = (name: string, handler: (peri: IDevice) => void) =>
-		{
-			this._subscriptions.push(bleManagerEmitter.addListener(name, handler));
-		}
+		// bleProvider.subscribe = (name: string, handler: (peri: IDevice) => void) =>
+		// {
+		// 	this._subscriptions.push(bleManagerEmitter.addListener(name, handler));
+		// }
 	}
 }

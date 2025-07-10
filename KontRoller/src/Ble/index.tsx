@@ -15,7 +15,7 @@ const extensions: IExtension[] = [
 	new Events(),
 	new Init(),
 	new Scan(),
-]
+];
 
 class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 {
@@ -46,11 +46,6 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 		{
 			extension.init(this);
 		}
-	}
-
-	public subscribe(name: string, handler: (peri: IDevice) => void)
-	{
-
 	}
 
 	public checkInit = async () =>

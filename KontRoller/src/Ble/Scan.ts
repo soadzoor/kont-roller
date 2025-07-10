@@ -13,6 +13,8 @@ export class Scan implements IExtension
 
 			scan: async () =>
 			{
+				console.log("Start scanning for BLE devices");
+
 				await bleProvider.checkInit();
 				if (bleProvider.state.scanning)
 				{
@@ -30,6 +32,7 @@ export class Scan implements IExtension
 
 				bleProvider.setState({devices: []});
 
+				console.log(`Scanning for service UUID: ${bleProvider.uuids.service}`);
 				BleManager.scan([bleProvider.uuids.service], 5);
 
 				bleProvider.setState({scanning: true});
@@ -39,13 +42,10 @@ export class Scan implements IExtension
 
 	public componentDidMount(bleProvider: BleProvider)
 	{
-		bleProvider.subscribe("BleManagerStopScan", () =>
+		BleManager.onDiscoverPeripheral((peri: IDevice) => 
 		{
-			bleProvider.setState({scanning: false});
-		});
+			console.log(`Discovered peripheral: ${peri.name} (${peri.id})`);
 
-		bleProvider.subscribe("BleManagerDiscoverPeripheral", (peri: IDevice) =>
-		{
 			bleProvider.setState({
 				devices: [
 					...bleProvider.state.devices.filter(x => x.id !== peri.id),
@@ -53,5 +53,17 @@ export class Scan implements IExtension
 				]
 			});
 		});
+
+		BleManager.onStopScan(() =>
+		{
+			console.log("Stopped scanning for BLE devices");
+
+			bleProvider.setState({scanning: false});
+		});
+	}
+
+	public componentWillUnmount(bleProvider: BleProvider)
+	{
+		
 	}
 }
