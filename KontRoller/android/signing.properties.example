@@ -1,0 +1,7 @@
+# Copy to signing.properties (ignored by Git). Keep actual credentials local.
+MYAPP_UPLOAD_STORE_FILE=C:/path/to/upload-key.keystore
+MYAPP_UPLOAD_STORE_PASSWORD=
+# Optional when the keystore contains exactly one private key:
+MYAPP_UPLOAD_KEY_ALIAS=
+# Optional when identical to the store password:
+MYAPP_UPLOAD_KEY_PASSWORD=

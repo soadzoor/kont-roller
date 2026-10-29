@@ -1,12 +1,13 @@
 import BleManager from "react-native-ble-manager";
 import {BleProvider} from ".";
 import {IExtension} from "./types";
-import {IDevice} from "../Api/types";
+import {IBluetoothMessage} from "../Api/types";
 
 export class Communication implements IExtension
 {
+    private subscriptions: Array<{remove: () => void}> = [];
 	public state: {
-		handler: ((device: IDevice) => void) | null;
+		handler: ((device: IBluetoothMessage) => void) | null;
 		started: boolean;
 	} = {
 		handler: null,
@@ -16,7 +17,7 @@ export class Communication implements IExtension
 	public init(bleProvider: BleProvider)
 	{
 		Object.assign(bleProvider.state, {
-			onNotify: async (handler: (device: IDevice) => void) =>
+			onNotify: async (handler: (device: IBluetoothMessage) => void) =>
 			{
 				await bleProvider.checkInit();
 				if (this.state.started)
@@ -32,8 +33,8 @@ export class Communication implements IExtension
 				}
 
 				this.state.handler = handler;
-				this.state.started = true;
 				await BleManager.startNotification(mac, bleProvider.uuids.service, bleProvider.uuids.read);
+                this.state.started = true;
 			},
 			write: async (data: Uint8Array) =>
 			{
@@ -49,18 +50,20 @@ export class Communication implements IExtension
 		})
 	}
 
-	public async componentDidMount(bleProvider: BleProvider)
-	{
-		BleManager.onDidUpdateValueForCharacteristic((device: IDevice) =>
-		{
-			this.state.handler?.(device);
-		});
+    public componentDidMount() {
+        this.subscriptions.push(
+            BleManager.onDidUpdateValueForCharacteristic(message => this.state.handler?.(message)),
+            BleManager.onDisconnectPeripheral(() => {
+                this.state.handler = null;
+                this.state.started = false;
+            }),
+        );
+    }
 
-		BleManager.onDiscoverPeripheral((device: IDevice) =>
-		{
-			console.log(`Disconnected from peripheral: ${device.name} (${device.id})`);
-			this.state.handler = null;
-			this.state.started = false;
-		});
-	}
+    public componentWillUnmount() {
+        this.subscriptions.forEach(subscription => subscription.remove());
+        this.subscriptions = [];
+        this.state.handler = null;
+        this.state.started = false;
+    }
 }

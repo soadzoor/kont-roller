@@ -1,3 +1,5 @@
+import type {Peripheral, BleManagerDidUpdateValueForCharacteristicEvent} from "react-native-ble-manager";
+
 export const MAX_SPEED = 25; // km/h
 // The wechat miniapp had the maximum value set at 30, but I tried, and it doesn't matter at all:
 // Providing 25 vs 30 for this value didn't make a difference. 25 seems to be the hardware limitation
@@ -8,32 +10,8 @@ export const LangStorageName = "lang";
 
 export const ScooterNameStorageNamePrefix = "ScooterName-";
 
-export interface IBluetoothMessage
-{
-	characteristic: string; // 000036f6-0000-1000-8000-00805f9b34fb
-	peripheral: string; // FF:2E:72:68:FD:E1
-	service: string; // 0000fee7-0000-1000-8000-00805f9b34fb
-	value: Uint8Array; // [147, 156, 102, 190, 28, 233, 252, 252, 113, 129, 237, 77, 92, 251, 193, 54]
-}
-
-export interface IDevice
-{
-	advertising: {
-		isConnectable: boolean;
-		localName: string; // "H149_scooter"
-		manufacturerData: {
-			CDVType: "ArrayBuffer";
-			bytes: number[];
-			data: string; // looks base64 to me
-		};
-		serviceData: {}; // yes, it seems to be an empty object (at least at the time of writing)
-		servicesUUIDs: string[]; // ["fee7"]
-		txPowerLevel: number; // -2147483648
-	};
-	id: string; // MAC, eg.: "FF:2E:72:68:FD:E1"
-	name: string; // "H149_scooter";
-	rssi: number; // -78
-}
+export type IBluetoothMessage = BleManagerDidUpdateValueForCharacteristicEvent;
+export type IDevice = Peripheral;
 
 export interface IBle
 {

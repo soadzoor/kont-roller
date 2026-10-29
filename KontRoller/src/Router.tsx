@@ -6,7 +6,7 @@ import ScanPage from "./ScanPage"
 import {withBle} from "./Ble";
 import {IBle} from "./Api/types";
 import BleManager, {BleState} from "react-native-ble-manager";
-import {DeviceEventEmitter} from "react-native";
+
 
 interface IProps
 {
@@ -15,7 +15,7 @@ interface IProps
 
 type RenderPage = "individual" | "scan";
 
-const Router = ({ble}: IProps) => 
+const Router = ({ble}: IProps) =>
 {
 	const [pageToRender, setPageToRender] = useState<RenderPage>("scan");
 	const [BLEState, setBLEState] = useState<BleState>(BleState.Unknown);
@@ -29,12 +29,12 @@ const Router = ({ble}: IProps) =>
 		};
 		setInitialValue();
 
-		const listenerForStateUpdate = DeviceEventEmitter.addListener("BleManagerDidUpdateState", (data: {state: BleState}) =>
+		const listenerForStateUpdate = BleManager.onDidUpdateState((data: {state: BleState}) =>
 		{
 			setBLEState(data.state);
 		});
 
-		const listenerForDisconnect = DeviceEventEmitter.addListener("BleManagerDisconnectPeripheral", (data: {peripheral: unknown, error: unknown}) =>
+		const listenerForDisconnect = BleManager.onDisconnectPeripheral(() =>
 		{
 			setPageToRender("scan");
 		});
@@ -47,11 +47,11 @@ const Router = ({ble}: IProps) =>
 	}, []);
 
 
-	if (ble.connected && pageToRender === "individual" && BLEState === BleState.On) 
+	if (ble.connected && pageToRender === "individual" && BLEState === BleState.On)
 	{
 		return <ScooterPage onBackClick={() => setPageToRender("scan")} />;
 	}
-	else 
+	else
 	{
 		return <ScanPage onBlueToothConnect={() => setPageToRender("individual")} isBlueToothOn={BLEState === BleState.On} />;
 	}

@@ -11,6 +11,7 @@ export interface IBleProviderProps
 export interface IBleProviderState
 {
 	loaded: boolean;
+    initializationError: string | null;
 	initialized: boolean;
 	init: () => Promise<void>;
 	devices: IDevice[];

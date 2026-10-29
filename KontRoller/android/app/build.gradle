@@ -72,6 +72,23 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+// Local credentials are ignored by Git; environment/Gradle properties also work.
+def localSigning = new Properties()
+def signingFile = rootProject.file("signing.properties")
+if (signingFile.exists()) signingFile.withReader('UTF-8') { localSigning.load(it) }
+def signingValue = { name -> localSigning.getProperty(name) ?: providers.gradleProperty(name).orElse(providers.environmentVariable(name)).orNull }
+def uploadStoreFile = signingValue("MYAPP_UPLOAD_STORE_FILE")
+def uploadStorePassword = signingValue("MYAPP_UPLOAD_STORE_PASSWORD")
+def uploadKeyPassword = signingValue("MYAPP_UPLOAD_KEY_PASSWORD") ?: uploadStorePassword
+def uploadKeyAlias = signingValue("MYAPP_UPLOAD_KEY_ALIAS")
+if (uploadStoreFile && uploadStorePassword && !uploadKeyAlias) {
+    def uploadStore = java.security.KeyStore.getInstance(file(uploadStoreFile), uploadStorePassword.toCharArray())
+    def aliases = Collections.list(uploadStore.aliases()).findAll { uploadStore.isKeyEntry(it) }
+    if (aliases.size() != 1) throw new GradleException("Set MYAPP_UPLOAD_KEY_ALIAS in android/signing.properties; the keystore has multiple keys.")
+    uploadKeyAlias = aliases.first()
+}
+def canSignRelease = uploadStoreFile && uploadStorePassword && uploadKeyAlias && uploadKeyPassword
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -82,8 +99,8 @@ android {
         applicationId "com.soadzoor.kontroller"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 106
-        versionName "1.06"
+        versionCode = (project.findProperty("KONTROLLER_VERSION_CODE") ?: "108").toString().toInteger()
+        versionName = (project.findProperty("KONTROLLER_VERSION_NAME") ?: "1.08").toString()
     }
     signingConfigs {
         debug {
@@ -92,12 +109,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-		release {
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+        if (canSignRelease) {
+            release {
+                storeFile file(uploadStoreFile)
+                storePassword uploadStorePassword
+                keyAlias uploadKeyAlias
+                keyPassword uploadKeyPassword
             }
         }
     }
@@ -108,9 +125,12 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // Use the existing upload key when configured; otherwise leave the artifact unsigned.
+            if (canSignRelease) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 }
@@ -123,5 +143,12 @@ dependencies {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
+    }
+}
+
+// Never accidentally distribute a debug-signed or unsigned production release.
+gradle.taskGraph.whenReady { graph ->
+    if ((graph.hasTask(":app:bundleRelease") || graph.hasTask(":app:assembleRelease")) && !canSignRelease && project.findProperty("allowUnsignedRelease") != "true") {
+        throw new GradleException("Configure the existing upload key in android/signing.properties before building a release. For local binary inspection only, use -PallowUnsignedRelease=true.")
     }
 }

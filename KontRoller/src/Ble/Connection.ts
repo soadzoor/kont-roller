@@ -5,11 +5,7 @@ import {IBleProviderProps, IBleProviderState, IExtension} from "./types";
 
 export class Connection implements IExtension
 {
-	public state: {
-		handler: ((event: IDevice) => void) | null;
-	} = {
-		handler: null
-	};
+    private subscriptions: Array<{remove: () => void}> = [];
 
 	public init(bleProvider: BleProvider)
 	{
@@ -69,21 +65,16 @@ export class Connection implements IExtension
 		});
 	}
 
-	public async componentDidMount(bleProvider: BleProvider)
-	{
-		BleManager.onDidUpdateValueForCharacteristic((device: IDevice) =>
-		{
-			this.state.handler?.(device);
-		});
-		
-		BleManager.onDisconnectPeripheral((device: IDevice) =>
-		{
-			console.log(`Disconnected from peripheral: ${device.name} (${device.id})`);
-			bleProvider.setState({connected: false});
-			this.state.handler = null;
+    public componentDidMount(bleProvider: BleProvider) {
+        this.subscriptions.push(BleManager.onDisconnectPeripheral(() => {
+            bleProvider.setState({connected: false});
+        }));
+    }
 
-		});
-	}
+    public componentWillUnmount() {
+        this.subscriptions.forEach(subscription => subscription.remove());
+        this.subscriptions = [];
+    }
 
 	public async componentDidUpdate(bleProvider: BleProvider, prevProps: IBleProviderProps, prevState: IBleProviderState)
 	{

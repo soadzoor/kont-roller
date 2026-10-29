@@ -1,8 +1,8 @@
 import React from "react";
+import {Button, Text, View} from "react-native";
 import {IDevice} from "../Api/types";
 import {Communication} from "./Communication";
 import {Connection} from "./Connection";
-import {Events} from "./Events";
 import {Init} from "./Init";
 import {Scan} from "./Scan";
 import {IBleProviderProps, IBleProviderState, IExtension} from "./types";
@@ -12,7 +12,6 @@ const {Provider, Consumer} = React.createContext({loaded: false});
 const extensions: IExtension[] = [
 	new Communication(),
 	new Connection(),
-	new Events(),
 	new Init(),
 	new Scan(),
 ];
@@ -40,6 +39,7 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 			scanning: false,
 			getMac: async () => "",
 			connected: false,
+            initializationError: null,
 		};
 
 		for (const extension of extensions)
@@ -56,15 +56,22 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 		}
 	}
 
-	public override async componentDidMount()
-	{
-		for (const extension of extensions)
-		{
-			await extension.componentDidMount?.(this);
-		}
+    private initialize = async () => {
+        this.setState({initializationError: null});
+        try {
+            await this.state.init();
+            for (const extension of extensions) {
+                await extension.componentDidMount?.(this);
+            }
+            this.setState({loaded: true});
+        } catch (error) {
+            this.setState({initializationError: error instanceof Error ? error.message : String(error)});
+        }
+    };
 
-		this.setState({loaded: true});
-	}
+    public override componentDidMount() {
+        void this.initialize();
+    }
 
 	public override async componentDidUpdate(prevProps: IBleProviderProps, prevState: IBleProviderState)
 	{
@@ -84,6 +91,13 @@ class BleProvider extends React.Component<IBleProviderProps, IBleProviderState>
 
 	public override render()
 	{
+        if (this.state.initializationError) {
+            return <View style={{flex: 1, padding: 24, justifyContent: "center"}}>
+                <Text style={{marginBottom: 16}}>{this.state.initializationError}</Text>
+                <Button title="Try again" onPress={this.initialize} />
+            </View>;
+        }
+
 		return (
 			<Provider value={this.state} >
 				{this.state.loaded && this.props.children}
