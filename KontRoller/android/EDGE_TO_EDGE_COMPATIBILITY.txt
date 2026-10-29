@@ -1,0 +1,11 @@
+KontRoller Android system-bar compatibility
+
+React Native 0.88.1 is pinned in package.json. Its WindowUtilKt.enableEdgeToEdge, statusBarHide and statusBarShow helpers still contain the deprecated Window.setStatusBarColor / setNavigationBarColor calls and SHORT_EDGES / DEFAULT cutout modes flagged by Play Console.
+
+The AGP instrumentation factory in buildSrc replaces exactly those three static methods with direct calls to the app-owned SystemBarsCompat class. The visitor validates all three signatures and fails the build if an upstream update changes them. npm dependencies are not modified. The same implementation is used in debug and release.
+
+SystemBarsCompat uses WindowInsetsControllerCompat for visibility and icon contrast. Android 15+ keeps the OS-enforced edge-to-edge behavior, and Android 11+ uses the supported ALWAYS cutout mode. Earlier versions use compatible decor flags, while version-qualified XML themes supply bar backgrounds for Android 7-14. The Android 15+ AppTheme inherits the common base without the legacy bar-color attributes.
+
+The app has a light background, so the controller uses dark status/navigation icons where the OS supports them. API 24-25 retains a dark navigation-bar background because those versions cannot draw dark navigation icons.
+
+Validation includes buildSrc visitor tests, Android 9/15 system-bar tests, the final DEX method-reference scan, and the standard release, signature and 16 KB checks. When updating React Native, review the upstream implementations and remove this compatibility layer once the upstream methods migrate to supported APIs. Re-run the artifact scan after that change.

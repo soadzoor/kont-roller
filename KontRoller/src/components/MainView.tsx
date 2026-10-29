@@ -6,7 +6,9 @@ const styles = StyleSheet.create({
 		padding: 12,
 		backgroundColor: "#eee",
 		flexDirection: "column",
-		flexGrow: 1,
+		flex: 1,
+		minWidth: 0,
+		minHeight: 0,
 		color: "#363636",
 	}
 })

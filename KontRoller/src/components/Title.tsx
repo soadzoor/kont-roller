@@ -4,7 +4,8 @@ import { Text, StyleSheet, StyleProp, GestureResponderEvent } from "react-native
 const styles = StyleSheet.create({
 	title: {
 		textAlign: "center",
-		flexGrow: 1,
+		flex: 1,
+		minWidth: 0,
 		fontSize: 24,
 		color: "#363636",
 	}

@@ -10,11 +10,13 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	label: {
+		flexShrink: 1,
 		paddingVertical: 16,
 		fontSize: 22,
 		color: "#363636",
 	},
 	textInput: {
+		minWidth: 64,
 		flex: 1,
 		color: "#00A000",
 		height: "100%",

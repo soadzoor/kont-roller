@@ -19,3 +19,7 @@ android/.tmp/
 .g/
 .cache/
 .android/
+
+android/.m2/
+android/buildSrc/.gradle/
+android/buildSrc/build/

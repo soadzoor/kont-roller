@@ -7,6 +7,7 @@ import Icon from "./components/Icon";
 import Locker from "./components/Locker";
 import BatteryBar from "./components/BatteryBar";
 import Widget from "./components/Widget";
+import List from "./components/List";
 import {IExports} from "./Api/types";
 import {ScooterName} from "./ScooterName";
 import {Labels} from "./Labels";
@@ -74,6 +75,7 @@ class ScooterMain extends React.Component<IProps>
 				{/* <Text style={[style.speed, style.topSpace, style.centerItem]}>
 					{api.currentSpeed} km/h
 				</Text> */}
+				<List>
 				<Locker
 					onClick={api.locked ? api.unlock : api.lock}
 					locked={api.locked}
@@ -94,6 +96,7 @@ class ScooterMain extends React.Component<IProps>
 						onClick={api.led ? api.ledOff : api.ledOn}
 					/>
 				}
+				</List>
 			</>
 		);
 	}

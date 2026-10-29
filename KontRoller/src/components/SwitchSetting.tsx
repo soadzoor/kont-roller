@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
 	},
 	label: {
 		fontSize: 22,
-		flexGrow: 1,
+		flex: 1,
+		minWidth: 0,
 		color: "#363636",
 	}
 });

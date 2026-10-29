@@ -1,6 +1,6 @@
 param(
-    [ValidateRange(1,2100000000)][int]$VersionCode = 108,
-    [ValidateNotNullOrEmpty()][string]$VersionName = '1.08'
+    [ValidateRange(1,2100000000)][int]$VersionCode = 109,
+    [ValidateNotNullOrEmpty()][string]$VersionName = '1.09'
 )
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot

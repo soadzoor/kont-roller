@@ -57,7 +57,7 @@ react {
 /**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
 
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
@@ -99,8 +99,8 @@ android {
         applicationId "com.soadzoor.kontroller"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode = (project.findProperty("KONTROLLER_VERSION_CODE") ?: "108").toString().toInteger()
-        versionName = (project.findProperty("KONTROLLER_VERSION_NAME") ?: "1.08").toString()
+        versionCode = (project.findProperty("KONTROLLER_VERSION_CODE") ?: "109").toString().toInteger()
+        versionName = (project.findProperty("KONTROLLER_VERSION_NAME") ?: "1.09").toString()
     }
     signingConfigs {
         debug {
@@ -118,6 +118,19 @@ android {
             }
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            all {
+                maxHeapSize = '2g'
+                def testHome = rootProject.file('.tmp/test-home')
+                testHome.mkdirs()
+                systemProperty 'user.home', testHome.absolutePath
+                systemProperty 'robolectric.dependency.repo.url', 'https://repo.maven.apache.org/maven2'
+                systemProperty 'maven.repo.local', rootProject.file('.m2/repository').absolutePath
+            }
+        }
+    }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -130,12 +143,15 @@ android {
                 signingConfig signingConfigs.release
             }
             minifyEnabled enableProguardInReleaseBuilds
+            shrinkResources true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 }
 
 dependencies {
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.robolectric:robolectric:4.17"
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
@@ -150,5 +166,13 @@ dependencies {
 gradle.taskGraph.whenReady { graph ->
     if ((graph.hasTask(":app:bundleRelease") || graph.hasTask(":app:assembleRelease")) && !canSignRelease && project.findProperty("allowUnsignedRelease") != "true") {
         throw new GradleException("Configure the existing upload key in android/signing.properties before building a release. For local binary inspection only, use -PallowUnsignedRelease=true.")
+    }
+}
+
+// RN 0.88.1 still calls deprecated window APIs. Use the app's supported system-bar implementation.
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        variant.instrumentation.transformClassesWith(com.soadzoor.build.ReactNativeWindowVisitorFactory, com.android.build.api.instrumentation.InstrumentationScope.ALL) {}
+        variant.instrumentation.setAsmFramesComputationMode(com.android.build.api.instrumentation.FramesComputationMode.COMPUTE_FRAMES_FOR_INSTRUMENTED_METHODS)
     }
 }
